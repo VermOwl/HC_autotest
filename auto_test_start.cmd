@@ -6,3 +6,5 @@ python create_user_and_devices.py
 python card_information.py
 python feedback_form.py
 python juridical_information.py 
+
+pause
