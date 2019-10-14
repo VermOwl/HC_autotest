@@ -1,0 +1,7 @@
+2019-10-10 16:12:34,110 - double_function - INFO - Вызов функции: double_function
+2019-10-10 16:12:34,111 - double_function - INFO - Результат: 4
+2019-10-10 16:13:42,201 - double_function - INFO - Вызов функции: double_function
+2019-10-10 16:13:42,202 - double_function - INFO - Результат: a*2
+2019-10-10 16:14:12,482 - double_function - INFO - Вызов функции: double_function
+2019-10-10 16:14:21,620 - double_function - INFO - Вызов функции: double_function
+2019-10-10 16:14:21,620 - double_function - INFO - Результат: a*2
