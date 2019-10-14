@@ -1,4 +1,5 @@
-cd C:\HelpCubes autotest
+cd Documents\GitHub\HC_autotest
+
 python add_user_with_send_support.py
 python edit_profile_info.py
 python create_user_and_devices.py
