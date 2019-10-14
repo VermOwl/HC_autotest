@@ -5,6 +5,7 @@ import time
 import random
 import names
 import pyperclip
+import configparser
 
 class hc_command():
 
@@ -632,6 +633,10 @@ class hc_command():
         driver.find_element_by_xpath("//li[contains(text(),'1.6. Действие настоящих Прави')]")
         print("Политики конфиденциальности проверены")
 
-    
+    def site(self):
+        config = configparser.ConfigParser()
+        config.read('environment.ini')
+        site = config['ENVIRONMENT']['site']
+        return site
 
     
