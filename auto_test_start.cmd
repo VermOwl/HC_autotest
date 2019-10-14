@@ -1,4 +1,4 @@
-cd Documents\GitHub\HC_autotest
+cd C:\Users\%USERNAME%\Documents\GitHub\HC_autotest
 
 python add_user_with_send_support.py
 python edit_profile_info.py
