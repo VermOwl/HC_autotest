@@ -20,4 +20,5 @@ time.sleep(1)
 
 driver.find_element_by_xpath("//a[contains(text(),'Политика конфиденциальности')]").click()
 
+print("sfje")
 driver.close()
