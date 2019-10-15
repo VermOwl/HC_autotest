@@ -9,8 +9,8 @@ from login import hc_command
 import configparser
 
 config = configparser.ConfigParser()
-config.read('config.ini')
-site = config['ENVIROMENT']['site']
+config.read('environment.ini')
+site = config['ENVIRONMENT']['site']
 
 chrome_options = Options()
 chrome_options.add_argument("--start-maximized")

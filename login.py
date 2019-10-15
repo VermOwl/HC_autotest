@@ -254,7 +254,9 @@ class hc_command():
         driver.find_element_by_xpath("//body/div[@id='__nuxt']/div[@id='__layout']/div[@id='app']/div[@class='application--wrap']/main[@class='v-content']/div[@class='v-content__wrap']/div[@class='account-bg']/div[@class='container pa-xs-0']/div[@class='layout wrap']/div[@class='flex right-block xs12 md8']/div[@class='bg-xs-white']/form[@id='form']/div[@class='mx-auto v-card v-sheet v-sheet--tile theme--light']/div[@class='v-card__text pt-xs-0 px-xs-4']/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/input[1]").send_keys(dateofbirth)
         # Женский пол
         time.sleep(1)
-        driver.find_element_by_xpath("//div[@class='v-input--selection-controls__ripple']").click()
+        elem = driver.find_elements_by_xpath("//div[@class='v-input--selection-controls__ripple']")
+        elem_click = elem[1]
+        elem_click.click()
         time.sleep(0.4)
         # Изменение номера телефона
         driver.find_element_by_xpath("//input[@placeholder='+7 (###) ###-##-##']").send_keys("1234567890")     
@@ -588,6 +590,8 @@ class hc_command():
         driver.find_element_by_xpath("//div[@class='attachment-thumb']//a//img")
 
         print("Запрос от авторизованного пользователя найден")
+
+        driver.close()
 
     def open_signin_form(self,driver):   #Открыть форму входа пользователя
         time.sleep(1)
