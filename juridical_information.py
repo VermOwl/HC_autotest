@@ -8,16 +8,13 @@ import pyperclip
 from login import hc_command
 import configparser
 
-config = configparser.ConfigParser()
-config.read('config.ini')
-site = config['ENVIROMENT']['site']
+test = hc_command()
 
 chrome_options = Options()
 chrome_options.add_argument("--start-maximized")
 driver = webdriver.Chrome(chrome_options=chrome_options)
-driver.get(site)
+driver.get(test.site())
 
-test = hc_command()
 time.sleep(2)
 test.open_user_agreement(driver)
 test.open_privacy_policy(driver)
@@ -53,3 +50,5 @@ driver.find_element_by_xpath("//a[contains(text(),'Правила проведе
 time.sleep(1)
 driver.find_element_by_xpath("//li[contains(text(),'Организатор Акции ООО «Е09»')]")
 driver.switch_to.window(window_before)
+
+driver.close

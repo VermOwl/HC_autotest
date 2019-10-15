@@ -8,17 +8,24 @@ import pyperclip
 from login import hc_command
 import configparser
 import logging
+import getpass
+
+test = hc_command()
+
+username = getpass.getuser()
+print(username)
+
+config = configparser.ConfigParser()
+config.read('config.ini')
+temp = config['USER INFO']['email']
+password = "23072307"
 
 chrome_options = Options()
 chrome_options.add_argument("--start-maximized")
 driver = webdriver.Chrome(chrome_options=chrome_options)
-driver.get("http://front.stage.helpcubes.com/legal-docs")
+driver.get(test.site())
 
-test = hc_command()
+test.signin(driver)
+test.support_message(driver)
 
-time.sleep(1)
-
-driver.find_element_by_xpath("//a[contains(text(),'Политика конфиденциальности')]").click()
-
-print("sfje")
 driver.close()

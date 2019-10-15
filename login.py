@@ -5,6 +5,8 @@ import time
 import random
 import names
 import pyperclip
+import configparser
+import getpass
 
 class hc_command():
 
@@ -35,7 +37,7 @@ class hc_command():
             print("фывалдо")
 
     def setting(self, driver): #заходит в настройки пользователя
-        time.sleep(1)
+        time.sleep(2)
         driver.find_element_by_xpath("//i[contains(text(),'settings')]").click()
         time.sleep(1)
 
@@ -116,7 +118,7 @@ class hc_command():
         driver.find_element_by_xpath("//textarea[@name='comment']").send_keys("Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.")
         
         #Добавление файла
-        driver.find_element_by_xpath("//input[@name='files[]']").send_keys("C:\\HelpCubes autotest\\ford-ford-raptor-parketnik-dzhip.jpg")
+        driver.find_element_by_xpath("//input[@name='files[]']").send_keys("C:\\Users\\" + getpass.getuser()  + "\\Documents\\GitHub\\HC_autotest\\ford-ford-raptor-parketnik-dzhip.jpeg")
         time.sleep(1)
         
         #Нажатие кнопки отправить
@@ -127,10 +129,9 @@ class hc_command():
 
         time.sleep(1)
 
-        #https://jira.bsr.group/browse/BS-389
-        # driver.find_element_by_xpath("//h6[contains(text(),'" + summary + "')]")
-        # driver.find_element_by_xpath("//p[contains(text(),'" + description + "')]")
-        # driver.find_element_by_xpath("//div[@class='v-avatar v-avatar--tile']//span//a//img")
+        driver.find_element_by_xpath("//h6[contains(text(),'" + summary + "')]")
+        driver.find_element_by_xpath("//p[contains(text(),'" + description + "')]")
+        driver.find_element_by_xpath("//div[@class='v-avatar v-avatar--tile']//span//a//img")
 
         print("Запрос в ТП успешно отправлен - пользователь преенаправлен на страницу всех запросов в ТП")
         #Добавить чек на то что какая открылась страница
@@ -246,7 +247,7 @@ class hc_command():
     def add_profile_info(self, driver): #Заполнение информации о пользваотеле
         time.sleep(1)
         # Добавление фотки
-        driver.find_element_by_xpath("//input[@type='file']").send_keys("C:\\HelpCubes autotest\\ford-ford-raptor-parketnik-dzhip.jpeg")
+        driver.find_element_by_xpath("//input[@type='file']").send_keys("C:\\Users\\" + getpass.getuser()  + "\\Documents\\GitHub\\HC_autotest\\ford-ford-raptor-parketnik-dzhip.jpeg")
         # Изменение фамилии
         last_name = names.get_last_name()
         driver.find_element_by_xpath("//input[@name='last_name']").send_keys(last_name)
@@ -632,6 +633,10 @@ class hc_command():
         driver.find_element_by_xpath("//li[contains(text(),'1.6. Действие настоящих Прави')]")
         print("Политики конфиденциальности проверены")
 
-    
+    def site(self):
+        config = configparser.ConfigParser()
+        config.read('environment.ini')
+        site = config['ENVIRONMENT']['site']
+        return site
 
     

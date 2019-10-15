@@ -13,14 +13,15 @@ config = configparser.ConfigParser()
 config.read('config.ini')
 mail = config['USER INFO']['email']
 password = "23072307"
-site = config['ENVIROMENT']['site']
+
+test = hc_command()
 
 chrome_options = Options()
 chrome_options.add_argument("--start-maximized")
 driver = webdriver.Chrome(chrome_options=chrome_options)
-driver.get(site)
+driver.get(test.site())
 
-test = hc_command()
+
 
 
 test.signin_parametr(driver, mail, password)
