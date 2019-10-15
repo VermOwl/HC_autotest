@@ -129,10 +129,9 @@ class hc_command():
 
         time.sleep(1)
 
-        #https://jira.bsr.group/browse/BS-389
-        # driver.find_element_by_xpath("//h6[contains(text(),'" + summary + "')]")
-        # driver.find_element_by_xpath("//p[contains(text(),'" + description + "')]")
-        # driver.find_element_by_xpath("//div[@class='v-avatar v-avatar--tile']//span//a//img")
+        driver.find_element_by_xpath("//h6[contains(text(),'" + summary + "')]")
+        driver.find_element_by_xpath("//p[contains(text(),'" + description + "')]")
+        driver.find_element_by_xpath("//div[@class='v-avatar v-avatar--tile']//span//a//img")
 
         print("Запрос в ТП успешно отправлен - пользователь преенаправлен на страницу всех запросов в ТП")
         #Добавить чек на то что какая открылась страница
