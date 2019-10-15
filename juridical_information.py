@@ -51,4 +51,4 @@ time.sleep(1)
 driver.find_element_by_xpath("//li[contains(text(),'Организатор Акции ООО «Е09»')]")
 driver.switch_to.window(window_before)
 
-driver.close
+driver.close()
