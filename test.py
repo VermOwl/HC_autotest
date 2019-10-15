@@ -25,7 +25,7 @@ chrome_options.add_argument("--start-maximized")
 driver = webdriver.Chrome(chrome_options=chrome_options)
 driver.get(test.site())
 
-test.signin(driver)
-test.support_message(driver)
+test.signin_parametr(driver, "829test829@gmail.com", "23072307")
+test.tariff_add(driver)
 
 driver.close()

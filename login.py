@@ -191,9 +191,7 @@ class hc_command():
     def tariff_add(self, driver): #Добавиление тарифа
         time.sleep(1)
         #Раздел: Тарифы
-        elem_list = driver.find_elements_by_xpath("//a[@class='v-btn v-btn--flat v-btn--router v-btn--text theme--light v-size--default']")
-        elem = elem_list[0]
-        elem.click()
+        driver.find_element_by_xpath("//span[@class='v-btn__content'][contains(text(),'Тарифы')]").click()
         time.sleep(1)
 
         #Выбрать второй тариф максимальный
