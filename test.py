@@ -10,22 +10,44 @@ import configparser
 import logging
 import getpass
 
-test = hc_command()
+#test = hc_command()
+#
+#username = getpass.getuser()
+#print(username)
+#
+#config = configparser.ConfigParser()
+#config.read('config.ini')
+#temp = config['USER INFO']['email']
+#password = "23072307"
+#
+#chrome_options = Options()
+#chrome_options.add_argument("--start-maximized")
+#driver = webdriver.Chrome(chrome_options=chrome_options)
+#driver.get(test.site())
+#
+#test.signin_parametr(driver, "829test829@gmail.com", "23072307")
+#test.tariff_add(driver)
+#
+#driver.close()
 
-username = getpass.getuser()
-print(username)
+#class someclass():
+#    @log1
+#    def method(self):
+#        assert False
 
-config = configparser.ConfigParser()
-config.read('config.ini')
-temp = config['USER INFO']['email']
-password = "23072307"
+def log1(func):
+    def other(*args, **kwargs):
+        print ("Привет")
+        func(*args, **kwargs)
+        print ("Пока")
+        
+        return func
+    return other(func)
 
-chrome_options = Options()
-chrome_options.add_argument("--start-maximized")
-driver = webdriver.Chrome(chrome_options=chrome_options)
-driver.get(test.site())
+@log1
+def some():
+    n = 1
 
-test.signin_parametr(driver, "829test829@gmail.com", "23072307")
-test.tariff_add(driver)
+some()
 
-driver.close()
+time.sleep(1000)
