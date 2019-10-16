@@ -35,6 +35,10 @@ import getpass
 #    def method(self):
 #        assert False
 
+login = '234'
+password = "few"
+print ("Info: вход с параметрами " + login + " " +  password)
+
 def log1(func):
     def other(*args, **kwargs):
         print ("Привет")
