@@ -22,8 +22,6 @@ driver = webdriver.Chrome(chrome_options=chrome_options)
 driver.get(test.site())
 
 
-
-
 test.signin_parametr(driver, mail, password)
 test.setting(driver)
 test.setting_credit_card(driver)

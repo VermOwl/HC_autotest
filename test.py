@@ -35,23 +35,42 @@ import getpass
 #    def method(self):
 #        assert False
 
-login = '234'
-password = "few"
-print ("Info: вход с параметрами " + login + " " +  password)
+#login = '234'
+#password = "few"
+#print ("Info: вход с параметрами " + login + " " +  password)
+#
+#def log1(func):
+#    def other(*args, **kwargs):
+#        print ("Привет")
+#        func(*args, **kwargs)
+#        print ("Пока")
+#        
+#        return func
+#    return other(func)
+#
+#@log1
+#def some():
+#    n = 1
+#
+#some()
+#
+#time.sleep(1000)
 
-def log1(func):
-    def other(*args, **kwargs):
-        print ("Привет")
-        func(*args, **kwargs)
-        print ("Пока")
-        
-        return func
-    return other(func)
+def mozilla():
+    driver = webdriver.Firefox()
+    driver.maximize_window()
+    driver.get("http://www.python.org")
+    time.sleep(1)
+    return driver
 
-@log1
-def some():
-    n = 1
+def chrome():
+    chrome_options = Options()
+    chrome_options.add_argument("--start-maximized")
+    driver = webdriver.Chrome(chrome_options=chrome_options)
 
-some()
+driver = mozilla()
 
-time.sleep(1000)
+def click_some_element(driver):
+    driver.find_element_by_xpath("//a[contains(text(),'PyPI')]").click()
+
+click_some_element(driver)
