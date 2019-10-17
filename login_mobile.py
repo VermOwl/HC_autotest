@@ -56,6 +56,7 @@ class hc_command_mobile():
         time.sleep(2)
         print ("Click: Бургер")
         driver.find_element_by_xpath("//i[@class='v-icon material-icons theme--dark']").click()
+        time.sleep(1)
         print("Click: Настройки пользваоеля")
         driver.find_element_by_xpath("//a[@class='profile__settings']//span").click()
         time.sleep(1)
@@ -272,7 +273,7 @@ class hc_command_mobile():
 
         #Выбрать второй тариф максимальный
         print ("Click: Выбрать тариф")
-        elem_list = driver.find_elements_by_xpath("//button[@class='primary v-btn v-btn--contained theme--light v-size--default']")
+        elem_list = driver.find_elements_by_xpath("//button[@class='v-btn v-btn--contained theme--light v-size--default primary']")
         elem = elem_list[2]
         elem.click()
         time.sleep(1)
@@ -301,11 +302,14 @@ class hc_command_mobile():
 
     def signin_parametr(self, driver, login, password): #Вход со своими параметрами 
         
+        
         print ("Info: вход с параметрами " + login + " " +  password)
+        print ("Click: Бургер")
+        driver.find_element_by_xpath("//i[@class='v-icon material-icons theme--dark']").click()
         time.sleep(1)
         #Войти в аккаунт
         print ("Click: Вход в аккаунт")
-        driver.find_element_by_xpath("(//a[@class='btn-radius my-auto ml-4 mr-3 pl-3 pr-3 v-btn v-btn--depressed v-btn--flat v-btn--outlined v-btn--router theme--light v-size--default primary--text'])").click()
+        driver.find_element_by_xpath("(//a[@class='mt-4 v-btn v-btn--depressed v-btn--flat v-btn--outlined v-btn--router theme--light v-size--default primary--text'])").click()
 
         time.sleep(2)
 
@@ -323,7 +327,7 @@ class hc_command_mobile():
 
         #Скипнуть момент добавления карты - Открывается главная страница
         try:
-            driver.find_element_by_xpath("(//div[@class='logo']//img)").click()
+            driver.find_element_by_xpath("//button[@class='v-btn v-btn--depressed v-btn--flat v-btn--outlined theme--light v-size--default primary--text']").click()
             time.sleep(1)
         except:
             print("фывалдо")
@@ -341,7 +345,7 @@ class hc_command_mobile():
         # Вставка дату рождения
         print ("Fill: Заполнение даты рождения")
         dateofbirth = "14.04.1986"
-        driver.find_element_by_xpath("//body/div[@id='__nuxt']/div[@id='__layout']/div[@id='app']/div[@class='application--wrap']/main[@class='v-content']/div[@class='v-content__wrap']/div[@class='account-bg']/div[@class='container pa-xs-0']/div[@class='layout wrap']/div[@class='flex right-block xs12 md8']/div[@class='bg-xs-white']/form[@id='form']/div[@class='mx-auto v-card v-sheet v-sheet--tile theme--light']/div[@class='v-card__text pt-xs-0 px-xs-4']/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/input[1]").send_keys(dateofbirth)
+        driver.find_element_by_xpath("//body/div[@id='__nuxt']/div[@id='__layout']/div[@id='app']/div[@class='application--wrap']/main[@class='v-content']/div[@class='v-content__wrap']/div[@class='account-bg']/div[@class='container pa-xs-0']/div[@class='layout column']/div[@class='flex right-block xs12 md8']/div[@class='bg-xs-white']/form[@id='form']/div[@class='mx-auto v-card v-sheet v-sheet--tile theme--light']/div[@class='v-card__text pt-xs-0 px-xs-4']/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/input[1]").send_keys(dateofbirth)
         # Женский пол
         time.sleep(1)
         print ("Click: Установить женский пол")
@@ -355,7 +359,7 @@ class hc_command_mobile():
         time.sleep(1)
         # Сохранить изменения
         print ("Click: Сохранить")
-        driver.find_element_by_xpath("//button[@class='v-btn v-btn--contained theme--light v-size--default primary']//span[@class='v-btn__content']").click()
+        driver.find_element_by_xpath("//button[@class='v-btn v-btn--block v-btn--contained theme--light v-size--default primary']").click()
 
         time.sleep(1)
         # Обновить страницу

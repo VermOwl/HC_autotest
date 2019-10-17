@@ -18,7 +18,7 @@ def add_user_with_send_support_mobile(driverTemp):
     chrome_options.add_argument("--start-maximized")
 
     driver = webdriver.Chrome(chrome_options=chrome_options)
-    driver.get("https://temp-mail.org/ru/")
+    driver.get("https://temp-mail.org/ru")
 
     time.sleep(1)
 

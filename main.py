@@ -23,6 +23,7 @@ from feedback_form import feedback_form
 from juridical_information import juridical_information
 
 from add_user_with_send_support_mobile import add_user_with_send_support_mobile
+from edit_profile_info_mobile import edit_profile_info_mobile
 
 def chrome_test():
     try:
@@ -164,6 +165,17 @@ def chrome_test_mobile ():
         print (e)
         traceback.print_exc()
         print (Style.RESET_ALL)
+
+    try:
+        browser = browsers()
+        driver = browser.chrome_mobile()
+        edit_profile_info_mobile(driver)
+    except Exception as e:
+        print (Fore.LIGHTRED_EX +"###################################################")
+        print (e)
+        traceback.print_exc()
+        print (Style.RESET_ALL)
+
 
 def test(case, driver):
     print("nice")
