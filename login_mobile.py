@@ -302,7 +302,6 @@ class hc_command_mobile():
 
     def signin_parametr(self, driver, login, password): #Вход со своими параметрами 
         
-        
         print ("Info: вход с параметрами " + login + " " +  password)
         print ("Click: Бургер")
         driver.find_element_by_xpath("//i[@class='v-icon material-icons theme--dark']").click()
@@ -333,6 +332,8 @@ class hc_command_mobile():
             print("фывалдо")
 
     def add_profile_info(self, driver): #Заполнение информации о пользваотеле
+
+
         time.sleep(1)
         print ("Info: заполнение основной информации о пользователе")
         # Добавление фотки
@@ -382,7 +383,7 @@ class hc_command_mobile():
         #Открыть форму добавления пользвоателя
         print ("Info: Добавление юзера в аккаунт пользователя")
         print ("Click: Добавить пользователя")
-        driver.find_element_by_xpath("//div[@class='flex right-block xs-8']//div[@class='flex pt-4 mt-2 pb-2']//button[@class='v-btn v-btn--contained theme--light v-size--default secondary']").click()
+        driver.find_element_by_xpath("//div[@class='container bg-white']//div[@class='flex pt-4 mt-2 pb-2']//button[@class='v-btn v-btn--contained theme--light v-size--default secondary']").click()
         time.sleep(1)
 
         #Заполнение полей Имя, Пол, номер, Email, Telegram, Skype
