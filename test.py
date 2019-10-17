@@ -9,7 +9,9 @@ from login import hc_command
 import configparser
 import logging
 import getpass
-
+from browsers import browsers
+from edit_profile_info import edit_profile_info
+from add_user_with_send_support import add_user_with_send_support
 #test = hc_command()
 #
 #username = getpass.getuser()
@@ -56,22 +58,10 @@ import getpass
 #
 #time.sleep(1000)
 
-def mozilla():
-    driver = webdriver.Firefox()
-    driver.maximize_window()
-    driver.get("http://www.python.org")
-    time.sleep(1)
-    return driver
 
-def chrome():
-    chrome_options = Options()
-    chrome_options.add_argument("--start-maximized")
-    driver = webdriver.Chrome(chrome_options=chrome_options)
-    return driver
+browser = browsers()
+driver = browser.mozilla()
+edit_profile_info(driver)
 
-driver = mozilla()
 
-def click_some_element(driver):
-    driver.find_element_by_xpath("//a[contains(text(),'PyPI')]").click()
-
-click_some_element(driver)
+time.sleep(1)

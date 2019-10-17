@@ -8,17 +8,9 @@ import pyperclip
 from login import hc_command
 import configparser
 
-config = configparser.ConfigParser()
-config.read('environment.ini')
-site = config['ENVIRONMENT']['site']
-
-chrome_options = Options()
-chrome_options.add_argument("--start-maximized")
-driver = webdriver.Chrome(chrome_options=chrome_options)
-driver.get(site)
-
-test = hc_command()
-
-test.feedback_form(driver)
-
-driver.close()
+def feedback_form(driver):
+    
+    test = hc_command()
+    driver.get(test.site())
+    test.feedback_form(driver)
+    driver.quit()

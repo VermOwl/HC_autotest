@@ -8,36 +8,35 @@ import pyperclip
 from login import hc_command
 import configparser
 
+def add_user_with_send_support(driverTemp):
+    test = hc_command()
 
-test = hc_command()
+    chrome_options = Options()
+    chrome_options.add_argument("--start-maximized")
 
-chrome_options = Options()
-chrome_options.add_argument("--start-maximized")
+    driver = webdriver.Chrome(chrome_options=chrome_options)
+    driver.get("https://temp-mail.org/ru/")
 
-driver = webdriver.Chrome(chrome_options=chrome_options)
-driver.get("https://temp-mail.org/ru/")
+    driverTemp.get(test.site())
 
-driverTemp = webdriver.Chrome(chrome_options=chrome_options)
-driverTemp.get(test.site())
-
-time.sleep(1)
+    time.sleep(1)
 
 
-test.getmail(driver)
-test.registration(driverTemp)
-test.confirm_mail(driver)
+    test.getmail(driver)
+    test.registration(driverTemp)
+    test.confirm_mail(driver)
 
-config = configparser.ConfigParser()
-config ['USER INFO']= {'email': pyperclip.paste()}
-with open('config.ini', 'w+') as configfile:
-    config.write(configfile)
+    config = configparser.ConfigParser()
+    config ['USER INFO']= {'email': pyperclip.paste()}
+    with open('config.ini', 'w+') as configfile:
+        config.write(configfile)
 
-test.signin(driverTemp)
-test.tariff_add(driverTemp)
-test.setting(driverTemp)
-test.setting_devices(driverTemp)
-test.add_devices(driverTemp)
-test.support_message(driverTemp)
+    test.signin(driverTemp)
+    test.tariff_add(driverTemp)
+    test.setting(driverTemp)
+    test.setting_devices(driverTemp)
+    test.add_devices(driverTemp)
+    test.support_message(driverTemp)
 
-driver.close()
-driverTemp.close()
+    driver.quit()
+    driverTemp.quit()
