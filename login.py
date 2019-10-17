@@ -7,6 +7,7 @@ import names
 import pyperclip
 import configparser
 import getpass
+from browsers import browsers
 
 # Print status
 # Click

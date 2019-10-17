@@ -5,12 +5,11 @@ import time
 import random
 import names
 import pyperclip
-from login import hc_command
 import configparser
 import logging
 import getpass
 
-class browser():
+class browsers():
 
     def mozilla(self):
         driver = webdriver.Firefox()

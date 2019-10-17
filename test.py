@@ -9,6 +9,12 @@ from login import hc_command
 import configparser
 import logging
 import getpass
+from browsers import browsers
+from edit_profile_info import edit_profile_info
+from add_user_with_send_support import add_user_with_send_support
+import colorama
+from colorama import Fore, Style
+import traceback
 
 #test = hc_command()
 #
@@ -56,21 +62,22 @@ import getpass
 #
 #time.sleep(1000)
 
-def mozilla():
-    driver = webdriver.Firefox()
-    driver.maximize_window()
-    driver.get("http://www.python.org")
-    time.sleep(1)
-    return driver
+#
+#browser = browsers()
+#driver = browser.mozilla()
+#edit_profile_info(driver)
 
-def chrome():
-    chrome_options = Options()
-    chrome_options.add_argument("--start-maximized")
-    driver = webdriver.Chrome(chrome_options=chrome_options)
+def qwe():
+    print (Fore.LIGHTRED_EX + "Пизда всему" + Style.RESET_ALL)
+    print ("qwdq")
+    
+test = hc_command()
 
-driver = mozilla()
+try:
+    assert False
+except Exception:
+    traceback.print_exc()
+print (qwe)
 
-def click_some_element(driver):
-    driver.find_element_by_xpath("//a[contains(text(),'PyPI')]").click()
+time.sleep(1)
 
-click_some_element(driver)
