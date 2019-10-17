@@ -22,6 +22,8 @@ from edit_profile_info import edit_profile_info
 from feedback_form import feedback_form
 from juridical_information import juridical_information
 
+from add_user_with_send_support_mobile import add_user_with_send_support_mobile
+
 def chrome_test():
     try:
         browser = browsers()
@@ -151,6 +153,18 @@ def mozilla_test():
         traceback.print_exc()
         print (Style.RESET_ALL)
 
+def chrome_test_mobile ():
+
+    try:
+        browser = browsers()
+        driver = browser.chrome_mobile()
+        add_user_with_send_support_mobile(driver)
+    except Exception as e:
+        print (Fore.LIGHTRED_EX +"###################################################")
+        print (e)
+        traceback.print_exc()
+        print (Style.RESET_ALL)
+
 def test(case, driver):
     print("nice")
 
@@ -158,3 +172,4 @@ def test(case, driver):
 
 chrome_test()
 mozilla_test()
+chrome_test_mobile()
