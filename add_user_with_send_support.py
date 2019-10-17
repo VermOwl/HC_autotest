@@ -17,10 +17,9 @@ def add_user_with_send_support(driverTemp):
     driver = webdriver.Chrome(chrome_options=chrome_options)
     driver.get("https://temp-mail.org/ru/")
 
-    driverTemp.get(test.site())
-
     time.sleep(1)
 
+    driverTemp.get(test.site())
 
     test.getmail(driver)
     test.registration(driverTemp)

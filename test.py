@@ -12,6 +12,10 @@ import getpass
 from browsers import browsers
 from edit_profile_info import edit_profile_info
 from add_user_with_send_support import add_user_with_send_support
+import colorama
+from colorama import Fore, Style
+import traceback
+
 #test = hc_command()
 #
 #username = getpass.getuser()
@@ -58,10 +62,22 @@ from add_user_with_send_support import add_user_with_send_support
 #
 #time.sleep(1000)
 
+#
+#browser = browsers()
+#driver = browser.mozilla()
+#edit_profile_info(driver)
 
-browser = browsers()
-driver = browser.mozilla()
-edit_profile_info(driver)
+def qwe():
+    print (Fore.LIGHTRED_EX + "Пизда всему" + Style.RESET_ALL)
+    print ("qwdq")
+    
+test = hc_command()
 
+try:
+    assert False
+except Exception:
+    traceback.print_exc()
+print (qwe)
 
 time.sleep(1)
+
