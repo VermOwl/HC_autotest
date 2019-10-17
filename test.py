@@ -16,6 +16,7 @@ import colorama
 from colorama import Fore, Style
 import traceback
 
+
 #test = hc_command()
 #
 #username = getpass.getuser()
@@ -67,17 +68,22 @@ import traceback
 #driver = browser.mozilla()
 #edit_profile_info(driver)
 
-def qwe():
-    print (Fore.LIGHTRED_EX + "Пизда всему" + Style.RESET_ALL)
-    print ("qwdq")
-    
+#def qwe():
+#
+#    
+#test = hc_command()
+#
+#try:
+#    assert False
+#except Exception:
+#    traceback.print_exc()
+#print (qwe)
+#
+#time.sleep(1)
+
+
 test = hc_command()
-
-try:
-    assert False
-except Exception:
-    traceback.print_exc()
-print (qwe)
-
-time.sleep(1)
-
+browser = browsers()
+driver = browser.chrome_mobile()
+driver.get(test.site())
+time.sleep(0.1)

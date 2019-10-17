@@ -21,3 +21,9 @@ class browsers():
         chrome_options.add_argument("--start-maximized")
         driver = webdriver.Chrome(chrome_options=chrome_options)
         return driver
+
+    def chrome_mobile(self):
+        chrome_options = Options()
+        chrome_options.add_argument("--window-size=400,1000")
+        driver = webdriver.Chrome(chrome_options=chrome_options)
+        return driver
