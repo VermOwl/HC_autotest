@@ -112,7 +112,7 @@ class juridical_information():
 
         driver.quit()
 
-browser = browsers()
-test = juridical_information()
-driver = browser.chrome()
-test.juridical_information_part2_chrome(driver)
+#browser = browsers()
+#test = juridical_information()
+#driver = browser.chrome()
+#test.juridical_information_part2_chrome(driver)
