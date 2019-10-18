@@ -12,6 +12,7 @@ import getpass
 import colorama
 from colorama import Fore, Style
 import traceback
+import inspect
 
 from browsers import browsers
 
@@ -24,69 +25,82 @@ from juridical_information import juridical_information
 
 from add_user_with_send_support_mobile import add_user_with_send_support_mobile
 from edit_profile_info_mobile import edit_profile_info_mobile
+from create_user_and_devices_mobile import create_user_and_devices_mobile
 
 def chrome_test():
     try:
         browser = browsers()
         driver = browser.chrome()
+        print (Fore.CYAN + "chrome test add_user_with_send_support" + Style.RESET_ALL)
         add_user_with_send_support(driver)
     except Exception as e:
         print (Fore.LIGHTRED_EX +"###################################################")
         print (e)
         traceback.print_exc()
+        time.sleep(0.2)
         print (Style.RESET_ALL)
 
     try:
         browser = browsers()
         driver = browser.chrome() 
+        print (Fore.CYAN + "chrome test edit profile info" + Style.RESET_ALL)
         edit_profile_info(driver)
     except Exception as e:
         print (Fore.LIGHTRED_EX +"###################################################")
         print (e)
         traceback.print_exc()
+        time.sleep(0.2)
         print (Style.RESET_ALL)
     
     try:
         browser = browsers()
         driver = browser.chrome()
+        print (Fore.CYAN + "chrome test create user and devices" + Style.RESET_ALL)
         create_user_and_devices(driver)
     except Exception as e:
         print (Fore.LIGHTRED_EX +"###################################################")
         print (e)
         traceback.print_exc()
+        time.sleep(0.2)
         print (Style.RESET_ALL)
     #card_information(driver)
     
     try:
         browser = browsers()
         driver = browser.chrome()
+        print (Fore.CYAN + "chrome test feedback form" + Style.RESET_ALL)
         feedback_form(driver)
     except Exception as e:
         print (Fore.LIGHTRED_EX +"###################################################")
         print (e)
         traceback.print_exc()
+        time.sleep(0.2)
         print (Style.RESET_ALL)
     
     try:
         browser = browsers()
         driver = browser.chrome()
         test = juridical_information()
+        print (Fore.CYAN + "chrome test juridical information" + Style.RESET_ALL)
         test.juridical_information(driver)
     except Exception as e:
         print (Fore.LIGHTRED_EX +"###################################################")
         print (e)
         traceback.print_exc()
+        time.sleep(0.2)
         print (Style.RESET_ALL)
 
     try:
         browser = browsers()
         driver = browser.chrome()
         test = juridical_information()
+        print (Fore.CYAN + "chrome test juridical information part 2" + Style.RESET_ALL)
         test.juridical_information_part2_chrome(driver)
     except Exception as e:
         print (Fore.LIGHTRED_EX +"###################################################")
         print (e)
         traceback.print_exc()
+        time.sleep(0.2)
         print (Style.RESET_ALL)
 
 def mozilla_test():
@@ -94,64 +108,76 @@ def mozilla_test():
     try:
         browser = browsers()
         driver = browser.mozilla()
+        print (Fore.CYAN + "mozilla test add user with send support" + Style.RESET_ALL)
         add_user_with_send_support(driver)
     except Exception as e:
         print (Fore.LIGHTRED_EX +"###################################################")
         print (e)
         traceback.print_exc()
+        time.sleep(0.2)
         print (Style.RESET_ALL)
     
     try:
         browser = browsers()
         driver = browser.mozilla() 
+        print (Fore.CYAN + "mozilla test edit profile info" + Style.RESET_ALL)
         edit_profile_info(driver)
     except Exception as e:
         print (Fore.LIGHTRED_EX +"###################################################")
         print (e)
         traceback.print_exc()
+        time.sleep(0.2)
         print (Style.RESET_ALL)
     
     try:
         browser = browsers()
         driver = browser.mozilla() 
+        print (Fore.CYAN + "mozilla test create user and devices" + Style.RESET_ALL)
         create_user_and_devices(driver)
     except Exception as e:
         print (Fore.LIGHTRED_EX +"###################################################")
         print (e)
         traceback.print_exc()
+        time.sleep(0.2)
         print (Style.RESET_ALL)
     #card_information(driver)
     
     try:
         browser = browsers()
         driver = browser.mozilla() 
+        print (Fore.CYAN + "mozilla test feedback_form" + Style.RESET_ALL)
         feedback_form(driver)
     except Exception as e:
         print (Fore.LIGHTRED_EX +"###################################################")
         print (e)
         traceback.print_exc()
+        time.sleep(0.2)
         print (Style.RESET_ALL)
     
     try:
         browser = browsers()
         driver = browser.mozilla() 
         test = juridical_information()
+        print (Fore.CYAN + "mozilla test juridical information" + Style.RESET_ALL)
         test.juridical_information(driver)
     except Exception as e:
         print (Fore.LIGHTRED_EX +"###################################################")
         print (e)
         traceback.print_exc()
+        time.sleep(0.2)
         print (Style.RESET_ALL)
 
     try:
         browser = browsers()
         driver = browser.mozilla() 
         test = juridical_information()
+        print (Fore.CYAN + "mozilla test juridical information part 2" + Style.RESET_ALL)
         test.juridical_information_part2_mozilla(driver)
     except Exception as e:
         print (Fore.LIGHTRED_EX +"###################################################")
         print (e)
         traceback.print_exc()
+        time.sleep(0.2)
         print (Style.RESET_ALL)
 
 def chrome_test_mobile ():
@@ -159,23 +185,38 @@ def chrome_test_mobile ():
     try:
         browser = browsers()
         driver = browser.chrome_mobile()
+        print (Fore.CYAN + "chrome test mobile add user with send support" + Style.RESET_ALL)
         add_user_with_send_support_mobile(driver)
     except Exception as e:
         print (Fore.LIGHTRED_EX +"###################################################")
         print (e)
         traceback.print_exc()
+        time.sleep(0.2)
         print (Style.RESET_ALL)
 
     try:
         browser = browsers()
         driver = browser.chrome_mobile()
+        print (Fore.CYAN + "chrome test mobile edit profile info mobile" + Style.RESET_ALL)
         edit_profile_info_mobile(driver)
     except Exception as e:
         print (Fore.LIGHTRED_EX +"###################################################")
         print (e)
         traceback.print_exc()
+        time.sleep(0.2)
         print (Style.RESET_ALL)
 
+    try:
+        browser = browsers()
+        driver = browser.chrome_mobile()
+        print (Fore.CYAN + "chrome test mobile create user and devices" + Style.RESET_ALL)
+        create_user_and_devices_mobile(driver)
+    except Exception as e:
+        print (Fore.LIGHTRED_EX +"###################################################")
+        print (e)
+        traceback.print_exc()
+        time.sleep(0.2)
+        print (Style.RESET_ALL)
 
 def test(case, driver):
     print("nice")

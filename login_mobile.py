@@ -27,6 +27,7 @@ class hc_command_mobile():
         #Войти в аккаунт
         print ("Click: Бургер")
         driver.find_element_by_xpath("//i[@class='v-icon material-icons theme--dark']").click()
+        time.sleep(1)
         print ("Click: Вход в аккаунт")
         driver.find_element_by_xpath("//a[@class='mt-4 v-btn v-btn--depressed v-btn--flat v-btn--outlined v-btn--router theme--light v-size--default primary--text']").click()
 
@@ -47,7 +48,7 @@ class hc_command_mobile():
         #Скипнуть момент добавления карты - Открывается главная страница
         print ("Скипнуть момент добавления карты - Открывается главная страница")
         try:
-            driver.find_element_by_xpath("//button[@class='v-btn v-btn--contained theme--light v-size--default primary']").click()
+            driver.find_element_by_xpath("//button[@class='v-btn v-btn--depressed v-btn--flat v-btn--outlined theme--light v-size--default primary--text']").click()
             time.sleep(1)
         except:
             print("фывалдо")
@@ -273,7 +274,7 @@ class hc_command_mobile():
 
         #Выбрать второй тариф максимальный
         print ("Click: Выбрать тариф")
-        elem_list = driver.find_elements_by_xpath("//button[@class='v-btn v-btn--contained theme--light v-size--default primary']")
+        elem_list = driver.find_elements_by_xpath("//button[@class='primary v-btn v-btn--contained theme--light v-size--default']")
         elem = elem_list[2]
         elem.click()
         time.sleep(1)
@@ -364,6 +365,7 @@ class hc_command_mobile():
 
         time.sleep(1)
         # Обновить страницу
+        
         driver.refresh()
         time.sleep(1)
 

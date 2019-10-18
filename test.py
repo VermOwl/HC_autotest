@@ -15,7 +15,8 @@ from add_user_with_send_support import add_user_with_send_support
 import colorama
 from colorama import Fore, Style
 import traceback
-
+import inspect
+from login_mobile import hc_command_mobile
 
 #test = hc_command()
 #
@@ -82,8 +83,10 @@ import traceback
 #time.sleep(1)
 
 
-test = hc_command()
+test = hc_command_mobile()
 browser = browsers()
 driver = browser.chrome_mobile()
 driver.get(test.site())
+edit_profile_info(driver)
+
 time.sleep(0.1)

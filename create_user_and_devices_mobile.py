@@ -27,8 +27,6 @@ def create_user_and_devices_mobile(driver):
     test.add_user(driver)
     test.add_devices(driver)
 
-    # Сюда бы чеки еще написать на проверку, ну хуй с ними потом напишем
-
     driver.quit()
 
 browser = browsers()

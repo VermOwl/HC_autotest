@@ -43,6 +43,6 @@ def add_user_with_send_support_mobile(driverTemp):
     driver.quit()
     driverTemp.quit()
 
-#browser = browsers()
-#driver = browser.chrome_mobile()
-#add_user_with_send_support_mobile(driver)
+browser = browsers()
+driver = browser.chrome_mobile()
+add_user_with_send_support_mobile(driver)

@@ -28,6 +28,6 @@ def edit_profile_info_mobile(driver):
     #Проверка информации о пользователе
     driver.quit()
 
-#browser = browsers()
-#driver = browser.chrome_mobile()
-#edit_profile_info_mobile(driver)
+browser = browsers()
+driver = browser.chrome_mobile()
+edit_profile_info_mobile(driver)
