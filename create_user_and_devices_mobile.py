@@ -29,6 +29,6 @@ def create_user_and_devices_mobile(driver):
 
     driver.quit()
 
-browser = browsers()
-driver = browser.chrome_mobile()
-create_user_and_devices_mobile(driver)
+#browser = browsers()
+#driver = browser.chrome_mobile()
+#create_user_and_devices_mobile(driver)

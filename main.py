@@ -26,6 +26,7 @@ from juridical_information import juridical_information
 from add_user_with_send_support_mobile import add_user_with_send_support_mobile
 from edit_profile_info_mobile import edit_profile_info_mobile
 from create_user_and_devices_mobile import create_user_and_devices_mobile
+from feedback_form_mobile import feedback_form_mobile
 
 def chrome_test():
     try:
@@ -211,6 +212,18 @@ def chrome_test_mobile ():
         driver = browser.chrome_mobile()
         print (Fore.CYAN + "chrome test mobile create user and devices" + Style.RESET_ALL)
         create_user_and_devices_mobile(driver)
+    except Exception as e:
+        print (Fore.LIGHTRED_EX +"###################################################")
+        print (e)
+        traceback.print_exc()
+        time.sleep(0.2)
+        print (Style.RESET_ALL)
+
+    try:
+        browser = browsers()
+        driver = browser.chrome_mobile()
+        print (Fore.CYAN + "chrome test mobile create user and devices" + Style.RESET_ALL)
+        feedback_form_mobile(driver)
     except Exception as e:
         print (Fore.LIGHTRED_EX +"###################################################")
         print (e)

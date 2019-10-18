@@ -630,9 +630,11 @@ class hc_command_mobile():
 
         print ("Info: Проверка заполнения и отправки Формы обратной связи")
         time.sleep(1)
+        print ("Click: Бургер")
+        driver.find_element_by_xpath("//i[@class='v-icon material-icons theme--dark']").click()
         # Открыть контакты
         print ("Click: Открыть страницу Контакты")
-        driver.find_element_by_xpath("//a[6]//span[1]").click()
+        driver.find_element_by_xpath("//p[@class='header__link']//a[@href='/contacts']").click()
         time.sleep(1)
 
         # Заполнение полей Имя, номера телефона, мыло, сообщение
