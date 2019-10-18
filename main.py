@@ -263,6 +263,6 @@ def test(case, driver):
 
 
 
-chrome_test()
-mozilla_test()
+#chrome_test()
+#mozilla_test()
 chrome_test_mobile()

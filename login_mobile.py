@@ -701,6 +701,8 @@ class hc_command_mobile():
         time.sleep(1)
         print("Info: Запросы успешно найден и проверен в JIRA")
 
+        driver.quit()
+
     def check_request_jira_authorization(self, summary, description): #Проверка на приход заявок в JIRA от авторизованног пользователя 
         
         print("Info: Запущена проверка прихода запросов в JIRA от авторизованного пользователя")
@@ -736,7 +738,7 @@ class hc_command_mobile():
         driver.find_element_by_xpath("//div[@class='attachment-thumb']//a//img")
 
         print ("Info: Запрос от авторизованного пользователя найден")
-        driver.close()
+        driver.quit()
 
     def open_signin_form(self,driver):   #Открыть форму входа пользователя
         time.sleep(1)
