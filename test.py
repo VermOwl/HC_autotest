@@ -85,8 +85,12 @@ from login_mobile import hc_command_mobile
 
 test = hc_command_mobile()
 browser = browsers()
-driver = browser.chrome_mobile()
+driver = browser.mozilla_mobile()
 driver.get(test.site())
-edit_profile_info(driver)
+#edit_profile_info(driver)
+
 
 time.sleep(0.1)
+
+
+

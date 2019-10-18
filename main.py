@@ -258,6 +258,83 @@ def chrome_test_mobile ():
         time.sleep(0.2)
         print (Style.RESET_ALL)
 
+def mozilla_test_mobile ():
+
+    try:
+        browser = browsers()
+        driver = browser.mozilla_mobile()
+        print (Fore.CYAN + "mozilla test mobile add user with send support" + Style.RESET_ALL)
+        add_user_with_send_support_mobile(driver)
+    except Exception as e:
+        print (Fore.LIGHTRED_EX +"###################################################")
+        print (e)
+        traceback.print_exc()
+        time.sleep(0.2)
+        print (Style.RESET_ALL)
+
+    try:
+        browser = browsers()
+        driver = browser.mozilla_mobile()
+        print (Fore.CYAN + "mozilla test mobile edit profile info mobile" + Style.RESET_ALL)
+        edit_profile_info_mobile(driver)
+    except Exception as e:
+        print (Fore.LIGHTRED_EX +"###################################################")
+        print (e)
+        traceback.print_exc()
+        time.sleep(0.2)
+        print (Style.RESET_ALL)
+
+    try:
+        browser = browsers()
+        driver = browser.mozilla_mobile()
+        print (Fore.CYAN + "mozilla test mobile create user and devices" + Style.RESET_ALL)
+        create_user_and_devices_mobile(driver)
+    except Exception as e:
+        print (Fore.LIGHTRED_EX +"###################################################")
+        print (e)
+        traceback.print_exc()
+        time.sleep(0.2)
+        print (Style.RESET_ALL)
+
+    try:
+        browser = browsers()
+        driver = browser.mozilla_mobile()
+        print (Fore.CYAN + "mozilla test mobile feedback form" + Style.RESET_ALL)
+        feedback_form_mobile(driver)
+    except Exception as e:
+        print (Fore.LIGHTRED_EX +"###################################################")
+        print (e)
+        traceback.print_exc()
+        time.sleep(0.2)
+        print (Style.RESET_ALL)
+
+    try:
+        browser = browsers()
+        driver = browser.mozilla_mobile()
+        test = juridical_information_mobile()
+        print (Fore.CYAN + "mozilla test mobile juridical information" + Style.RESET_ALL)
+        test.juridical_information_mobile(driver)
+    except Exception as e:
+        print (Fore.LIGHTRED_EX +"###################################################")
+        print (e)
+        traceback.print_exc()
+        time.sleep(0.2)
+        print (Style.RESET_ALL)
+
+    try:
+        browser = browsers()
+        driver = browser.mozilla_mobile()
+        test = juridical_information_mobile()
+        print (Fore.CYAN + "mozilla test juridical information part 2" + Style.RESET_ALL)
+        test.juridical_information_part2_mozilla_mobile(driver)
+    except Exception as e:
+        print (Fore.LIGHTRED_EX +"###################################################")
+        print (e)
+        traceback.print_exc()
+        time.sleep(0.2)
+        print (Style.RESET_ALL)
+
+
 def test(case, driver):
     print("nice")
 
@@ -265,4 +342,5 @@ def test(case, driver):
 
 #chrome_test()
 #mozilla_test()
-chrome_test_mobile()
+#chrome_test_mobile()
+mozilla_test_mobile()
