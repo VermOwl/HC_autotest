@@ -13,6 +13,7 @@ import colorama
 from colorama import Fore, Style
 import traceback
 import inspect
+import threading
 
 from browsers import browsers
 
@@ -340,7 +341,8 @@ def test(case, driver):
 
 
 
-#chrome_test()
-#mozilla_test()
-#chrome_test_mobile()
+chrome_test()
+mozilla_test()
+chrome_test_mobile()
 mozilla_test_mobile()
+

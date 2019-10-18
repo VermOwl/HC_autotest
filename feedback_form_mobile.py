@@ -16,6 +16,6 @@ def feedback_form_mobile(driver):
     test.feedback_form(driver)
     driver.quit()
 
-browser = browsers()
-driver = browser.chrome_mobile()
-feedback_form_mobile(driver)
+#browser = browsers()
+#driver = browser.chrome_mobile()
+#feedback_form_mobile(driver)
