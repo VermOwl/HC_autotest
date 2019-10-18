@@ -741,6 +741,10 @@ class hc_command_mobile():
     def open_signin_form(self,driver):   #Открыть форму входа пользователя
         time.sleep(1)
         print ("Info: Открыть форму логина")
+        
+        print ("Click: Бургер")
+        driver.find_element_by_xpath("//i[@class='v-icon material-icons theme--dark']").click()
+
         print ("Click: Вход")
         driver.find_element_by_xpath("//span[@class='v-btn__content'][contains(text(),'Вход')]").click()
         
