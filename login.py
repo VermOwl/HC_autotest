@@ -757,4 +757,78 @@ class hc_command():
         site = config['ENVIRONMENT']['site']
         return site
 
-    
+    def knowledge_search_field(self, driver):
+        time.sleep(2)
+        print ("Info: Проверка базы знаний")
+        print ("Click: Раздле Windows")
+        elem = driver.find_elements_by_xpath("//div[@class='know-item']")
+        elem_click = elem[0]
+        elem_click.click()
+        time.sleep(2)
+        print ("Info: Берем 4 тему")
+        elem = driver.find_elements_by_xpath("//h3[@class='headline']")
+        elem_click = elem[3]
+        theme = elem_click.text
+        
+        def __search_check(theme, driver):
+            print ("Fill: Поле поиска: Поиск по ранее найденной 4 теме")
+            driver.find_element_by_xpath("//input[@placeholder='Что вы хотите узнать?']").send_keys(theme)
+            time.sleep(1)
+            print ("Click: Найти")
+            driver.find_element_by_xpath("//button[@class='v-btn v-btn--contained theme--light v-size--default']").click()
+            time.sleep(3)
+            print ("Check: Найден тольк один элемент. Иначе падаем")
+            elem = driver.find_elements_by_xpath("//div[@class='layout pop-card mt-3 wrap justify-center']")
+            ex = 0
+            try:
+                elem_click = elem[1]
+                ex = 1
+            except:
+                pass
+            if ex == 1:
+                assert False
+            print ("Click: Сбросить")
+            driver.find_element_by_xpath("//button[@class='reset v-btn v-btn--flat v-btn--text theme--light v-size--default']").click()
+            print ("Check: Отображаются все результаты поиска")
+            elem = driver.find_elements_by_xpath("//div[@class='layout pop-card mt-3 wrap justify-center']")
+            elem_click = elem[10]
+        
+        __search_check(theme, driver)
+        print ("Click: База знаний")
+        driver.find_element_by_xpath("//div[@class='v-toolbar__items']//a[@class='v-btn--active v-btn v-btn--flat v-btn--router v-btn--text theme--light v-size--default']").click()
+        __search_check(theme, driver)
+        print ("Click: База знаний")
+        driver.find_element_by_xpath("//div[@class='v-toolbar__items']//a[@class='v-btn--active v-btn v-btn--flat v-btn--router v-btn--text theme--light v-size--default']").click()
+        
+    def tag_filter(self,driver):
+        time.sleep(2)
+        print ("Info: Проверка тэгов (Плитка)")
+        print ("Check: Нахождение всех плиток")
+        elem = driver.find_elements_by_xpath("//div[@class='know-item']")
+        for elem_click in elem:
+
+            tile = elem_click.text
+
+            print ("Click: Плитка - " +  tile)
+            elem_click.click()
+            time.sleep(2)
+
+            print ("Check: Кол-во тэгов = кол-во отображаемых тем")
+            check_elem = driver.find_elements_by_xpath("//div[@class = 'layout pop-card mt-3 wrap justify-center']")
+            check_elem2 = driver.find_elements_by_xpath("//span[@class='caption chips'][contains(text(),'" + tile + "')]")
+            if len(check_elem) != len(check_elem2):
+                print ("Info: Не совпало - Падаем")
+                assert False
+                
+            print ("Check: Активный элемент справой стороны")
+            check = driver.find_element_by_xpath("//div[@class='v-list-item v-list-item--link theme--light active-item']//span[@class='body-1']").text
+            if check != tile:
+                print ("Info: Название не подсвечено справа - падаем")
+                print (check)
+                print (tile)
+                assert False
+            print ("Click: База знаний")
+            driver.find_element_by_xpath("//div[@class='v-toolbar__items']//a[@class='v-btn--active v-btn v-btn--flat v-btn--router v-btn--text theme--light v-size--default']").click()
+            time.sleep(2)
+            
+        

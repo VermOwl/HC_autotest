@@ -113,4 +113,5 @@ for entry in driver.get_log('browser'):
 time.sleep(0.1)
 
 
+
 # chrome --start-maximized --enable-logging=stderr
