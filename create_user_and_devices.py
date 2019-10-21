@@ -33,7 +33,7 @@ def create_user_and_devices(driver):
     browser.close_browser(driver)
 
 
-browser = browsers()
-driver = browser.mozilla()
-print (Fore.CYAN + "chrome test create user and devices" + Style.RESET_ALL)
-create_user_and_devices(driver)
+#browser = browsers()
+#driver = browser.mozilla()
+#print (Fore.CYAN + "chrome test create user and devices" + Style.RESET_ALL)
+#create_user_and_devices(driver)
