@@ -7,6 +7,7 @@ import names
 import pyperclip
 from login import hc_command
 import configparser
+from browsers import browsers
 
 def add_user_with_send_support(driverTemp):
     test = hc_command()
@@ -38,4 +39,6 @@ def add_user_with_send_support(driverTemp):
     test.support_message(driverTemp)
 
     driver.close()
-    driverTemp.close()
+
+    browser = browsers()
+    browser.close_browser(driverTemp)

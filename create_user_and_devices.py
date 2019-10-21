@@ -7,6 +7,8 @@ import names
 import pyperclip
 from login import hc_command
 import configparser
+from colorama import Fore, Style
+from browsers import browsers
 
 
 def create_user_and_devices(driver):
@@ -26,6 +28,12 @@ def create_user_and_devices(driver):
     test.add_user(driver)
     test.add_devices(driver)
 
-    # Сюда бы чеки еще написать на проверку, ну хуй с ними потом напишем
 
-    driver.quit()
+    browser = browsers()
+    browser.close_browser(driver)
+
+
+#browser = browsers()
+#driver = browser.mozilla()
+#print (Fore.CYAN + "chrome test create user and devices" + Style.RESET_ALL)
+#create_user_and_devices(driver)

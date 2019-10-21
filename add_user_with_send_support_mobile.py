@@ -41,7 +41,9 @@ def add_user_with_send_support_mobile(driverTemp):
     test.support_message(driverTemp)
 
     driver.close()
-    driverTemp.close()
+
+    browser = browsers()
+    browser.close_browser(driverTemp)
 
 #browser = browsers()
 #driver = browser.chrome_mobile()
