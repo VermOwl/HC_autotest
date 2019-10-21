@@ -37,5 +37,5 @@ def add_user_with_send_support(driverTemp):
     test.add_devices(driverTemp)
     test.support_message(driverTemp)
 
-    driver.quit()
-    driverTemp.quit()
+    driver.close()
+    driverTemp.close()

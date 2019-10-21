@@ -1,6 +1,7 @@
 from selenium import webdriver 
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 import time
 import random
 import names
@@ -17,6 +18,8 @@ from colorama import Fore, Style
 import traceback
 import inspect
 from login_mobile import hc_command_mobile
+
+from create_user_and_devices import create_user_and_devices
 
 #test = hc_command()
 #
@@ -81,16 +84,33 @@ from login_mobile import hc_command_mobile
 #print (qwe)
 #
 #time.sleep(1)
+#d = DesiredCapabilities.CHROME
+#d['loggingPrefs'] = { 'browser':'ALL' }
+#
+#chrome_options = Options()
+#chrome_options.add_argument("--start-maximized desired_capabilities=d")
+#driver = webdriver.Chrome(chrome_options=chrome_options)
 
 
-test = hc_command_mobile()
-browser = browsers()
-driver = browser.mozilla_mobile()
-driver.get(test.site())
-#edit_profile_info(driver)
+#browser = browsers()
+#driver = browser.mozilla_mobile()
+#driver.get(test.site())
+#create_user_and_devices(driver)
 
+# enable browser logging
+chrome_options = Options()
+chrome_options.add_argument("--start-maximized")
+d = DesiredCapabilities.CHROME
+d['goog:loggingPrefs'] = { 'browser':'ALL' }
+driver = webdriver.Chrome(desired_capabilities=d, chrome_options=chrome_options)
+
+create_user_and_devices(driver)
+#time.sleep(10)
+# print messages
+for entry in driver.get_log('browser'):
+    print(entry)
 
 time.sleep(0.1)
 
 
-
+# chrome --start-maximized --enable-logging=stderr
