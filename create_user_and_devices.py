@@ -26,7 +26,7 @@ def create_user_and_devices(driver):
     test.setting(driver)
     test.setting_devices(driver)
     test.add_user(driver)
-    #test.add_devices(driver)
+    test.add_devices(driver)
 
 
     browser = browsers()
