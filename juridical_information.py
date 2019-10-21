@@ -18,7 +18,8 @@ class juridical_information():
         time.sleep(2)
         test.open_user_agreement(driver)
         test.open_privacy_policy(driver)
-        driver.quit()
+        browser = browsers()
+        browser.quit_browser(driver)
 
     def juridical_information_part2_mozilla(self, driver):
         test = hc_command()
@@ -63,8 +64,8 @@ class juridical_information():
         driver.find_element_by_xpath("//li[contains(text(),'Организатор Акции ООО «Е09»')]")
         print ("Info: Правила проведения акции проверены")
         driver.switch_to.window(window_before)
-
-        driver.quit()
+        browser = browsers()
+        browser.quit_browser(driver)    
 
     def juridical_information_part2_chrome(self, driver):
         test = hc_command()
@@ -109,8 +110,8 @@ class juridical_information():
         driver.find_element_by_xpath("//li[contains(text(),'Организатор Акции ООО «Е09»')]")
         print ("Info: Правила проведения акции проверены")
         driver.switch_to.window(window_before)
-
-        driver.quit()
+        browser = browsers()
+        browser.quit_browser(driver)
 
 #browser = browsers()
 #test = juridical_information()
