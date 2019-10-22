@@ -8,6 +8,7 @@ import pyperclip
 import configparser
 import getpass
 from browsers import browsers
+from colorama import Fore, Style
 
 # Print status
 # Click
@@ -761,12 +762,12 @@ class hc_command():
         time.sleep(2)
         print ("Info: Проверка базы знаний")
         print ("Click: Раздле Windows")
-        elem = driver.find_elements_by_xpath("//div[@class='know-item']")
+        elem = driver.find_elements_by_xpath("//div[@class='tag-items__item']")
         elem_click = elem[0]
         elem_click.click()
-        time.sleep(2)
+        time.sleep(3)
         print ("Info: Берем 4 тему")
-        elem = driver.find_elements_by_xpath("//h3[@class='headline']")
+        elem = driver.find_elements_by_xpath("//div[@class='pop-card__title']")
         elem_click = elem[3]
         theme = elem_click.text
         
@@ -790,7 +791,8 @@ class hc_command():
             print ("Click: Сбросить")
             driver.find_element_by_xpath("//button[@class='reset v-btn v-btn--flat v-btn--text theme--light v-size--default']").click()
             print ("Check: Отображаются все результаты поиска")
-            elem = driver.find_elements_by_xpath("//div[@class='layout pop-card mt-3 wrap justify-center']")
+            time.sleep(2)
+            elem = driver.find_elements_by_xpath("//div[@class='pop-card__title']")
             elem_click = elem[10]
         
         __search_check(theme, driver)
@@ -800,7 +802,7 @@ class hc_command():
         print ("Click: База знаний")
         driver.find_element_by_xpath("//div[@class='v-toolbar__items']//a[@class='v-btn--active v-btn v-btn--flat v-btn--router v-btn--text theme--light v-size--default']").click()
         
-    def tag_filter(self,driver):
+    def tag_filter(self,driver): #Проверка работы плиток и нахождение тэгов в Базе знаний
         time.sleep(3)
         print ("Info: Проверка тэгов (Плитка)")
         print ("Check: Нахождение всех плиток")
@@ -832,5 +834,106 @@ class hc_command():
             driver.find_element_by_xpath("//div[@class='v-toolbar__items']//a[@class='v-btn--active v-btn v-btn--flat v-btn--router v-btn--text theme--light v-size--default']").click()
             i = i + 1
             time.sleep(2)
-            
+
+
+    def popular_article(self, driver): # Проверка популярных записей в Базе знаний
+        time.sleep(1)
+        print ("Info: Проверка популярных сайтов")
+        print ("Check: Популярные записи")
+        driver.find_element_by_xpath("//div[@class='grey-bg']//div[@class='container py-5']//p[@class='headline'][contains(text(),'Популярные')]")
+        print ("Check: 5 элементов в разделе Популярные записи")
+        size = len(driver.find_elements_by_xpath("//div[@class='grey-bg']//div[@class='container py-5']//div[@class='pop-card hidden-xs']"))
+        if size != 5:
+            print (Fore.RED + "Info: Кол-во записей не равное 5 в разделе Популярные записи - Падаем" + Style.RESET_ALL)
+            assert False
+        print ("Check: 5 элментов в разделе Последние добавленные записи")
+        driver.find_element_by_xpath("//div[@class='white-bg']//div[@class='container py-5']//p[@class='headline'][contains(text(),'Последние добавленные записи')]")
+        size = len(driver.find_elements_by_xpath("//div[@class='white-bg']//div[@class='container py-5']//div[@class='pop-card hidden-xs']"))
+
         
+    def change_rating (self,driver): #Проверка возможности поставить голоса за или против
+        time.sleep(1)
+        print ("Info: Добавить рейтинг статье") #
+        ratings = driver.find_elements_by_xpath("//p[@class='body-1 mb-0 py-1 text-xs-center']")
+        rating = ratings[1].text
+        rating_int = int(rating) + 1 
+        print ("Click: Лайкнуть статью")
+        up_rating_buttons = driver.find_elements_by_xpath("//button[@class='btn-prev v-btn v-btn--depressed v-btn--fab v-btn--flat v-btn--outlined v-btn--round v-btn--text theme--light v-size--default']")
+        up_rating_buttons[1].click()
+        driver.refresh()
+        time.sleep(1)
+        check_rating = driver.find_elements_by_xpath("//p[@class='body-1 mb-0 py-1 text-xs-center']")
+        print ("Check: У статьи выше рейтинг?")
+        if str(check_rating[1].text) == str(rating_int):
+            print ("Info: Кол-во голосов неверное - падаме")
+            assert False
+        print ("Chekc: Изменения цвета кнопки изменения рейтинга")
+
+        time.sleep(1)
+        print ("Info: Отнять рейтинг у статьи") #
+        ratings = driver.find_elements_by_xpath("//p[@class='body-1 mb-0 py-1 text-xs-center']")
+        rating = ratings[3].text
+        rating_int = int(rating) - 1 
+        print ("Click: Лайкнуть статью")
+        up_rating_buttons = driver.find_elements_by_xpath("//button[@class='btn-next v-btn v-btn--depressed v-btn--fab v-btn--flat v-btn--outlined v-btn--round v-btn--text theme--light v-size--default']")
+        up_rating_buttons[3].click()
+        driver.refresh()
+        time.sleep(1)
+        check_rating = driver.find_elements_by_xpath("//p[@class='body-1 mb-0 py-1 text-xs-center']")
+        print ("Check: У статьи выше рейтинг?")
+        if str(check_rating[3].text) == str(rating_int):
+            print ("Info: Кол-во голосов неверное - падаме")
+            assert False
+        print ("Chekc: Изменения цвета кнопки изменения рейтинга")
+
+    def chips_and_link_test (self, driver):
+        time.sleep(1)
+        print ("Info: Проверка Chips и линки Показать все")
+        print ("Click: По чипсе")
+        chips = driver.find_elements_by_xpath("//span[@class='caption chips']")
+        chips_text = chips[1].text
+        chips[1].click()
+        time.sleep(2)
+        print ("Check: Активный элемент справой стороны " + str(chips_text))
+        check = driver.find_element_by_xpath("//div[@class='v-list-item v-list-item--link theme--light active-item']//span[@class='body-1']").text
+        if check != chips_text:
+            print ("Info: Название не подсвечено справа - падаем")
+            print (check)
+            print (chips_text)
+            assert False
+        driver.back()
+        time.sleep(2)
+        print ("Click: По Показать все")
+        driver.find_element_by_xpath("//div[@class='grey-bg']//div//a[@class='view-all']").click()
+        time.sleep(2)
+        print ("Check: Активный элемент справой стороны Все статьи")
+        check = driver.find_element_by_xpath("//div[@class='v-list-item v-list-item--link theme--light active-item']//span[@class='body-1']").text
+        if check != "Все статьи":
+            print ("Info: Название не подсвечено справа - падаем")
+            print (check)
+            print (chips_text)
+            assert False
+
+        driver.back()
+        time.sleep(2)
+
+    def copy_link_to_article (self, driver): #Првоеряет работу линков с чипсы Поделиться
+        time.sleep(1)
+        print ("Info: Проверка работы Копирвоание ссылки для статьи в Базе щнаний")
+        title_before = driver.find_elements_by_xpath("//div[@class='pop-card__title']")[0].text
+        print ("Click: Поделиться ссылкой")
+        driver.find_elements_by_xpath("//button[@class='pop-btn v-btn v-btn--contained theme--dark v-size--default']")[1].click()
+        
+        time.sleep(1)
+        print ("Click: Копировать ссылку")
+        driver.find_element_by_xpath("//div[@class='pop__copy v-list-item theme--light']//a").click()
+        print ("Переход по ссылке")
+        driver.get(pyperclip.paste())
+        time.sleep(2)
+        print ("Check: Правильная открылась статья?")
+        title_after = driver.find_element_by_xpath("//h1[@class='card-full__title display-1']").text
+        if title_after != title_before:
+            print("Info: Статьи не совпали - падаем")
+            assert False
+        driver.back()
+        time.sleep(2)

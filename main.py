@@ -23,6 +23,7 @@ from create_user_and_devices import create_user_and_devices
 from edit_profile_info import edit_profile_info
 from feedback_form import feedback_form
 from juridical_information import juridical_information
+from knowledge import knowledge
 
 from add_user_with_send_support_mobile import add_user_with_send_support_mobile
 from edit_profile_info_mobile import edit_profile_info_mobile
@@ -106,6 +107,19 @@ def chrome_test():
         time.sleep(0.2)
         print (Style.RESET_ALL)
 
+    try:
+        browser = browsers()
+        driver = browser.chrome()
+        print (Fore.CYAN + "chrome test knowledge" + Style.RESET_ALL)
+        knowledge(driver)
+    except Exception as e:
+        print (Fore.LIGHTRED_EX +"###################################################")
+        print (e)
+        traceback.print_exc()
+        time.sleep(0.2)
+        print (Style.RESET_ALL)
+
+
 def mozilla_test():
 
     try:
@@ -183,6 +197,18 @@ def mozilla_test():
         time.sleep(0.2)
         print (Style.RESET_ALL)
 
+    try:
+        browser = browsers()
+        driver = browser.mozilla()
+        print (Fore.CYAN + "chrome test knowledge" + Style.RESET_ALL)
+        knowledge(driver)
+    except Exception as e:
+        print (Fore.LIGHTRED_EX +"###################################################")
+        print (e)
+        traceback.print_exc()
+        time.sleep(0.2)
+        print (Style.RESET_ALL)
+    
 def chrome_test_mobile ():
 
     try:

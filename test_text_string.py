@@ -12,6 +12,5 @@ import getpass
 import re
 from colorama import Fore, Style
 
-numbers = [1, 2, 3, 4, 5]
-
-#sd = number[4]
+site = pyperclip.paste()
+print (site)
