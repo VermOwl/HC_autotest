@@ -245,7 +245,7 @@ class hc_command():
 
         #Выбрать второй тариф максимальный
         print ("Click: Выбрать тариф")
-        elem_list = driver.find_elements_by_xpath("//button[@class='primary v-btn v-btn--contained theme--light v-size--default']")
+        elem_list = driver.find_elements_by_xpath("//button[@class='primary v-btn v-btn--contained theme--light v-size--default']//span[contains(text(),'Выбрать')]")
         elem = elem_list[2]
         elem.click()
         time.sleep(1)
@@ -801,22 +801,23 @@ class hc_command():
         driver.find_element_by_xpath("//div[@class='v-toolbar__items']//a[@class='v-btn--active v-btn v-btn--flat v-btn--router v-btn--text theme--light v-size--default']").click()
         
     def tag_filter(self,driver):
-        time.sleep(2)
+        time.sleep(3)
         print ("Info: Проверка тэгов (Плитка)")
         print ("Check: Нахождение всех плиток")
-        elem = driver.find_elements_by_xpath("//div[@class='know-item']")
-        for elem_click in elem:
-
-            tile = elem_click.text
+        test_item = driver.find_elements_by_xpath("//div[@class='tag-items__item']")
+        i = 0
+        for elem_click in test_item:
+            test_item = driver.find_elements_by_xpath("//div[@class='tag-items__item']")
+            tile = test_item[i].text
 
             print ("Click: Плитка - " +  tile)
-            elem_click.click()
+            test_item[i].click()
             time.sleep(2)
 
             print ("Check: Кол-во тэгов = кол-во отображаемых тем")
-            check_elem = driver.find_elements_by_xpath("//div[@class = 'layout pop-card mt-3 wrap justify-center']")
+            check_elem = driver.find_elements_by_xpath("//div[@class ='pop-card hidden-xs']")
             check_elem2 = driver.find_elements_by_xpath("//span[@class='caption chips'][contains(text(),'" + tile + "')]")
-            if len(check_elem) != len(check_elem2):
+            if len(check_elem) != len(check_elem2)/2:
                 print ("Info: Не совпало - Падаем")
                 assert False
                 
@@ -829,6 +830,7 @@ class hc_command():
                 assert False
             print ("Click: База знаний")
             driver.find_element_by_xpath("//div[@class='v-toolbar__items']//a[@class='v-btn--active v-btn v-btn--flat v-btn--router v-btn--text theme--light v-size--default']").click()
+            i = i + 1
             time.sleep(2)
             
         
