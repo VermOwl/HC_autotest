@@ -8,7 +8,7 @@ import pyperclip
 import configparser
 import getpass
 from browsers import browsers
-
+from colorama import Fore, Style
 # Print status
 # Click
 # Check
@@ -799,4 +799,201 @@ class hc_command_mobile():
         site = config['ENVIRONMENT']['site']
         return site
 
-    
+    def knowledge_search_field(self, driver): # Проверка строки поиска
+        time.sleep(2)
+        print ("Info: Проверка базы знаний")
+        print ("Click: Раздле Windows")
+        elem = driver.find_elements_by_xpath("//div[@class='tag-items__item']")
+        elem_click = elem[0]
+        elem_click.click()
+        time.sleep(3)
+        print ("Info: Берем 4 тему")
+        elem = driver.find_elements_by_xpath("//div[@class='pop-card-mob__head']")
+        elem_click = elem[3]
+        theme = elem_click.text
+        
+        def __search_check(theme, driver):
+            print ("Fill: Поле поиска: Поиск по ранее найденной 4 теме")
+            driver.find_element_by_xpath("//input[@placeholder='Что вы хотите узнать?']").send_keys(theme)
+            time.sleep(1)
+            print ("Click: Найти")
+            driver.find_element_by_xpath("//button[@class='v-btn v-btn--contained theme--light v-size--default']").click()
+            time.sleep(3)
+            print ("Check: Найден тольк один элемент. Иначе падаем")
+            elem = driver.find_elements_by_xpath("//div[@class='layout pop-card mt-3 wrap justify-center']")
+            ex = 0
+            try:
+                elem_click = elem[1]
+                ex = 1
+            except:
+                pass
+            if ex == 1:
+                assert False
+            print ("Click: Сбросить")
+            driver.find_element_by_xpath("//button[@class='reset v-btn v-btn--flat v-btn--text theme--light v-size--default']").click()
+            print ("Check: Отображаются все результаты поиска")
+            time.sleep(2)
+            elem = driver.find_elements_by_xpath("//div[@class='pop-card__title']")
+            elem_click = elem[10]
+        
+        __search_check(theme, driver)
+        print ("Click: Бургер")
+        driver.find_element_by_xpath("//i[@class='v-icon material-icons theme--dark']").click()
+        time.sleep(1)
+        print ("Click: База знаний")
+        driver.find_element_by_xpath("//p[@class='header__link']//a[@class='nuxt-link-active']").click()
+        time.sleep(1)
+
+        __search_check(theme, driver)
+        print ("Click: Бургер")
+        time.sleep(1)
+        driver.find_element_by_xpath("//i[@class='v-icon material-icons theme--dark']").click()
+        print ("Click: База знаний")
+        driver.find_element_by_xpath("//p[@class='header__link']//a[@class='nuxt-link-active']").click()
+        time.sleep(1)
+        
+    def tag_filter(self,driver): #Проверка работы плиток и нахождение тэгов в Базе знаний
+        time.sleep(3)
+        print ("Info: Проверка тэгов (Плитка)")
+        print ("Check: Нахождение всех плиток")
+        test_item = driver.find_elements_by_xpath("//div[@class='tag-items__item']")
+        i = 0
+        for elem_click in test_item:
+            test_item = driver.find_elements_by_xpath("//div[@class='tag-items__item']")
+            tile = test_item[i].text
+
+            print ("Click: Плитка - " +  tile)
+            test_item[i].click()
+            time.sleep(2)
+
+            print ("Check: Кол-во тэгов = кол-во отображаемых тем")
+            check_elem = driver.find_elements_by_xpath("//div[@class ='pop-card hidden-xs']")
+            check_elem2 = driver.find_elements_by_xpath("//span[@class='caption chips'][contains(text(),'" + tile + "')]")
+            if len(check_elem) != len(check_elem2)/2:
+                print ("Info: Не совпало - Падаем")
+                assert False
+                
+            print ("Check: Активный элемент справой стороны")
+            check = driver.find_element_by_xpath("//div[@class='v-list-item v-list-item--link theme--light active-item']//span[@class='body-1']").text
+            if check != tile:
+                print ("Info: Название не подсвечено справа - падаем")
+                print (check)
+                print (tile)
+                assert False
+            print ("Click: Бургер")
+            driver.find_element_by_xpath("//i[@class='v-icon material-icons theme--dark']").click()
+            time.sleep(1)
+            print ("Click: База знаний")
+            driver.find_element_by_xpath("//p[@class='header__link']//a[@class='nuxt-link-active']").click()
+            i = i + 1
+            time.sleep(2)
+
+
+    def popular_article(self, driver): # Проверка популярных записей в Базе знаний
+        time.sleep(1)
+        print ("Info: Проверка популярных сайтов")
+        print ("Check: Популярные записи")
+        driver.find_element_by_xpath("//div[@class='v-tab v-tab--active']")
+        print ("Check: 5 элементов в разделе Популярные записи")
+        size = len(driver.find_elements_by_xpath("//div[@class='pop-card-mob visible-xs-only']"))
+        if size != 5:
+            print (Fore.RED + "Info: Кол-во записей не равное 5 в разделе Популярные записи - Падаем" + Style.RESET_ALL)
+            assert False
+        print ("Click: Последнее")
+        driver.find_element_by_xpath("//div[@class='v-tab']").click() 
+        time.sleep(1)
+        print ("Check: 5 элментов в разделе Последние добавленные записи")
+        size = len(driver.find_elements_by_xpath("//div[@class='pop-card-mob visible-xs-only']"))
+        if size != 10:
+            print (Fore.RED + "Info: Кол-во записей не равное 5 в разделе Популярные записи - Падаем" + Style.RESET_ALL)
+            assert False
+        
+
+        
+    def change_rating (self,driver): #Проверка возможности поставить голоса за или против
+        driver.refresh()
+        time.sleep(2)
+        print ("Info: Добавить рейтинг статье") #
+        ratings = driver.find_elements_by_xpath("//p[@class='body-1 mb-0 py-1 text-xs-center']")
+        rating = ratings[0].text
+        rating_int = int(rating) + 1 
+        print ("Click: Лайкнуть статью")
+        up_rating_buttons = driver.find_elements_by_xpath("//button[@class='btn-prev v-btn v-btn--depressed v-btn--fab v-btn--flat v-btn--outlined v-btn--round v-btn--text theme--light v-size--default']")
+        up_rating_buttons[0].click()
+        driver.refresh()
+        time.sleep(1)
+        check_rating = driver.find_elements_by_xpath("//p[@class='body-1 mb-0 py-1 text-xs-center']")
+        print ("Check: У статьи выше рейтинг?")
+        if str(check_rating[0].text) == str(rating_int):
+            print ("Info: Кол-во голосов неверное - падаме")
+            assert False
+        print ("Chekc: Изменения цвета кнопки изменения рейтинга")
+
+        time.sleep(1)
+        print ("Info: Отнять рейтинг у статьи") #
+        ratings = driver.find_elements_by_xpath("//p[@class='body-1 mb-0 py-1 text-xs-center']")
+        rating = ratings[2].text
+        rating_int = int(rating) - 1 
+        print ("Click: Лайкнуть статью")
+        up_rating_buttons = driver.find_elements_by_xpath("//button[@class='btn-next v-btn v-btn--depressed v-btn--fab v-btn--flat v-btn--outlined v-btn--round v-btn--text theme--light v-size--default']")
+        up_rating_buttons[2].click()
+        driver.refresh()
+        time.sleep(1)
+        check_rating = driver.find_elements_by_xpath("//p[@class='body-1 mb-0 py-1 text-xs-center']")
+        print ("Check: У статьи выше рейтинг?")
+        if str(check_rating[2].text) == str(rating_int):
+            print ("Info: Кол-во голосов неверное - падаме")
+            assert False
+        print ("Chekc: Изменения цвета кнопки изменения рейтинга")
+
+    def chips_and_link_test (self, driver):
+        time.sleep(1)
+        print ("Info: Проверка Chips и линки Показать все")
+        print ("Click: По чипсе")
+        chips = driver.find_elements_by_xpath("//span[@class='caption chips']")
+        chips_text = chips[0].text
+        chips[0].click()
+        time.sleep(2)
+        print ("Check: Активный элемент в самом низу " + str(chips_text))
+        check = driver.find_element_by_xpath("//div[@class='v-list-item v-list-item--link theme--light active-item']").text
+        if check in chips_text:
+            print ("Info: Название не подсвечено справа - падаем")
+            print (check)
+            print (chips_text)
+            assert False
+        driver.back()
+        time.sleep(2)
+        print ("Click: По Показать все")
+        driver.find_element_by_xpath("//a[@class='view-all']").click()
+        time.sleep(2)
+        print ("Check: Активный элемент справой стороны Все статьи")
+        check = driver.find_element_by_xpath("//div[@class='v-list-item v-list-item--link theme--light active-item']").text
+        if check in "Все статьи":
+            print ("Info: Название не подсвечено справа - падаем")
+            print (check)
+            print (chips_text)
+            assert False
+
+        driver.back()
+        time.sleep(2)
+
+    def copy_link_to_article (self, driver): #Првоеряет работу линков с чипсы Поделиться
+        time.sleep(1)
+        print ("Info: Проверка работы Копирвоание ссылки для статьи в Базе щнаний")
+        title_before = driver.find_elements_by_xpath("//a[@class='pop-card-mob__title']")[0].text
+        print ("Click: Поделиться ссылкой")
+        driver.find_elements_by_xpath("//button[@class='pop-btn v-btn v-btn--contained theme--dark v-size--default']")[0].click()
+        
+        time.sleep(1)
+        print ("Click: Копировать ссылку")
+        driver.find_element_by_xpath("//div[@class='pop__copy v-list-item theme--light']//a").click()
+        print ("Переход по ссылке")
+        driver.get(pyperclip.paste())
+        time.sleep(2)
+        print ("Check: Правильная открылась статья?")
+        title_after = driver.find_element_by_xpath("//h1[@class='card-full__title display-1']").text
+        if title_after != title_before:
+            print("Info: Статьи не совпали - падаем")
+            assert False
+        driver.back()
+        time.sleep(2)

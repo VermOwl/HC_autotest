@@ -12,5 +12,5 @@ import getpass
 import re
 from colorama import Fore, Style
 
-site = pyperclip.paste()
-print (site)
+if "windows" in "windows/n76":
+    assert False

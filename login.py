@@ -758,7 +758,7 @@ class hc_command():
         site = config['ENVIRONMENT']['site']
         return site
 
-    def knowledge_search_field(self, driver):
+    def knowledge_search_field(self, driver): # Проверка строки поиска
         time.sleep(2)
         print ("Info: Проверка базы знаний")
         print ("Click: Раздле Windows")

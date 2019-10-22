@@ -30,6 +30,7 @@ from edit_profile_info_mobile import edit_profile_info_mobile
 from create_user_and_devices_mobile import create_user_and_devices_mobile
 from feedback_form_mobile import feedback_form_mobile
 from juridical_information_mobile import juridical_information_mobile
+from knowledge_mobile import knowledge_mobile
 
 def chrome_test():
     try:
@@ -285,6 +286,18 @@ def chrome_test_mobile ():
         time.sleep(0.2)
         print (Style.RESET_ALL)
 
+    try:
+        browser = browsers()
+        driver = browser.chrome_mobile()
+        print (Fore.CYAN + "chrome test mobile knowledge page" + Style.RESET_ALL)
+        knowledge_mobile(driver)
+    except Exception as e:
+        print (Fore.LIGHTRED_EX +"###################################################")
+        print (e)
+        traceback.print_exc()
+        time.sleep(0.2)
+        print (Style.RESET_ALL)
+
 def mozilla_test_mobile ():
 
     try:
@@ -361,6 +374,17 @@ def mozilla_test_mobile ():
         time.sleep(0.2)
         print (Style.RESET_ALL)
 
+    try:
+        browser = browsers()
+        driver = browser.mozilla_mobile()
+        print (Fore.CYAN + "mozilla test mobile knowledge" + Style.RESET_ALL)
+        knowledge_mobile(driver)
+    except Exception as e:
+        print (Fore.LIGHTRED_EX +"###################################################")
+        print (e)
+        traceback.print_exc()
+        time.sleep(0.2)
+        print (Style.RESET_ALL)
 
 def test(case, driver):
     print("nice")
