@@ -13,9 +13,11 @@ def edit_profile_info(driver):
     test = hc_command()
     
     driver.get(test.site())
-
+    driver.implicitly_wait(10)
     test.main_page_check(driver)
-
+    test.footer_unauthorized(driver)
+    test.main_sevices(driver)
+    test.main_how_its_work(driver)
 
     browser = browsers()
     browser.quit_browser(driver)
