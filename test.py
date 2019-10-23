@@ -91,27 +91,37 @@ from create_user_and_devices import create_user_and_devices
 #chrome_options.add_argument("--start-maximized desired_capabilities=d")
 #driver = webdriver.Chrome(chrome_options=chrome_options)
 
+test = hc_command()
+browser = browsers()
+driver = browser.chrome()
+driver.get(test.site())
+time.sleep(1)
+height = driver.execute_script("document.body.scrollHeight")
+print ("height = " + height)
+driver.set_window_size(1920, height)
+driver.save_screenshot("screen/save.png")
+#img = driver.get_window_size()
+#print (img.get('height'))
 
-#browser = browsers()
-#driver = browser.mozilla_mobile()
-#driver.get(test.site())
+driver.quit()
+
 #create_user_and_devices(driver)
 
 # enable browser logging
-chrome_options = Options()
-chrome_options.add_argument("--start-maximized")
-d = DesiredCapabilities.CHROME
-d['goog:loggingPrefs'] = { 'browser':'ALL' }
-driver = webdriver.Chrome(desired_capabilities=d, chrome_options=chrome_options)
-
-create_user_and_devices(driver)
-#time.sleep(10)
-# print messages
-for entry in driver.get_log('browser'):
-    print(entry)
-
-time.sleep(0.1)
-
+#chrome_options = Options()
+#chrome_options.add_argument("--start-maximized")
+#d = DesiredCapabilities.CHROME
+#d['goog:loggingPrefs'] = { 'browser':'ALL' }
+#driver = webdriver.Chrome(desired_capabilities=d, chrome_options=chrome_options)
+#
+#create_user_and_devices(driver)
+##time.sleep(10)
+## print messages
+#for entry in driver.get_log('browser'):
+#    print(entry)
+#
+#time.sleep(0.1)
+#
 
 
 # chrome --start-maximized --enable-logging=stderr
