@@ -15,6 +15,8 @@ from colorama import Fore, Style
 # Check
 # Info
 # Fill
+#        self.wait_loss(driver, "//div[@class='nuxt-progress']")
+#
 
 class hc_command():
 
@@ -56,6 +58,7 @@ class hc_command():
 
     def setting_devices(self, driver): #открыть пользователи и устройства
         print ("Click: Открыть пользователи и устройства")
+        self.wait_loss(driver, "//div[@class='nuxt-progress']")
         driver.find_element_by_xpath("//main[@class='v-content']//a[2]").click()
 
     def add_devices(self, driver): #добавление устройства
@@ -322,6 +325,7 @@ class hc_command():
         print ("Fill: Установить номер телефона")
         driver.find_element_by_xpath("//input[@placeholder='+7 (###) ###-##-##']").send_keys("1234567890")     
         # Сохранить изменения
+        time.sleep(0.2)
         print ("Click: Сохранить")
         driver.find_element_by_xpath("//button[@class='v-btn v-btn--contained theme--light v-size--default primary']//span[@class='v-btn__content']").click()
         # Обновить страницу

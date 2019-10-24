@@ -83,6 +83,7 @@ class hc_command_mobile():
 
     def setting_devices(self, driver): #открыть пользователи и устройства
         print ("Click: Открыть пользователи и устройства")
+        self.wait_loss(driver, "//div[@class='nuxt-progress']")
         driver.find_element_by_xpath("//div[@class='lk-menu-mob visible-xs']//a[2]").click()
 
     def add_devices(self, driver): #добавление устройства
@@ -398,6 +399,7 @@ class hc_command_mobile():
         print ("Fill: Установить номер телефона")
         driver.find_element_by_xpath("//input[@placeholder='+7 (###) ###-##-##']").send_keys("1234567890")     
         # Сохранить изменения
+        time.sleep(0.2)
         print ("Click: Сохранить")
         driver.find_element_by_xpath("//button[@class='v-btn v-btn--block v-btn--contained theme--light v-size--default primary']").click()
         time.sleep(0.2)
@@ -765,8 +767,8 @@ class hc_command_mobile():
         driver.quit()
 
     def open_signin_form(self,driver):   #Открыть форму входа пользователя
-        print ("Info: Открыть форму логина")
-        
+        #Войти в аккаунт
+        print ("Info: Открыть форму входа")
         print ("Click: Бургер")
         i = 0 
         while i < 100:
@@ -776,10 +778,9 @@ class hc_command_mobile():
             except:
                 i += 1
                 time.sleep(0.1)
+        print ("Click: Вход в аккаунт")
+        driver.find_element_by_xpath("//a[@class='mt-4 v-btn v-btn--depressed v-btn--flat v-btn--outlined v-btn--router theme--light v-size--default primary--text']").click()
 
-
-        print ("Click: Вход")
-        driver.find_element_by_xpath("//span[@class='v-btn__content'][contains(text(),'Вход')]").click()
 
     def open_registration_form(self,driver): #Окткрыть форму регистрациии пользвоателя
         time.sleep(1)
