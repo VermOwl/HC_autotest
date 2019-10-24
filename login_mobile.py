@@ -395,14 +395,15 @@ class hc_command_mobile():
         elem = driver.find_elements_by_xpath("//div[@class='v-input--selection-controls__ripple']")
         elem_click = elem[1]
         elem_click.click()
+        time.sleep(0.5)
         # Изменение номера телефона
         print ("Fill: Установить номер телефона")
         driver.find_element_by_xpath("//input[@placeholder='+7 (###) ###-##-##']").send_keys("1234567890")     
         # Сохранить изменения
-        time.sleep(0.2)
+        time.sleep(0.5)
         print ("Click: Сохранить")
         driver.find_element_by_xpath("//button[@class='v-btn v-btn--block v-btn--contained theme--light v-size--default primary']").click()
-        time.sleep(0.2)
+        time.sleep(0.5)
         driver.refresh()
         # Проверка изменений 
         print ("Info: Проверка добаленной информации")

@@ -323,9 +323,10 @@ class hc_command():
         elem_click.click()
         # Изменение номера телефона
         print ("Fill: Установить номер телефона")
+        time.sleep(0.5)
         driver.find_element_by_xpath("//input[@placeholder='+7 (###) ###-##-##']").send_keys("1234567890")     
         # Сохранить изменения
-        time.sleep(0.2)
+        time.sleep(0.5)
         print ("Click: Сохранить")
         driver.find_element_by_xpath("//button[@class='v-btn v-btn--contained theme--light v-size--default primary']//span[@class='v-btn__content']").click()
         # Обновить страницу
