@@ -24,7 +24,7 @@ def edit_profile_info(driver):
     browser = browsers()
     browser.quit_browser(driver)
 
-browser = browsers()
-driver = browser.chrome()
-#print (Fore.CYAN + "edit_profile_info" + Style.RESET_ALL)
-edit_profile_info(driver)
+#browser = browsers()
+#driver = browser.chrome()
+##print (Fore.CYAN + "edit_profile_info" + Style.RESET_ALL)
+#edit_profile_info(driver)

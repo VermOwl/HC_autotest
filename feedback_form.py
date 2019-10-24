@@ -13,7 +13,13 @@ def feedback_form(driver):
     
     test = hc_command()
     driver.get(test.site())
+    driver.implicitly_wait(10)
+
     test.feedback_form(driver)
 
     browser = browsers()
     browser.quit_browser(driver)
+
+#browser = browsers()
+#driver = browser.chrome()
+#feedback_form(driver)

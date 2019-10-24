@@ -19,7 +19,8 @@ def edit_profile_info_mobile(driver):
     password = "23072307"
 
     driver.get(test.site())
-
+    driver.implicitly_wait(10)
+    
     #Изменение основной информации
     test.signin_parametr(driver, temp, password)
     test.setting(driver)

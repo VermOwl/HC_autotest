@@ -19,7 +19,7 @@ def create_user_and_devices_mobile(driver):
     password = "23072307"
 
     driver.get(test.site())
-    time.sleep(1)
+    driver.implicitly_wait(10)
 
     test.signin_parametr(driver, email, password)
     test.setting(driver)

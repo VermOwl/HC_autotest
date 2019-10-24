@@ -20,6 +20,7 @@ def knowledge_mobile(driver):
     password = "23072307"
 
     driver.get(test.site())
+    driver.implicitly_wait(10)
     
     test.signin_parametr(driver, temp, password)
     test.knowledge_search_field(driver)
@@ -34,6 +35,6 @@ def knowledge_mobile(driver):
     browser.quit_browser(driver)
 
 
-browser = browsers()
-driver = browser.chrome_mobile()
-knowledge_mobile(driver)
+#browser = browsers()
+#driver = browser.chrome_mobile()
+#knowledge_mobile(driver)
