@@ -21,7 +21,8 @@ def add_user_with_send_support(driverTemp):
     time.sleep(1)
 
     driverTemp.get(test.site())
-
+    driverTemp.implicitly_wait(10)
+    driver.implicitly_wait(10)
     test.getmail(driver)
     test.registration(driverTemp)
     test.confirm_mail(driver)
