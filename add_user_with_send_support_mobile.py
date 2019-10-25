@@ -20,9 +20,9 @@ def add_user_with_send_support_mobile(driverTemp):
     driver = webdriver.Chrome(chrome_options=chrome_options)
     driver.get("https://temp-mail.org/ru")
 
-    time.sleep(1)
-
     driverTemp.get(test.site())
+    driverTemp.implicitly_wait(10)
+    driver.implicitly_wait(10)
 
     test.getmail(driver)
     test.registration(driverTemp)

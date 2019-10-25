@@ -20,7 +20,7 @@ def create_user_and_devices(driver):
     password = "23072307"
 
     driver.get(test.site())
-    time.sleep(1)
+    driver.implicitly_wait(10)
 
     test.signin_parametr(driver, email, password)
     test.setting(driver)
@@ -32,8 +32,7 @@ def create_user_and_devices(driver):
     browser = browsers()
     browser.close_browser(driver)
 
-
 #browser = browsers()
-#driver = browser.mozilla()
+#driver = browser.chrome()
 #print (Fore.CYAN + "chrome test create user and devices" + Style.RESET_ALL)
 #create_user_and_devices(driver)

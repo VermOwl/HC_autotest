@@ -20,6 +20,8 @@ def knowledge(driver):
     password = "23072307"
 
     driver.get(test.site())
+    driver.implicitly_wait(10)
+
     test.signin_parametr(driver, temp, password)
     test.knowledge_search_field(driver)
     test.tag_filter(driver)

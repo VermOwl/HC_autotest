@@ -20,7 +20,8 @@ from browsers import browsers
 from add_user_with_send_support import add_user_with_send_support
 from card_information import card_information
 from create_user_and_devices import create_user_and_devices
-from edit_profile_info import edit_profile_infofrom feedback_form import feedback_form
+from edit_profile_info import edit_profile_info
+from feedback_form import feedback_form
 from juridical_information import juridical_information
 from knowledge import knowledge
 
@@ -387,7 +388,6 @@ def mozilla_test_mobile ():
 
 def test(case, driver):
     print("nice")
-
 
 
 chrome_test()

@@ -18,11 +18,10 @@ def add_user_with_send_support(driverTemp):
     driver = webdriver.Chrome(chrome_options=chrome_options)
     driver.get("https://temp-mail.org/ru/")
 
-    time.sleep(1)
-
     driverTemp.get(test.site())
     driverTemp.implicitly_wait(10)
     driver.implicitly_wait(10)
+
     test.getmail(driver)
     test.registration(driverTemp)
     test.confirm_mail(driver)
@@ -45,5 +44,5 @@ def add_user_with_send_support(driverTemp):
     browser.close_browser(driverTemp)
 
 #browser = browsers()
-#driver = browser.chrome()
+#driver = browser.mozilla()
 #add_user_with_send_support(driver)

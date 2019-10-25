@@ -15,7 +15,14 @@ from colorama import Fore, Style
 # Info
 # Fill
 #        print ("Click: Бургер")
-#        driver.find_element_by_xpath("//i[@class='v-icon material-icons theme--dark']").click()
+# i = 0 
+# while i < 100:
+#               d
+#       i = 200
+# except:
+# i += 1
+# time.sleep(0.1)river.
+# find_element_by_xpath("//i[@class='v-icon material-icons theme--dark']").click()
 #
 
 class hc_command_mobile():
@@ -23,15 +30,18 @@ class hc_command_mobile():
     mail = "qwe"
 
     def signin(self, driver): #логиниться на helpcubes
-        time.sleep(1)
         #Войти в аккаунт
         print ("Click: Бургер")
-        driver.find_element_by_xpath("//i[@class='v-icon material-icons theme--dark']").click()
-        time.sleep(1)
+        i = 0 
+        while i < 100:
+            try:
+                driver.find_element_by_xpath("//i[@class='v-icon material-icons theme--dark']").click()
+                i = 200
+            except:
+                i += 1
+                time.sleep(0.1)
         print ("Click: Вход в аккаунт")
         driver.find_element_by_xpath("//a[@class='mt-4 v-btn v-btn--depressed v-btn--flat v-btn--outlined v-btn--router theme--light v-size--default primary--text']").click()
-
-        time.sleep(2)
 
         #Заполнение формы ввода
         mail = self.__memory_mail()
@@ -43,37 +53,43 @@ class hc_command_mobile():
         print ("Click: Войти")
         driver.find_element_by_xpath("(//button[@class='v-btn v-btn--contained theme--light v-size--default'])").click()
 
-        time.sleep(2)
-
         #Скипнуть момент добавления карты - Открывается главная страница
         print ("Скипнуть момент добавления карты - Открывается главная страница")
         try:
             driver.find_element_by_xpath("//button[@class='v-btn v-btn--depressed v-btn--flat v-btn--outlined theme--light v-size--default primary--text']").click()
-            time.sleep(1)
         except:
             print("фывалдо")
 
     def setting(self, driver): #заходит в настройки пользователя
-        time.sleep(2)
         print ("Click: Бургер")
-        driver.find_element_by_xpath("//i[@class='v-icon material-icons theme--dark']").click()
-        time.sleep(1)
+        i = 0 
+        while i < 100:
+            try:
+                driver.find_element_by_xpath("//i[@class='v-icon material-icons theme--dark']").click()
+                i = 200
+            except:
+                i += 1
+                time.sleep(0.1)
         print("Click: Настройки пользваоеля")
-        driver.find_element_by_xpath("//a[@class='profile__settings']//span").click()
-        time.sleep(1)
+        i = 0 
+        while i < 100:
+            try:
+                driver.find_element_by_xpath("//a[@class='profile__settings']//span").click()
+                i = 200
+            except Exception as e:
+                print (e)
+                i += 1
+                time.sleep(0.1)
 
     def setting_devices(self, driver): #открыть пользователи и устройства
-        time.sleep(1)
         print ("Click: Открыть пользователи и устройства")
+        self.wait_loss(driver, "//div[@class='nuxt-progress']")
         driver.find_element_by_xpath("//div[@class='lk-menu-mob visible-xs']//a[2]").click()
-        time.sleep(1)
 
     def add_devices(self, driver): #добавление устройства
-        time.sleep(1)
         print ("Info: Добавление устройство для пользователя")
         print ("Click: Добавить устройствво")
         driver.find_element_by_xpath("//div[@class='container bg-white']//div[@class='flex pt-4 mt-2']//span[@class='v-btn__content']").click()    
-        time.sleep(1)
 
         print ("Fill: Название устройства")
         name = names.get_full_name()
@@ -94,27 +110,38 @@ class hc_command_mobile():
         elem = driver.find_elements_by_xpath("//div[@class = 'v-select__selections']")
         elem_click = elem[0]
         elem_click.click()
-        time.sleep(1)
-        driver.find_element_by_xpath("//div[@class='v-menu__content theme--light v-menu__content--fixed menuable__content__active']//div[@class='v-list v-sheet v-sheet--tile theme--light']//div[1]//div[1]//div[1]").click()
-        time.sleep(1)
+
+        i = 0 
+        while i < 100:
+            try:
+                driver.find_element_by_xpath("//div[@class='v-menu__content theme--light v-menu__content--fixed menuable__content__active']//div[@class='v-list v-sheet v-sheet--tile theme--light']//div[1]//div[1]//div[1]").click()
+                i = 200
+            except Exception as e:
+                print (e)
+                i += 1
+                time.sleep(0.1)
+
 
         # выбор операционной систомы
         print ("Select: ОС девайса")
         elem_click = elem[1]
         elem_click.click()
-        time.sleep(1)
-        driver.find_element_by_xpath("//div[contains(text(),'Windows 10')]").click()
-        time.sleep(1)
+        i = 0 
+        while i < 100:
+            try:
+                driver.find_element_by_xpath("//div[contains(text(),'Windows 10')]").click()
+                i = 100
+            except:
+                i += 1
+                time.sleep(0.1)
         # подтверждение
 
         print ("Select: Сохранения устройства")
         driver.find_element_by_xpath("//button[@class='device-modal__button v-btn v-btn--contained theme--light v-size--default primary']").click()
-        time.sleep(1)
         
         print("Site refresh")
         driver.refresh()
         
-        time.sleep(2)
         # проверка данных
         print ("Info: Проверка добавленного устройств")
         print ("Check: Название деваса")
@@ -129,16 +156,13 @@ class hc_command_mobile():
         driver.find_elements_by_xpath("//p[@class='body-1 mb-0'][contains(text(),'autotest')]")
         
         print ("Info: Устройство добавлено. Данные проверены после перезагрузки")
-        time.sleep(1)
 
     def support_message(self,driver): #Заполениен формы отправки сообщения в службу поддержки
         
         print ("Info: Заполнение и отправки формы в ТП")
-        time.sleep(1)
         #Написать в поддержку
         print ("Click: Открытие формы отправки сообщения в ТП")
         driver.find_element_by_xpath("//div[@class='text-xs-right my-auto']//button[@type='button']").click()
-        time.sleep(1)
 
         print ("Fill: Тема обращения")
         #Заполенние формы поддержки
@@ -151,23 +175,34 @@ class hc_command_mobile():
         elem = elem_list[0]
         elem.click() 
         time.sleep(1)
-        driver.find_element_by_xpath("//body/div[@id='__nuxt']/div[@id='__layout']/div[@id='app']/div[@class='v-menu__content theme--light v-menu__content--fixed menuable__content__active']/div[@class='v-select-list v-card theme--light']/div[@class='v-list v-sheet v-sheet--tile theme--light']/div[1]/div[1]").click()
+        i = 0 
+        while i < 100:
+            try:
+                driver.find_element_by_xpath("//body/div[@id='__nuxt']/div[@id='__layout']/div[@id='app']/div[@class='v-menu__content theme--light v-menu__content--fixed menuable__content__active']/div[@class='v-select-list v-card theme--light']/div[@class='v-list v-sheet v-sheet--tile theme--light']/div[1]/div[1]").click()
+                i = 200
+            except:
+                i += 1
+                time.sleep(0.1)
         
         #Выбор устройства из списка
         print ("Select: Устрйоство")
         elem = elem_list[1]
         elem.click()
-        time.sleep(1)
+
         driver.find_element_by_xpath("//body/div[@id='__nuxt']/div[@id='__layout']/div[@id='app']/div[@class='v-menu__content theme--light v-menu__content--fixed menuable__content__active']/div[@class='v-select-list v-card theme--light']/div[@class='v-list v-sheet v-sheet--tile theme--light']/div[2]/div[1]").click()
-        time.sleep(1)
         
         #Выбор пользователя из списка
         print ("Select: Пользователь")
         elem = elem_list[2]
         elem.click()
-        time.sleep(1)
-        driver.find_element_by_xpath("//body/div[@id='__nuxt']/div[@id='__layout']/div[@id='app']/div[@class='v-menu__content theme--light v-menu__content--fixed menuable__content__active']/div[@class='v-select-list v-card theme--light']/div[@class='v-list v-sheet v-sheet--tile theme--light']/div[2]/div[1]").click()
-        time.sleep(1)
+        i = 0 
+        while i < 100:
+            try:
+                driver.find_element_by_xpath("//body/div[@id='__nuxt']/div[@id='__layout']/div[@id='app']/div[@class='v-menu__content theme--light v-menu__content--fixed menuable__content__active']/div[@class='v-select-list v-card theme--light']/div[@class='v-list v-sheet v-sheet--tile theme--light']/div[2]/div[1]").click()
+                i = 200
+            except:
+                i += 1
+                time.sleep(0.1)
         
         #Добавление комментария
         print ("Fill: Описание проблемы")
@@ -177,16 +212,13 @@ class hc_command_mobile():
         #Добавление файла
         print ("Fill: Добавление файла")
         driver.find_element_by_xpath("//input[@name='files[]']").send_keys("C:\\Users\\" + getpass.getuser()  + "\\Documents\\GitHub\\HC_autotest\\ford-ford-raptor-parketnik-dzhip.jpeg")
-        time.sleep(1)
         
         #Нажатие кнопки отправить
         print ("Click: Отправить запрос в ТП")
         driver.find_element_by_xpath("//button[@class='v-btn v-btn--contained theme--light v-size--default primary']").click()
-        time.sleep(1)
 
         self.check_request_jira_authorization(summary, description)
 
-        time.sleep(1)
         print ("Info: Открыта страница с запросами - проверка наличие запроса")
         print ("Check: Тема запроса")
         driver.find_element_by_xpath("//h6[contains(text(),'" + summary + "')]")
@@ -199,15 +231,19 @@ class hc_command_mobile():
         #Добавить чек на то что какая открылась страница
         
     def registration(self, driver): #Регситрация пользвоателя 
-        time.sleep(1)
         print ("Info: Процедура регистрации пользователя")
         print ("Click: Бургер")
-        driver.find_element_by_xpath("//i[@class='v-icon material-icons theme--dark']").click()
-        time.sleep(1)
+        i = 0 
+        while i < 100:
+            try:
+                driver.find_element_by_xpath("//i[@class='v-icon material-icons theme--dark']").click()
+                i = 200
+            except:
+                i += 1
+                time.sleep(0.1)
         print ("Click: Регистрация")
         #Неавторизованный пользовать - Регистрация
         driver.find_element_by_xpath("//a[@class='mt-2 v-btn v-btn--contained v-btn--router theme--light v-size--default primary']").click()
-        time.sleep (1)
 
         #Заполняется форма регистрации
         print ("Fill: Ваше имя")
@@ -227,19 +263,13 @@ class hc_command_mobile():
         print ("Click: Зарегистрироваться")
         driver.find_element_by_xpath("(//button[@class='v-btn v-btn--contained theme--light v-size--default'])").click()
 
-        time.sleep(2)
-
         #выход на главную
         driver.find_element_by_xpath("//button[@class='v-btn v-btn--contained theme--light v-size--default primary']").click()
 
-        time.sleep(1)
-
     def getmail(self, driver): #Копируем в буфер аккаунт с сайта temp-mail.org
-        time.sleep(5)
         print ("Click: Копирование текста в буфер обмена")
         driver.find_element_by_xpath("//button[@class='btn-rds icon-btn bg-theme click-to-copy copyIconGreenBtn']").click()
         self.__memory_mail()
-        time.sleep(1)
 
     def confirm_mail(self, driver): #Подтвердить email
         i = 0 
@@ -262,22 +292,34 @@ class hc_command_mobile():
         return mail
 
     def tariff_add(self, driver): #Добавиление тарифа
-        time.sleep(1)
         print ("Info: Добавления тариф для пользователя")
         print ("Click: Бургер")
-        driver.find_element_by_xpath("//i[@class='v-icon material-icons theme--dark']").click()
+        i = 0 
+        while i < 100:
+            try:
+                driver.find_element_by_xpath("//i[@class='v-icon material-icons theme--dark']").click()
+                i = 200
+            except:
+                i += 1
+                time.sleep(0.1)
         #Раздел: Тарифы
-        
         print ("Click: Тарифы")
-        driver.find_element_by_xpath("//p//a[@href='/tariffs']").click()
-        time.sleep(1)
+        i = 0 
+        while i < 100:
+            try:
+                driver.find_element_by_xpath("//p//a[@href='/tariffs']").click()
+                i = 200
+            except Exception as e:
+                print (e)
+                i += 1
+                time.sleep(0.1)
+
 
         #Выбрать второй тариф максимальный
         print ("Click: Выбрать тариф")
         elem_list = driver.find_elements_by_xpath("//button[@class='primary v-btn v-btn--contained theme--light v-size--default']")
         elem = elem_list[2]
         elem.click()
-        time.sleep(1)
 
         #Заполнить информацию о карте
         print ("Info: Заполениение информации о карте")
@@ -299,19 +341,21 @@ class hc_command_mobile():
         print ("Click: Оптатить")
         driver.find_element_by_xpath("//button[@class='v-btn v-btn--contained theme--light v-size--default']").click()
 
-        time.sleep(1)
-
     def signin_parametr(self, driver, login, password): #Вход со своими параметрами 
         
         print ("Info: вход с параметрами " + login + " " +  password)
         print ("Click: Бургер")
-        driver.find_element_by_xpath("//i[@class='v-icon material-icons theme--dark']").click()
-        time.sleep(1)
+        i = 0 
+        while i < 100:
+            try:
+                driver.find_element_by_xpath("//i[@class='v-icon material-icons theme--dark']").click()
+                i = 200
+            except:
+                i += 1
+                time.sleep(0.1)
         #Войти в аккаунт
         print ("Click: Вход в аккаунт")
         driver.find_element_by_xpath("(//a[@class='mt-4 v-btn v-btn--depressed v-btn--flat v-btn--outlined v-btn--router theme--light v-size--default primary--text'])").click()
-
-        time.sleep(2)
 
         #Заполнение формы ввода
         print ("Fill: mail")
@@ -323,19 +367,17 @@ class hc_command_mobile():
         print ("Click: Вход после заполения полей")
         driver.find_element_by_xpath("(//button[@class='v-btn v-btn--contained theme--light v-size--default'])").click()
 
-        time.sleep(2)
-
         #Скипнуть момент добавления карты - Открывается главная страница
         try:
+            driver.implicitly_wait(2)
             driver.find_element_by_xpath("//button[@class='v-btn v-btn--depressed v-btn--flat v-btn--outlined theme--light v-size--default primary--text']").click()
-            time.sleep(1)
+            driver.implicitly_wait(10)
         except:
             print("фывалдо")
+            driver.implicitly_wait(10)
+
 
     def add_profile_info(self, driver): #Заполнение информации о пользваотеле
-
-
-        time.sleep(1)
         print ("Info: заполнение основной информации о пользователе")
         # Добавление фотки
         print ("Fill: Добавление фотки")
@@ -349,26 +391,20 @@ class hc_command_mobile():
         dateofbirth = "14.04.1986"
         driver.find_element_by_xpath("//body/div[@id='__nuxt']/div[@id='__layout']/div[@id='app']/div[@class='application--wrap']/main[@class='v-content']/div[@class='v-content__wrap']/div[@class='account-bg']/div[@class='container pa-xs-0']/div[@class='layout column']/div[@class='flex right-block xs12 md8']/div[@class='bg-xs-white']/form[@id='form']/div[@class='mx-auto v-card v-sheet v-sheet--tile theme--light']/div[@class='v-card__text pt-xs-0 px-xs-4']/div[3]/div[1]/div[1]/div[1]/div[1]/div[1]/input[1]").send_keys(dateofbirth)
         # Женский пол
-        time.sleep(1)
         print ("Click: Установить женский пол")
         elem = driver.find_elements_by_xpath("//div[@class='v-input--selection-controls__ripple']")
         elem_click = elem[1]
         elem_click.click()
-        time.sleep(0.4)
+        time.sleep(0.5)
         # Изменение номера телефона
         print ("Fill: Установить номер телефона")
         driver.find_element_by_xpath("//input[@placeholder='+7 (###) ###-##-##']").send_keys("1234567890")     
-        time.sleep(1)
         # Сохранить изменения
+        time.sleep(0.5)
         print ("Click: Сохранить")
         driver.find_element_by_xpath("//button[@class='v-btn v-btn--block v-btn--contained theme--light v-size--default primary']").click()
-
-        time.sleep(1)
-        # Обновить страницу
-        
+        time.sleep(0.5)
         driver.refresh()
-        time.sleep(1)
-
         # Проверка изменений 
         print ("Info: Проверка добаленной информации")
         print ("Check: Фамилия")
@@ -377,16 +413,12 @@ class hc_command_mobile():
         driver.find_element_by_xpath("//div[@class='v-radio theme--light v-item--active']//input[@value='female']")
         print ("Check: Номер телефона")
         driver.find_element_by_xpath("//input[@value='+7 (123) 456-78-90']")
-        
-        time.sleep(1)
 
     def add_user(self, driver): #добавление юзера в настройках пользователя
-        time.sleep(1)
         #Открыть форму добавления пользвоателя
         print ("Info: Добавление юзера в аккаунт пользователя")
         print ("Click: Добавить пользователя")
         driver.find_element_by_xpath("//div[@class='container bg-white']//div[@class='flex pt-4 mt-2 pb-2']//button[@class='v-btn v-btn--contained theme--light v-size--default secondary']").click()
-        time.sleep(1)
 
         #Заполнение полей Имя, Пол, номер, Email, Telegram, Skype
         name = names.get_first_name()
@@ -403,18 +435,15 @@ class hc_command_mobile():
         driver.find_element_by_xpath("//input[@aria-label='Telegram']").send_keys("HelpcubesTelegramAutotest")
         print ("Fill: скайп юзера")
         driver.find_element_by_xpath("//input[@aria-label='Skype']").send_keys("HelpCubesSkypeAutotest")
-        time.sleep(1)
         #Сохранить изменения 
         print ("Click: Сохранить изменения")
         driver.find_element_by_xpath("//button[@class='users-modal__button v-btn v-btn--contained theme--light v-size--default primary']").click()
         
-        time.sleep(1)
         driver.refresh()
-        time.sleep(2)
 
         # Проверка полей
         print("Check: Имя юзера")
-        driver.find_elements_by_xpath("//div[@class='user-card v-card v-sheet v-sheet--tile theme--light']//h3[@class='title'][contains(text(),'" + name + "')]")
+        driver.find_element_by_xpath("//div[@class='user-card v-card v-sheet v-sheet--tile theme--light']//h3[@class='title'][contains(text(),'" + name + "')]")
         print("Check: номер телефона юзера")
         driver.find_element_by_xpath("//div[@class='flex right-block xs-8']//p[@class='body-1 mb-0'][contains(text(),'+7 (123) 456-78-90')]")
         print("Check: мыло юзера")
@@ -425,7 +454,6 @@ class hc_command_mobile():
         driver.find_element_by_xpath("//div[@class='flex right-block xs-8']//p[@class='body-1 mb-0'][contains(text(),'HelpCubesSkypeAutotest')]")
         
         print ("Пользователь добавлен в аккаунт. Данные проверены после перезагрузки")
-        time.sleep(1)
 
     def setting_credit_card(self, driver): #Открыть Платежная информация
         time.sleep(1)
@@ -629,13 +657,18 @@ class hc_command_mobile():
     def feedback_form(self, driver): #Форма обратной свзяи
 
         print ("Info: Проверка заполнения и отправки Формы обратной связи")
-        time.sleep(1)
         print ("Click: Бургер")
-        driver.find_element_by_xpath("//i[@class='v-icon material-icons theme--dark']").click()
+        i = 0 
+        while i < 100:
+            try:
+                driver.find_element_by_xpath("//i[@class='v-icon material-icons theme--dark']").click()
+                i = 200
+            except:
+                i += 1
+                time.sleep(0.1)
         # Открыть контакты
         print ("Click: Открыть страницу Контакты")
         driver.find_element_by_xpath("//p[@class='header__link']//a[@href='/contacts']").click()
-        time.sleep(1)
 
         # Заполнение полей Имя, номера телефона, мыло, сообщение
         name = names.get_full_name()
@@ -648,7 +681,7 @@ class hc_command_mobile():
         mail = "autotestemail"+ str(random.randint(1000000, 9999999)) + "@python.org"
         driver.find_element_by_xpath("//input[@aria-label='Email']").send_keys(mail)
         print ("Fill: Описание запрса")
-        description = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum"
+        description = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit."
         driver.find_element_by_xpath("//textarea[@aria-label='Ваше сообщение']").send_keys(description)
         
         # Отправить запрос 
@@ -658,7 +691,6 @@ class hc_command_mobile():
         self.chech_request_jira(mail, phone, name, description)
         
         # Кнопка Спассибо
-        time.sleep(1)
         print ("Click: Спасибо")
         driver.find_element_by_xpath("//button[@class='green-btn text-xs-left v-btn v-btn--contained theme--light v-size--default']").click()
 
@@ -671,7 +703,6 @@ class hc_command_mobile():
         chrome_options.add_argument("--start-maximized")
         driver = webdriver.Chrome(chrome_options=chrome_options)
         driver.get("https://jira.bsr.group/projects/CSUP/queues/custom/")
-        time.sleep(1)
 
         # Вход в аккаунт
         print ("Fill: Логин Jira")
@@ -680,14 +711,13 @@ class hc_command_mobile():
         driver.find_element_by_xpath("//input[@id='login-form-password']").send_keys("9575344GHty")
         print ("Click: Логин")
         driver.find_element_by_xpath("//input[@id='login-form-submit']").click()
-        time.sleep(1.5)
+        driver.implicitly_wait(10)
 
         # Открытие первой найденной задачи 
         print ("Click: Открытие первой найденной задачи")
         elem = driver.find_elements_by_xpath("//a[@class='issue-link']")
         elem_click = elem[0]
         elem_click.click()
-        time.sleep(2)
 
         # Проверка контента 
         print ("Check: mail")
@@ -698,7 +728,6 @@ class hc_command_mobile():
         driver.find_element_by_xpath("//div[contains(text(),'" + name + "')]")
         print ("Check: Description")
         driver.find_element_by_xpath("//p[contains(text(),'" + description + "')]")
-        time.sleep(1)
         print("Info: Запросы успешно найден и проверен в JIRA")
 
         driver.quit()
@@ -711,7 +740,7 @@ class hc_command_mobile():
         chrome_options.add_argument("--start-maximized")
         driver = webdriver.Chrome(chrome_options=chrome_options)
         driver.get("https://jira.bsr.group/projects/CSUP/queues/custom/")
-        time.sleep(1)
+        driver.implicitly_wait(10)
 
         # Вход в аккаунт
         print ("Fill: Логин Jira")
@@ -720,14 +749,12 @@ class hc_command_mobile():
         driver.find_element_by_xpath("//input[@id='login-form-password']").send_keys("9575344GHty")
         print ("Click: Логин")
         driver.find_element_by_xpath("//input[@id='login-form-submit']").click()
-        time.sleep(1.5)
 
         # Открытие первой найденной задачи 
         print ("Click: Открытие первой найденной задачи")
         elem = driver.find_elements_by_xpath("//a[@class='issue-link']")
         elem_click = elem[0]
         elem_click.click()
-        time.sleep(2)
 
         # Проверка контента
         print ("Check: Название запроса")
@@ -741,16 +768,20 @@ class hc_command_mobile():
         driver.quit()
 
     def open_signin_form(self,driver):   #Открыть форму входа пользователя
-        time.sleep(1)
-        print ("Info: Открыть форму логина")
-        
+        #Войти в аккаунт
+        print ("Info: Открыть форму входа")
         print ("Click: Бургер")
-        driver.find_element_by_xpath("//i[@class='v-icon material-icons theme--dark']").click()
+        i = 0 
+        while i < 100:
+            try:
+                driver.find_element_by_xpath("//i[@class='v-icon material-icons theme--dark']").click()
+                i = 200
+            except:
+                i += 1
+                time.sleep(0.1)
+        print ("Click: Вход в аккаунт")
+        driver.find_element_by_xpath("//a[@class='mt-4 v-btn v-btn--depressed v-btn--flat v-btn--outlined v-btn--router theme--light v-size--default primary--text']").click()
 
-        print ("Click: Вход")
-        driver.find_element_by_xpath("//span[@class='v-btn__content'][contains(text(),'Вход')]").click()
-        
-        time.sleep(1)
 
     def open_registration_form(self,driver): #Окткрыть форму регистрациии пользвоателя
         time.sleep(1)
@@ -760,12 +791,11 @@ class hc_command_mobile():
         time.sleep(1)
 
     def open_user_agreement(self, driver): #Открыть страницу пользвоательского соглашения
-        time.sleep(1)
         print ("Info: Открыть страницу пользвоательского соглашения")
         window_before = driver.window_handles[0]
         print ("Click: Политика конфиденциальности")
         driver.find_element_by_xpath("//a[@target='_blank'][contains(text(),'Политика конфиденциальности')]").click()
-        time.sleep(1)
+        time.sleep(0.1)
         window_after = driver.window_handles[1]
         driver.switch_to.window(window_after)
         self.check_user_agreement(driver)
@@ -777,12 +807,11 @@ class hc_command_mobile():
         
         
     def open_privacy_policy(self, driver): #Открыть форму политики кионфиденкиальности
-        time.sleep(1)
         print ("Info: Октрыть страницу политики конфиденциальности пользователя")
         window_before = driver.window_handles[0]
         print ("Click: Пользовательское соглашение")
         driver.find_element_by_xpath("//a[@target='_blank'][contains(text(),'Пользовательское соглашение')]").click()
-        time.sleep(1)
+        time.sleep(0.1)
         window_after = driver.window_handles[1]
         driver.switch_to.window(window_after)
         self.check_privacy_policy
@@ -800,13 +829,13 @@ class hc_command_mobile():
         return site
 
     def knowledge_search_field(self, driver): # Проверка строки поиска
-        time.sleep(2)
         print ("Info: Проверка базы знаний")
         print ("Click: Раздле Windows")
+        self.wait_loss(driver, "//div[@class='nuxt-progress']")
         elem = driver.find_elements_by_xpath("//div[@class='tag-items__item']")
         elem_click = elem[0]
         elem_click.click()
-        time.sleep(3)
+        self.wait_loss(driver, "//div[@class='nuxt-progress']")
         print ("Info: Берем 4 тему")
         elem = driver.find_elements_by_xpath("//div[@class='pop-card-mob__head']")
         elem_click = elem[3]
@@ -815,10 +844,10 @@ class hc_command_mobile():
         def __search_check(theme, driver):
             print ("Fill: Поле поиска: Поиск по ранее найденной 4 теме")
             driver.find_element_by_xpath("//input[@placeholder='Что вы хотите узнать?']").send_keys(theme)
-            time.sleep(1)
             print ("Click: Найти")
             driver.find_element_by_xpath("//button[@class='v-btn v-btn--contained theme--light v-size--default']").click()
-            time.sleep(3)
+            self.wait_loss(driver, "//div[@class='nuxt-progress']")
+
             print ("Check: Найден тольк один элемент. Иначе падаем")
             elem = driver.find_elements_by_xpath("//div[@class='layout pop-card mt-3 wrap justify-center']")
             ex = 0
@@ -831,41 +860,55 @@ class hc_command_mobile():
                 assert False
             print ("Click: Сбросить")
             driver.find_element_by_xpath("//button[@class='reset v-btn v-btn--flat v-btn--text theme--light v-size--default']").click()
+            self.wait_loss(driver, "//div[@class='nuxt-progress']")
             print ("Check: Отображаются все результаты поиска")
-            time.sleep(2)
             elem = driver.find_elements_by_xpath("//div[@class='pop-card__title']")
             elem_click = elem[10]
         
         __search_check(theme, driver)
         print ("Click: Бургер")
-        driver.find_element_by_xpath("//i[@class='v-icon material-icons theme--dark']").click()
+        i = 0 
+        while i < 100:
+            try:
+                driver.find_element_by_xpath("//i[@class='v-icon material-icons theme--dark']").click()
+                self.wait_loss(driver, "//div[@class='nuxt-progress']")
+                i = 200
+            except:
+                i += 1
+                time.sleep(0.1)
         time.sleep(1)
         print ("Click: База знаний")
         driver.find_element_by_xpath("//p[@class='header__link']//a[@class='nuxt-link-active']").click()
-        time.sleep(1)
+        self.wait_loss(driver, "//div[@class='nuxt-progress']")
 
         __search_check(theme, driver)
         print ("Click: Бургер")
-        time.sleep(1)
-        driver.find_element_by_xpath("//i[@class='v-icon material-icons theme--dark']").click()
+        i = 0 
+        while i < 100:
+            try:
+                driver.find_element_by_xpath("//i[@class='v-icon material-icons theme--dark']").click()
+                self.wait_loss(driver, "//div[@class='nuxt-progress']")
+                i = 200
+            except:
+                i += 1
+                time.sleep(0.1)
+        
         print ("Click: База знаний")
         driver.find_element_by_xpath("//p[@class='header__link']//a[@class='nuxt-link-active']").click()
-        time.sleep(1)
+        self.wait_loss(driver, "//div[@class='nuxt-progress']")
         
     def tag_filter(self,driver): #Проверка работы плиток и нахождение тэгов в Базе знаний
-        time.sleep(3)
         print ("Info: Проверка тэгов (Плитка)")
         print ("Check: Нахождение всех плиток")
         test_item = driver.find_elements_by_xpath("//div[@class='tag-items__item']")
-        i = 0
+        j = 0
         for elem_click in test_item:
             test_item = driver.find_elements_by_xpath("//div[@class='tag-items__item']")
-            tile = test_item[i].text
+            tile = test_item[j].text
 
             print ("Click: Плитка - " +  tile)
-            test_item[i].click()
-            time.sleep(2)
-
+            test_item[j].click()
+            self.wait_loss(driver, "//div[@class='nuxt-progress']")
             print ("Check: Кол-во тэгов = кол-во отображаемых тем")
             check_elem = driver.find_elements_by_xpath("//div[@class ='pop-card hidden-xs']")
             check_elem2 = driver.find_elements_by_xpath("//span[@class='caption chips'][contains(text(),'" + tile + "')]")
@@ -881,16 +924,21 @@ class hc_command_mobile():
                 print (tile)
                 assert False
             print ("Click: Бургер")
-            driver.find_element_by_xpath("//i[@class='v-icon material-icons theme--dark']").click()
-            time.sleep(1)
+            i = 0 
+            while i < 100:
+                try:
+                    driver.find_element_by_xpath("//i[@class='v-icon material-icons theme--dark']").click()
+                    i = 200
+                except:
+                    i += 1
+                    time.sleep(0.1)
+            self.wait_loss(driver, "//div[@class='nuxt-progress']")
             print ("Click: База знаний")
             driver.find_element_by_xpath("//p[@class='header__link']//a[@class='nuxt-link-active']").click()
-            i = i + 1
-            time.sleep(2)
-
+            self.wait_loss(driver, "//div[@class='nuxt-progress']")
+            j += 1
 
     def popular_article(self, driver): # Проверка популярных записей в Базе знаний
-        time.sleep(1)
         print ("Info: Проверка популярных сайтов")
         print ("Check: Популярные записи")
         driver.find_element_by_xpath("//div[@class='v-tab v-tab--active']")
@@ -901,7 +949,7 @@ class hc_command_mobile():
             assert False
         print ("Click: Последнее")
         driver.find_element_by_xpath("//div[@class='v-tab']").click() 
-        time.sleep(1)
+        self.wait_loss(driver, "//div[@class='nuxt-progress']")
         print ("Check: 5 элментов в разделе Последние добавленные записи")
         size = len(driver.find_elements_by_xpath("//div[@class='pop-card-mob visible-xs-only']"))
         if size != 10:
@@ -912,7 +960,7 @@ class hc_command_mobile():
         
     def change_rating (self,driver): #Проверка возможности поставить голоса за или против
         driver.refresh()
-        time.sleep(2)
+        self.wait_loss(driver, "//div[@class='nuxt-progress']")
         print ("Info: Добавить рейтинг статье") #
         ratings = driver.find_elements_by_xpath("//p[@class='body-1 mb-0 py-1 text-xs-center']")
         rating = ratings[0].text
@@ -921,15 +969,13 @@ class hc_command_mobile():
         up_rating_buttons = driver.find_elements_by_xpath("//button[@class='btn-prev v-btn v-btn--depressed v-btn--fab v-btn--flat v-btn--outlined v-btn--round v-btn--text theme--light v-size--default']")
         up_rating_buttons[0].click()
         driver.refresh()
-        time.sleep(1)
+        self.wait_loss(driver, "//div[@class='nuxt-progress']")
         check_rating = driver.find_elements_by_xpath("//p[@class='body-1 mb-0 py-1 text-xs-center']")
         print ("Check: У статьи выше рейтинг?")
         if str(check_rating[0].text) == str(rating_int):
             print ("Info: Кол-во голосов неверное - падаме")
             assert False
         print ("Chekc: Изменения цвета кнопки изменения рейтинга")
-
-        time.sleep(1)
         print ("Info: Отнять рейтинг у статьи") #
         ratings = driver.find_elements_by_xpath("//p[@class='body-1 mb-0 py-1 text-xs-center']")
         rating = ratings[2].text
@@ -938,7 +984,7 @@ class hc_command_mobile():
         up_rating_buttons = driver.find_elements_by_xpath("//button[@class='btn-next v-btn v-btn--depressed v-btn--fab v-btn--flat v-btn--outlined v-btn--round v-btn--text theme--light v-size--default']")
         up_rating_buttons[2].click()
         driver.refresh()
-        time.sleep(1)
+        self.wait_loss(driver, "//div[@class='nuxt-progress']")
         check_rating = driver.find_elements_by_xpath("//p[@class='body-1 mb-0 py-1 text-xs-center']")
         print ("Check: У статьи выше рейтинг?")
         if str(check_rating[2].text) == str(rating_int):
@@ -947,13 +993,12 @@ class hc_command_mobile():
         print ("Chekc: Изменения цвета кнопки изменения рейтинга")
 
     def chips_and_link_test (self, driver):
-        time.sleep(1)
         print ("Info: Проверка Chips и линки Показать все")
         print ("Click: По чипсе")
         chips = driver.find_elements_by_xpath("//span[@class='caption chips']")
         chips_text = chips[0].text
         chips[0].click()
-        time.sleep(2)
+        self.wait_loss(driver, "//div[@class='nuxt-progress']")
         print ("Check: Активный элемент в самом низу " + str(chips_text))
         check = driver.find_element_by_xpath("//div[@class='v-list-item v-list-item--link theme--light active-item']").text
         if check in chips_text:
@@ -962,10 +1007,10 @@ class hc_command_mobile():
             print (chips_text)
             assert False
         driver.back()
-        time.sleep(2)
+        self.wait_loss(driver, "//div[@class='nuxt-progress']")
         print ("Click: По Показать все")
         driver.find_element_by_xpath("//a[@class='view-all']").click()
-        time.sleep(2)
+        self.wait_loss(driver, "//div[@class='nuxt-progress']")
         print ("Check: Активный элемент справой стороны Все статьи")
         check = driver.find_element_by_xpath("//div[@class='v-list-item v-list-item--link theme--light active-item']").text
         if check in "Все статьи":
@@ -975,25 +1020,38 @@ class hc_command_mobile():
             assert False
 
         driver.back()
-        time.sleep(2)
+        self.wait_loss(driver, "//div[@class='nuxt-progress']")
 
     def copy_link_to_article (self, driver): #Првоеряет работу линков с чипсы Поделиться
-        time.sleep(1)
         print ("Info: Проверка работы Копирвоание ссылки для статьи в Базе щнаний")
         title_before = driver.find_elements_by_xpath("//a[@class='pop-card-mob__title']")[0].text
         print ("Click: Поделиться ссылкой")
         driver.find_elements_by_xpath("//button[@class='pop-btn v-btn v-btn--contained theme--dark v-size--default']")[0].click()
+        self.wait_loss(driver, "//div[@class='nuxt-progress']")
         
-        time.sleep(1)
         print ("Click: Копировать ссылку")
         driver.find_element_by_xpath("//div[@class='pop__copy v-list-item theme--light']//a").click()
+        self.wait_loss(driver, "//div[@class='nuxt-progress']")
         print ("Переход по ссылке")
         driver.get(pyperclip.paste())
-        time.sleep(2)
+        self.wait_loss(driver, "//div[@class='nuxt-progress']")
         print ("Check: Правильная открылась статья?")
         title_after = driver.find_element_by_xpath("//h1[@class='card-full__title display-1']").text
         if title_after != title_before:
             print("Info: Статьи не совпали - падаем")
             assert False
-        driver.back()
-        time.sleep(2)
+        driver.back()        
+        self.wait_loss(driver, "//div[@class='nuxt-progress']")
+
+
+    def wait_loss(self, driver, what_wait):
+        result = False
+        driver.implicitly_wait(1)
+        try: 
+            driver.find_element_by_xpath(what_wait)
+            result = False
+        except:
+            result = True
+        if result != True:
+            self.wait_loss(driver, what_wait)        
+        driver.implicitly_wait(10)    

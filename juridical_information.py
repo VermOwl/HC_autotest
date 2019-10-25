@@ -14,8 +14,8 @@ class juridical_information():
     def juridical_information(self, driver):
         test = hc_command()
         driver.get(test.site())
+        driver.implicitly_wait(10)
 
-        time.sleep(2)
         test.open_user_agreement(driver)
         test.open_privacy_policy(driver)
         browser = browsers()
@@ -24,43 +24,39 @@ class juridical_information():
     def juridical_information_part2_mozilla(self, driver):
         test = hc_command()
         driver.get(test.site())
+        driver.implicitly_wait(10)
+
         test.open_signin_form(driver)
-        time.sleep(1)
 
         window_before = driver.window_handles[0]
-
+        time.sleep(1)
         driver.find_element_by_xpath("//a[contains(text(),'Юридические документы')]").click()
-        time.sleep(2)
+        time.sleep(1)
         window_after = driver.window_handles[1]
         driver.switch_to.window(window_after)
         elem = driver.find_elements_by_xpath("//a[contains(text(),'Политика конфиденциальности')]")
         elem_click = elem[0]
         elem_click.click()
-        time.sleep(1)
         test.check_privacy_policy(driver)
         driver.switch_to.window(window_before)
 
 
         driver.find_element_by_xpath("//a[contains(text(),'Юридические документы')]").click()
-        time.sleep(1)
         window_after = driver.window_handles[1]
         driver.switch_to.window(window_after)
         elem = driver.find_elements_by_xpath("//a[contains(text(),'Пользовательское соглашение')]")
         elem_click = elem[0]
         elem_click.click()
-        time.sleep(1)
         test.check_user_agreement(driver)
         driver.switch_to.window(window_before)
 
         driver.find_element_by_xpath("//a[contains(text(),'Юридические документы')]").click()
-        time.sleep(2)
         window_after = driver.window_handles[1]
         driver.switch_to.window(window_after)
-        time.sleep(1)
-        elem = driver.find_elements_by_xpath("//a[contains(text(),'Правила проведения акции')]")
-        elem_click = elem[0]
-        elem_click.click()
-        time.sleep(1)
+        time.sleep(0.2)
+        driver.find_element_by_xpath("//a[contains(text(),'Правила проведения акции')]").click()
+        #elem_click = elem[0]
+        #elem_click.click()
         driver.find_element_by_xpath("//li[contains(text(),'Организатор Акции ООО «Е09»')]")
         print ("Info: Правила проведения акции проверены")
         driver.switch_to.window(window_before)
@@ -70,43 +66,41 @@ class juridical_information():
     def juridical_information_part2_chrome(self, driver):
         test = hc_command()
         driver.get(test.site())
+        driver.implicitly_wait(10)
+
         test.open_signin_form(driver)
-        time.sleep(1)
 
         window_before = driver.window_handles[0]
-
+        print ("Click: Юридические документы") 
+        time.sleep(1)
         driver.find_element_by_xpath("//a[contains(text(),'Юридические документы')]").click()
-        time.sleep(2)
         window_after = driver.window_handles[1]
         driver.switch_to.window(window_after)
+        print("Click: Политика конфиденциальности")
         elem = driver.find_elements_by_xpath("//a[contains(text(),'Политика конфиденциальности')]")
         elem_click = elem[0]
         elem_click.click()
-        time.sleep(1)
         test.check_privacy_policy(driver)
         driver.switch_to.window(window_before)
 
-
+        print ("Click: Юридические документы")
         driver.find_element_by_xpath("//a[contains(text(),'Юридические документы')]").click()
-        time.sleep(1)
         window_after = driver.window_handles[2]
         driver.switch_to.window(window_after)
+        print("Click: Пользовательское соглашение")
         elem = driver.find_elements_by_xpath("//a[contains(text(),'Пользовательское соглашение')]")
         elem_click = elem[0]
         elem_click.click()
-        time.sleep(1)
         test.check_user_agreement(driver)
         driver.switch_to.window(window_before)
-
+        print ("Click: Юридические документы")
         driver.find_element_by_xpath("//a[contains(text(),'Юридические документы')]").click()
-        time.sleep(2)
         window_after = driver.window_handles[3]
         driver.switch_to.window(window_after)
-        time.sleep(1)
+        print("Click: Правила проведения акции")
         elem = driver.find_elements_by_xpath("//a[contains(text(),'Правила проведения акции')]")
         elem_click = elem[0]
         elem_click.click()
-        time.sleep(1)
         driver.find_element_by_xpath("//li[contains(text(),'Организатор Акции ООО «Е09»')]")
         print ("Info: Правила проведения акции проверены")
         driver.switch_to.window(window_before)
@@ -115,5 +109,10 @@ class juridical_information():
 
 #browser = browsers()
 #test = juridical_information()
+#
 #driver = browser.chrome()
 #test.juridical_information_part2_chrome(driver)
+#
+#driver = browser.mozilla()
+#test.juridical_information(driver)
+#test.juridical_information_part2_mozilla(driver)

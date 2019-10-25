@@ -17,8 +17,8 @@ def edit_profile_info(driver):
     temp = config['USER INFO']['email']
     password = "23072307"
 
-    
     driver.get(test.site())
+    driver.implicitly_wait(10)
 
     #Изменение основной информации
     test.signin_parametr(driver, temp, password)
@@ -28,3 +28,7 @@ def edit_profile_info(driver):
     #Проверка информации о пользователе
     browser = browsers()
     browser.quit_browser(driver)
+
+#browser = browsers()
+#driver = browser.chrome()
+#edit_profile_info(driver)
