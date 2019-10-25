@@ -26,6 +26,6 @@ def main_page_check_unatorize_mobile(driver):
     browser = browsers()
     browser.quit_browser(driver)
 
-browser = browsers()
-driver = browser.mozilla_mobile()
-main_page_check_unatorize(driver)
+#browser = browsers()
+#driver = browser.mozilla_mobile()
+#main_page_check_unatorize(driver)
