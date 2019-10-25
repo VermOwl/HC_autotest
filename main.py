@@ -390,7 +390,6 @@ def test(case, driver):
     print("nice")
 
 
-
 chrome_test()
 mozilla_test()
 chrome_test_mobile()

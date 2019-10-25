@@ -33,16 +33,16 @@ def add_user_with_send_support(driverTemp):
 
     test.signin(driverTemp)
     test.tariff_add(driverTemp)
-    #test.setting(driverTemp)
-    #test.setting_devices(driverTemp)
-    #test.add_devices(driverTemp)
-    #test.support_message(driverTemp)
+    test.setting(driverTemp)
+    test.setting_devices(driverTemp)
+    test.add_devices(driverTemp)
+    test.support_message(driverTemp)
 
     driver.close()
 
     browser = browsers()
     browser.close_browser(driverTemp)
 
-browser = browsers()
-driver = browser.mozilla()
-add_user_with_send_support(driver)
+#browser = browsers()
+#driver = browser.mozilla()
+#add_user_with_send_support(driver)
