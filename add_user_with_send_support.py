@@ -7,6 +7,7 @@ import names
 import pyperclip
 from login import hc_command
 import configparser
+from browsers import browsers
 
 def add_user_with_send_support(driverTemp):
     test = hc_command()
@@ -17,9 +18,9 @@ def add_user_with_send_support(driverTemp):
     driver = webdriver.Chrome(chrome_options=chrome_options)
     driver.get("https://temp-mail.org/ru/")
 
-    time.sleep(1)
-
     driverTemp.get(test.site())
+    driverTemp.implicitly_wait(10)
+    driver.implicitly_wait(10)
 
     test.getmail(driver)
     test.registration(driverTemp)
@@ -37,5 +38,11 @@ def add_user_with_send_support(driverTemp):
     test.add_devices(driverTemp)
     test.support_message(driverTemp)
 
-    driver.quit()
-    driverTemp.quit()
+    driver.close()
+
+    browser = browsers()
+    browser.close_browser(driverTemp)
+
+#browser = browsers()
+#driver = browser.mozilla()
+#add_user_with_send_support(driver)

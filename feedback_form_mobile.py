@@ -13,8 +13,12 @@ def feedback_form_mobile(driver):
     
     test = hc_command_mobile()
     driver.get(test.site())
+    driver.implicitly_wait(10)
+
     test.feedback_form(driver)
-    driver.quit()
+    
+    browser = browsers()
+    browser.quit_browser(driver)
 
 #browser = browsers()
 #driver = browser.chrome_mobile()

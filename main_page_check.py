@@ -9,17 +9,22 @@ from login import hc_command
 import configparser
 from browsers import browsers
 
-def feedback_form(driver):
-    
+def edit_profile_info(driver):
     test = hc_command()
+    
     driver.get(test.site())
     driver.implicitly_wait(10)
+    test.main_page_check(driver)
+    test.footer_unauthorized(driver)
+    test.main_sevices(driver)
+    test.main_how_its_work(driver)
+    test.main_tarifs(driver)
 
-    test.feedback_form(driver)
 
     browser = browsers()
     browser.quit_browser(driver)
 
 #browser = browsers()
 #driver = browser.chrome()
-#feedback_form(driver)
+##print (Fore.CYAN + "edit_profile_info" + Style.RESET_ALL)
+#edit_profile_info(driver)

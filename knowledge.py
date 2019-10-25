@@ -7,32 +7,34 @@ import names
 import pyperclip
 from login import hc_command
 import configparser
-from colorama import Fore, Style
-from browsers import browsers
+from browsers import browsers 
+from login_mobile import hc_command_mobile
 
-
-def create_user_and_devices(driver):
+def knowledge(driver):
+    
     test = hc_command()
-
+    
     config = configparser.ConfigParser()
     config.read('config.ini')
-    email = config['USER INFO']['email']
+    temp = config['USER INFO']['email']
     password = "23072307"
 
     driver.get(test.site())
     driver.implicitly_wait(10)
 
-    test.signin_parametr(driver, email, password)
-    test.setting(driver)
-    test.setting_devices(driver)
-    test.add_user(driver)
-    test.add_devices(driver)
+    test.signin_parametr(driver, temp, password)
+    test.knowledge_search_field(driver)
+    test.tag_filter(driver)
+    test.popular_article(driver)
+    test.change_rating(driver)
+    test.chips_and_link_test(driver)
+    test.copy_link_to_article(driver)
 
 
     browser = browsers()
-    browser.close_browser(driver)
+    browser.quit_browser(driver)
+
 
 #browser = browsers()
 #driver = browser.chrome()
-#print (Fore.CYAN + "chrome test create user and devices" + Style.RESET_ALL)
-#create_user_and_devices(driver)
+#knowledge(driver)

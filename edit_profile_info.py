@@ -7,6 +7,7 @@ import names
 import pyperclip
 from login import hc_command
 import configparser
+from browsers import browsers
 
 def edit_profile_info(driver):
     test = hc_command()
@@ -16,8 +17,8 @@ def edit_profile_info(driver):
     temp = config['USER INFO']['email']
     password = "23072307"
 
-    
     driver.get(test.site())
+    driver.implicitly_wait(10)
 
     #Изменение основной информации
     test.signin_parametr(driver, temp, password)
@@ -25,5 +26,9 @@ def edit_profile_info(driver):
     test.add_profile_info(driver)
 
     #Проверка информации о пользователе
-    driver.quit()
+    browser = browsers()
+    browser.quit_browser(driver)
 
+#browser = browsers()
+#driver = browser.chrome()
+#edit_profile_info(driver)
