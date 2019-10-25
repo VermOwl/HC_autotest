@@ -111,9 +111,9 @@ class juridical_information_mobile():
         browser = browsers()
         browser.quit_browser(driver)
 
-browser = browsers()
-test = juridical_information_mobile()
-driver = browser.mozilla_mobile()
-
-#test.juridical_information_mobile(driver)
-test.juridical_information_part2_chrome_mobile(driver)
+#browser = browsers()
+#test = juridical_information_mobile()
+#driver = browser.mozilla_mobile()
+#
+##test.juridical_information_mobile(driver)
+#test.juridical_information_part2_chrome_mobile(driver)

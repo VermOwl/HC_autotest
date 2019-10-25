@@ -9,6 +9,8 @@ import configparser
 import getpass
 from browsers import browsers
 from colorama import Fore, Style
+from selenium.webdriver.common.action_chains import ActionChains
+
 # Print status
 # Click
 # Check
@@ -28,6 +30,33 @@ from colorama import Fore, Style
 class hc_command_mobile():
 
     mail = "qwe"
+
+    def click_burger(self, driver):
+        print ("Click: Бургер")
+        i = 0 
+        while i < 100:
+            try:
+                driver.find_element_by_xpath("//i[@class='v-icon material-icons theme--dark']").click()
+                i = 200
+            except:
+                i += 1
+                time.sleep(0.1)
+
+  
+    def try_click_fast(self, driver, element):
+        i = 0 
+        while i < 100:
+            try:
+                driver.implicitly_wait(0.1)
+                driver.find_element_by_xpath(element).click()
+                i = 100
+            except:
+                i += 1
+                if i == 99:
+                    print ("Info: Не удалось нажать элемент: " + element)
+                    assert False
+                time.sleep(0.1)
+        driver.implicitly_wait(10)
 
     def signin(self, driver): #логиниться на helpcubes
         #Войти в аккаунт
@@ -1055,3 +1084,263 @@ class hc_command_mobile():
         if result != True:
             self.wait_loss(driver, what_wait)        
         driver.implicitly_wait(10)    
+
+    def main_page_check (self, driver): #Наличия контента на главной странице helpcybes
+        
+        print ("Info: Проверка главной страицы Helpcubes")
+        print ("Check: Круглосуточная эксперная техническая поддеркжа")
+        driver.find_element_by_xpath("//h1[@class='display-3'][contains(text(),'Круглосуточная')]")
+        print ("Check: Комманда профессионалов, ...")
+        driver.find_element_by_xpath("//p[@class='body-1 pt-5 mt-2'][contains(text(),'Команда профессионалов')]")
+        print ("Click: Начать работу")
+        driver.find_element_by_xpath("//a[@class='v-btn v-btn--contained v-btn--router theme--light v-size--default']").click()
+        driver.find_element_by_xpath("//div[@class='v-input pt-5 theme--light v-text-field v-text-field--is-booted v-text-field--enclosed v-text-field--outlined']//input") #
+        driver.back()
+        print ("Click: Как это работает")
+        driver.find_element_by_xpath("//a[@class='how-btn ml-3 v-btn v-btn--contained v-btn--router theme--light v-size--default secondary']").click() # myDynamicElement = 
+        driver.find_element_by_xpath("//h1[@class='display-2 text-xs-center'][contains(text(),'Как это работает')]") #
+        driver.back()
+        print ("Check: Блок ниже как это работает")
+        driver.find_element_by_xpath("//div[@class='advantages']//div[@class='container']") #
+        print ("Chekc: Блок Мы можем решить ...")
+        driver.find_element_by_xpath("//div[@class='about-spec']//div[@class='container']")
+        print ("Click: Все услуги")
+        driver.find_element_by_xpath("//a[@class='text-xs-left v-btn v-btn--contained v-btn--router theme--light v-size--default white']").click()
+        print ("Check: Страница Услуги")
+        driver.find_element_by_xpath("//h1[@class='display-2'][contains(text(),'Мы работаем')]") #
+        driver.back()
+        print ("Check: Тарифы")
+        driver.find_element_by_xpath("//h3[@class='text-xs-center display-2'][contains(text(),'Тарифы')]")
+        print ("Check: Подсветка тарифы")
+        elem = driver.find_elements_by_xpath("//div[@class='flex pa-3 taxes-block xs12 sm6 md3']")
+        if len(elem) > 3:
+            print("Кол-во неподсвеченных тарифов больше 3 падаем")
+            assert False
+        driver.find_elements_by_xpath("//div[@class='flex pa-3 taxes-block xs12 sm6 md3 active']")
+        print ("Check: Тариф - выбрать")
+        i = 0
+        while i < 4:
+            driver.implicitly_wait(10)
+            elem = driver.find_elements_by_xpath("//div[@class='layout wrap justify-center']//a[@href='/sign_in']")
+            print ("Выбрать - " + str(i))
+            elem[i].click()
+            driver.find_element_by_xpath("//h1[@class='display-1 mx-auto'][contains(text(),'Вход')]")
+            driver.back()
+            i += 1
+            
+        print ("Click: Наши контакты")
+        driver.find_element_by_xpath("//a[@class='v-btn v-btn--contained v-btn--router theme--light v-size--default secondary']").click()
+        driver.find_element_by_xpath("//h1[@class='display-2 pb-4'][contains(text(),'Свяжитесь')]")
+        driver.back()
+        print ("Check: Карточка служба поддержки пользователей")
+        driver.find_element_by_xpath("//div[@class='flex card pa-4']")
+        driver.find_element_by_xpath("//a[@class='color-blue'][contains(text(),'воспользуйтесь')]").click()
+        print ("Click: Наши контакты")
+        driver.find_element_by_xpath("//h1[@class='display-2 pb-4'][contains(text(),'Свяжитесь')]")
+        driver.back()
+        self.support_card(driver)
+        self.reviews(driver)
+
+    def support_card (self, driver): # Карточка Служба поддеркжи пользоватлей 
+        print ("Check: Карточка служба поддержки пользователей")
+        driver.find_element_by_xpath("//div[@class='flex card pa-4']")
+        driver.find_element_by_xpath("//a[@class='color-blue'][contains(text(),'воспользуйтесь')]").click()
+        print ("Click: Наши контакты")
+        driver.find_element_by_xpath("//h1[@class='display-2 pb-4'][contains(text(),'Свяжитесь')]")
+        driver.back()
+
+    def reviews(self, driver): # Проверка отзывов (перелистывание отзывов и чеки)
+    
+        print ("Check: Отзывы")
+        print ("Click: Вправо")
+        text1 = driver.find_element_by_xpath("//h3[@class='text-title headline pb-3 mb-3']").text
+        driver.find_element_by_xpath("//button[@class='reviews__mobile-button btn-next v-btn v-btn--depressed v-btn--fab v-btn--flat v-btn--outlined v-btn--round v-btn--text theme--light v-size--default']").click()
+        time.sleep(0.4)
+        text2 = driver.find_element_by_xpath("//h3[@class='text-title headline pb-3 mb-3']").text
+        if text1 == text2:
+            assert False
+        print ("Click: Влево")
+        driver.find_element_by_xpath("//button[@class='reviews__mobile-button btn-prev v-btn v-btn--depressed v-btn--fab v-btn--flat v-btn--outlined v-btn--round v-btn--text theme--light v-size--default']").click()
+        time.sleep(0.4)
+        text2 = driver.find_element_by_xpath("//h3[@class='text-title headline pb-3 mb-3']").text
+        if text1 != text2:
+            assert False   
+
+    def main_sevices(self, driver): #Првоерка контента на странице услуг
+        
+        print ("Info: Проперка страницы Услуг для неавторизованного пользвоателя")
+        self.click_burger(driver)
+        print ("Click: Услуги")
+        driver.find_element_by_xpath("(//a[@href='/services'])[1]").click()
+        print ("Check: Блок Мы работаем со всему устройствами")
+        driver.find_elements_by_xpath("//div[@class='layout text-xs-center pt-5 mt-4 pb-5 mb-2 column']")
+        driver.find_elements_by_xpath("//h1[@class='display-2'][contains(text(),'Мы работаем')]")
+        print ("Check: Блок Наши возможнсоти")
+        driver.find_elements_by_xpath("//div[@id='about-spec']//div[@class='container']")
+        driver.find_elements_by_xpath("//div[@class='flex text-xs-center xs12']//h2[@class='display-2'][contains(text(),'Наши')]")
+        print ("Check: Блок Что получаете вы")
+        driver.find_elements_by_xpath("//div[@class='advantages']//div[@class='container']")
+        driver.find_elements_by_xpath("//h2[contains(text(),'Что получаете')]")
+        self.reviews(driver)
+        self.support_card(driver)
+        print ("Check: Футер")
+        driver.find_element_by_xpath("//div[@class='container footer-links']")
+        driver.find_elements_by_xpath("//p[@class='body-2 text-xs-center'][contains(text(),'ООО')]")
+
+    def footer_unauthorized(self, driver): # Чек ссылок в футоре странице
+        url = driver.current_url
+        print ("Info: Чек футера")
+        print ("Click: Поиск и удаление вирусов")
+        driver.find_element_by_xpath("//a[@class='body-2 mb-3'][contains(text(),'Поиск и удаление')]").click()
+        if str(url) != "http://front.stage.helpcubes.com/services":
+            self.check_page_services(driver)
+            driver.back()
+
+        print ("Click: Восстановление данных")
+        driver.find_element_by_xpath("//a[@class='body-2 mb-3'][contains(text(),'Восстановление данных')]").click()
+        if str(url) != "http://front.stage.helpcubes.com/services":
+            self.check_page_services(driver)
+            driver.back()
+
+        print ("Click: Установка ПО")        
+        driver.find_element_by_xpath("//a[@class='body-2 mb-3'][contains(text(),'Установка ПО')]").click()
+        if str(url) != "http://front.stage.helpcubes.com/services":
+            self.check_page_services(driver)
+            driver.back()
+
+        print ("Click: Этапы работы")
+        driver.find_element_by_xpath("//a[@class='body-2 mb-3'][contains(text(),'Этапы работы')]").click()
+        if str(url) != "http://front.stage.helpcubes.com/how":
+            self.check_page_how(driver)
+            driver.back()
+        
+        print ("Click: Безопасные соединение")
+        driver.find_element_by_xpath("//a[@class='body-2 mb-3'][contains(text(),'Безопасное соединение')]").click()
+        if str(url) != "http://front.stage.helpcubes.com/how":
+            self.check_page_how(driver)
+            driver.back()
+        
+        print ("Click: Базовый")
+        driver.find_element_by_xpath("//a[@class='body-2 mb-3'][contains(text(),'Базовый')]").click()
+        if str(url) != "http://front.stage.helpcubes.com/tariffs":
+            self.check_page_tarifs(driver)
+            driver.back()
+        
+        print ("Click: Стандартный")
+        driver.find_element_by_xpath("//a[@class='body-2 mb-3'][contains(text(),'Стандартный')]").click()
+        if str(url) != "http://front.stage.helpcubes.com/tariffs":
+            self.check_page_tarifs(driver)
+            driver.back()
+
+        print ("Click: Оптимальный")
+        driver.find_element_by_xpath("//a[@class='body-2 mb-3'][contains(text(),'Оптимальный')]").click()
+        if str(url) != "http://front.stage.helpcubes.com/tariffs":
+            self.check_page_tarifs(driver)
+            driver.back()
+
+        print ("Click: Максимальный")
+        driver.find_element_by_xpath("//a[@class='body-2 mb-3'][contains(text(),'Максимальный')]").click()
+        if str(url) != "http://front.stage.helpcubes.com/tariffs":
+            self.check_page_tarifs(driver)
+            driver.back()
+
+        print ("Click: Часто задаваемые вопросы")
+        driver.find_element_by_xpath("//a[@class='body-2 mb-3'][contains(text(),'Часто задаваемые вопросы')]").click()
+        if str(url) != "http://front.stage.helpcubes.com/help":
+            self.check_page_help(driver)
+            driver.back()
+
+        print ("Click: Обратный звонок")
+        driver.find_element_by_xpath("//a[@class='body-2 mb-3 link']").click()
+        if str(url) != "http://front.stage.helpcubes.com/contacts":
+            driver.find_element_by_xpath("//h1[@class='display-2 pb-4'][contains(text(),'Свяжитесь')]")
+            driver.back()
+
+
+    def check_page_services(self, driver): # Проверка на то что открыта страница Услуги
+        print ("Check: Блок Наши возможнсоти")
+        #driver.implicitly_wait(0)
+        driver.find_element_by_xpath("//div[@id='about-spec']//div[@class='container']")
+        driver.find_element_by_xpath("//div[@class='flex text-xs-center xs12']//h2[@class='display-2'][contains(text(),'Наши')]").text
+        #driver.implicitly_wait(10)
+    
+    def check_page_how(self, driver): # Проверка на то что открыта страница Как это работает
+        print ("Check: Как это работает") 
+        driver.find_element_by_xpath("//h1[@class='display-2 text-xs-center'][contains(text(),'Как это работает')]")
+
+    def check_page_tarifs(self, driver): # Проверка на то что открыта страница Тарифы
+        print ("Check: Тарифы для дома и офиса")
+        driver.find_element_by_xpath("//h1[@class='display-2 text-xs-center'][contains(text(),'Тарифы для дома и офиса')]")
+
+    def check_page_help(self, driver): # Проверка на то что открыта страница Помощь
+        print ("Check: Помощь")
+        driver.find_element_by_xpath("//h1[@class='display-1 help__title'][contains(text(),'Служба поддержки')]")
+
+    def main_how_its_work(self,driver): # Проверка конентенрта на странице как это работает
+        print ("Info: Проверка контента Как это работает")
+        self.click_burger(driver)
+        print ("Click: Как это работает")
+        driver.find_element_by_xpath("(//a[@href='/how'][contains(.,'Как это работает')])[1]").click()
+        print ("Check: Как это работает")
+        driver.find_elements_by_xpath("//h1[@class='display-2 text-xs-center'][contains(text(),'Как это работает')]")
+        print ("Check: Что на фоне")
+        driver.find_elements_by_xpath("//div[@class='first-bg']")
+        print ("Check: Блок качество ПО")
+        driver.find_elements_by_xpath("//div[@id='security']//div[@class='container']")
+        print ("Check: Название Качество ПО")
+        driver.find_elements_by_xpath("//h2[@class='display-2'][contains(text(),'Качественное ПО')]")
+        print ("Check: Удобное и качесвтенное ПО")
+        driver.find_element_by_xpath("//div[@class='grey-bg']//div[@class='layout column']")
+        print ("Check: Название Удобное и качественное ПО")           
+        driver.find_element_by_xpath("//h2[@class='display-2 text-xs-center'][contains(text(),'Удобный и понятный')]")        
+        print ("Click: Зарегистрироваться")
+        driver.find_element_by_xpath("//a[@class='reg-btn v-btn v-btn--contained v-btn--router theme--light v-size--default primary']").click()
+        driver.back()
+        self.support_card(driver)
+
+    def main_tarifs (self, driver):
+
+        print ("Info: првоерка контента на странице тарифов") #Проверка на контент страниц тарифов
+        self.click_burger(driver)
+        driver.find_element_by_xpath("(//a[@href='/tariffs'][contains(.,'Тарифы')])[1]").click()
+        self.check_page_tarifs(driver)
+        print ("Check: Превый столбец")
+        driver.find_element_by_xpath("//div[@class='flex pt-4 pb-4 mb-2 tarrifs-block-text xs12 md4']")
+        print ("Check: Контент первого столбца")
+        driver.find_element_by_xpath("//h3[@class='h7 pb-1'][contains(text(),'Стоимость тарифа')]")
+        driver.find_element_by_xpath("//h3[@class='h7 pb-1'][contains(text(),'Доступ к базе знаний')]")
+        driver.find_element_by_xpath("//p[@class='body-2 mb-1'][contains(text(),'Вы можете разделить ваш')]")
+        print ("Check: Тарифы")
+        driver.find_element_by_xpath("//h2[@class='title'][contains(text(),'Базовый')]")
+        elem = driver.find_elements_by_xpath("//h5[@class='h7 pt-3 pb-5'][contains(text(),'')]")
+        if len(elem) < 8:
+            assert False
+        elem = driver.find_elements_by_xpath("//img[@src='img/icons/accept.svg']")
+        if len(elem) < 28:
+            assert False
+        driver.find_element_by_xpath("//h2[@class='title'][contains(text(),'Стандартный')]")
+        driver.find_element_by_xpath("//h2[@class='title'][contains(text(),'Оптимальный')]")
+        driver.find_element_by_xpath("//h2[@class='title'][contains(text(),'Максимальный')]")
+        print ("Check: Выбрать")
+        i = 0
+        while i < 4:
+            print ("Click: Выбрать " + str(i))
+            elem = driver.find_elements_by_xpath("//button[@class='v-btn v-btn--contained theme--light v-size--default primary']")
+            elem[i].click()
+            i += 1
+            driver.find_element_by_xpath("//h1[@class='display-1 mx-auto'][contains(text(),'Вход')]")
+            driver.back()
+        
+        self.support_card(driver)
+        print ("Check: Какие услуги включены?")
+        driver.find_element_by_xpath("//h2[@class='display-2'][contains(text(),'Какие услуги включены')]")
+        driver.find_element_by_xpath("//h6[@class='title'][contains(text(),'Отладка сетей')]")
+        print ("Click: Все услуги")
+        driver.execute_script("window.scrollTo(0, -500)") 
+        self.try_click_fast(driver, "//span[@class='v-btn__content'][contains(.,'Все услуги')]")
+        self.check_page_services(driver)
+        driver.back()
+        print ("Check: логотип в футоре")
+        driver.find_element_by_xpath("//div[@class='flex footer-bottom__logo xs12 md3']")
+
+                

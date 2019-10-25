@@ -9,7 +9,7 @@ from login import hc_command
 import configparser
 from browsers import browsers
 
-def edit_profile_info(driver):
+def main_page_check_unatorize(driver):
     test = hc_command()
     
     driver.get(test.site())

@@ -130,12 +130,12 @@ import threading
 def jui1():
     while 0 < 1:
         print (1)
-        time.sleep(1)
+        time.sleep(20)
 
 def jui2():
     while True:
         print (2)
-        time.sleep(1)
+        time.sleep(20)
 
 threading.Thread(target=jui1).start()
 time.sleep(0.5)
