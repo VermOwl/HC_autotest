@@ -33,6 +33,8 @@ class juridical_information_mobile():
         time.sleep(0.1)
         driver.find_element_by_xpath("//a[contains(text(),'Юридические документы')]").click()
         window_after = driver.window_handles[1]
+        time.sleep(0.1)
+        time.sleep(0.1)
         driver.switch_to.window(window_after)
         elem = driver.find_elements_by_xpath("//a[contains(text(),'Политика конфиденциальности')]")
         elem_click = elem[0]
@@ -43,6 +45,7 @@ class juridical_information_mobile():
 
         driver.find_element_by_xpath("//a[contains(text(),'Юридические документы')]").click()
         window_after = driver.window_handles[1]
+        time.sleep(0.1)
         driver.switch_to.window(window_after)
         elem = driver.find_elements_by_xpath("//a[contains(text(),'Пользовательское соглашение')]")
         elem_click = elem[0]
@@ -52,6 +55,7 @@ class juridical_information_mobile():
 
         driver.find_element_by_xpath("//a[contains(text(),'Юридические документы')]").click()
         window_after = driver.window_handles[1]
+        time.sleep(0.1)
         driver.switch_to.window(window_after)
         elem = driver.find_elements_by_xpath("//a[contains(text(),'Правила проведения акции')]")
         elem_click = elem[0]
@@ -71,7 +75,9 @@ class juridical_information_mobile():
         window_before = driver.window_handles[0]
         time.sleep(0.1)
         driver.find_element_by_xpath("//a[contains(text(),'Юридические документы')]").click()
+        time.sleep(0.1)
         window_after = driver.window_handles[1]
+        time.sleep(0.1)
         driver.switch_to.window(window_after)
         elem = driver.find_elements_by_xpath("//a[contains(text(),'Политика конфиденциальности')]")
         elem_click = elem[0]
@@ -81,26 +87,33 @@ class juridical_information_mobile():
 
 
         driver.find_element_by_xpath("//a[contains(text(),'Юридические документы')]").click()
+        time.sleep(0.1)
         window_after = driver.window_handles[2]
+        time.sleep(0.1)
         driver.switch_to.window(window_after)
         elem = driver.find_elements_by_xpath("//a[contains(text(),'Пользовательское соглашение')]")
         elem_click = elem[0]
         elem_click.click()
         test.check_user_agreement(driver)
+        time.sleep(0.1)
         driver.switch_to.window(window_before)
 
         driver.find_element_by_xpath("//a[contains(text(),'Юридические документы')]").click()
-        window_after = driver.window_handles[3]
+        time.sleep(0.1)
+        window_after = driver.window_handles[2]
+        time.sleep(0.1)
         driver.switch_to.window(window_after)
-        elem = driver.find_elements_by_xpath("//a[contains(text(),'Правила проведения акции')]")
-        elem_click = elem[0]
-        elem_click.click()
+        time.sleep(0.1)
+        driver.find_element_by_xpath("//a[contains(text(),'Правила проведения акции')]").click()
         driver.find_element_by_xpath("//li[contains(text(),'Организатор Акции ООО «Е09»')]")
         print ("Info: Правила проведения акции проверены")
         driver.switch_to.window(window_before)
         browser = browsers()
         browser.quit_browser(driver)
-#browser = browsers()
-#test = juridical_information_mobile()
-#driver = browser.chrome_mobile()
-#test.juridical_information_part2_chrome_mobile(driver)
+
+browser = browsers()
+test = juridical_information_mobile()
+driver = browser.mozilla_mobile()
+
+#test.juridical_information_mobile(driver)
+test.juridical_information_part2_chrome_mobile(driver)

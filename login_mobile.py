@@ -795,6 +795,7 @@ class hc_command_mobile():
         window_before = driver.window_handles[0]
         print ("Click: Политика конфиденциальности")
         driver.find_element_by_xpath("//a[@target='_blank'][contains(text(),'Политика конфиденциальности')]").click()
+        time.sleep(0.1)
         window_after = driver.window_handles[1]
         driver.switch_to.window(window_after)
         self.check_user_agreement(driver)
@@ -810,6 +811,7 @@ class hc_command_mobile():
         window_before = driver.window_handles[0]
         print ("Click: Пользовательское соглашение")
         driver.find_element_by_xpath("//a[@target='_blank'][contains(text(),'Пользовательское соглашение')]").click()
+        time.sleep(0.1)
         window_after = driver.window_handles[1]
         driver.switch_to.window(window_after)
         self.check_privacy_policy

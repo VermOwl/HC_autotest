@@ -109,9 +109,10 @@ class juridical_information():
 
 #browser = browsers()
 #test = juridical_information()
+#
 #driver = browser.chrome()
 #test.juridical_information_part2_chrome(driver)
-
+#
 #driver = browser.mozilla()
 #test.juridical_information(driver)
 #test.juridical_information_part2_mozilla(driver)
