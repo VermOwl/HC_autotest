@@ -24,6 +24,8 @@ from edit_profile_info import edit_profile_info
 from feedback_form import feedback_form
 from juridical_information import juridical_information
 from knowledge import knowledge
+from main_page_check import main_page_check_unatorize
+from main_page_check_mobile import main_page_check_unatorize_mobile
 
 from add_user_with_send_support_mobile import add_user_with_send_support_mobile
 from edit_profile_info_mobile import edit_profile_info_mobile
@@ -120,6 +122,17 @@ def chrome_test():
         time.sleep(0.2)
         print (Style.RESET_ALL)
 
+    try:
+        browser = browsers()
+        driver = browser.chrome()
+        print (Fore.CYAN + "chrome test site check element unautorization" + Style.RESET_ALL)
+        main_page_check_unatorize(driver)
+    except Exception as e:
+        print (Fore.LIGHTRED_EX +"###################################################")
+        print (e)
+        traceback.print_exc()
+        time.sleep(0.2)
+        print (Style.RESET_ALL)
 
 def mozilla_test():
 
@@ -201,8 +214,20 @@ def mozilla_test():
     try:
         browser = browsers()
         driver = browser.mozilla()
-        print (Fore.CYAN + "chrome test knowledge" + Style.RESET_ALL)
+        print (Fore.CYAN + "mozilla test knowledge" + Style.RESET_ALL)
         knowledge(driver)
+    except Exception as e:
+        print (Fore.LIGHTRED_EX +"###################################################")
+        print (e)
+        traceback.print_exc()
+        time.sleep(0.2)
+        print (Style.RESET_ALL)
+
+    try:
+        browser = browsers()
+        driver = browser.mozilla()
+        print (Fore.CYAN + "mozilla test main_page_check_unatorize" + Style.RESET_ALL)
+        main_page_check_unatorize(driver)
     except Exception as e:
         print (Fore.LIGHTRED_EX +"###################################################")
         print (e)
@@ -298,6 +323,18 @@ def chrome_test_mobile ():
         time.sleep(0.2)
         print (Style.RESET_ALL)
 
+    try:
+        browser = browsers()
+        driver = browser.chrome_mobile()
+        print (Fore.CYAN + "chrome test mobile main_page_check_unatorize_mobile" + Style.RESET_ALL)
+        main_page_check_unatorize_mobile(driver)
+    except Exception as e:
+        print (Fore.LIGHTRED_EX +"###################################################")
+        print (e)
+        traceback.print_exc()
+        time.sleep(0.2)
+        print (Style.RESET_ALL)
+
 def mozilla_test_mobile ():
 
     try:
@@ -386,9 +423,20 @@ def mozilla_test_mobile ():
         time.sleep(0.2)
         print (Style.RESET_ALL)
 
+    try:
+        browser = browsers()
+        driver = browser.mozilla_mobile()
+        print (Fore.CYAN + "mozilla test mobile main_page_check_unatorize_mobile" + Style.RESET_ALL)
+        main_page_check_unatorize_mobile(driver)
+    except Exception as e:
+        print (Fore.LIGHTRED_EX +"###################################################")
+        print (e)
+        traceback.print_exc()
+        time.sleep(0.2)
+        print (Style.RESET_ALL)
+
 def test(case, driver):
     print("nice")
-
 
 chrome_test()
 mozilla_test()
