@@ -11,17 +11,18 @@ import configparser
 import logging
 import getpass
 import os
-#from browsers import browsers
-#from edit_profile_info import edit_profile_info
-#from add_user_with_send_support import add_user_with_send_support
-#import colorama
-#from colorama import Fore, Style
-#import traceback
-#import inspect
-#from login_mobile import hc_command_mobile
+
+from browsers import browsers
+from edit_profile_info import edit_profile_info
+from add_user_with_send_support import add_user_with_send_support
+import colorama
+from colorama import Fore, Style
+import traceback
+import inspect
+from login_mobile import hc_command_mobile
 import threading
-#
-#from create_user_and_devices import create_user_and_devices
+
+from create_user_and_devices import create_user_and_devices
 
 #test = hc_command()
 #
@@ -141,4 +142,15 @@ import threading
 #threading.Thread(target=jui1).start()
 #time.sleep(0.5)
 #threading.Thread(target=jui2).start()
-print (os.getcwd())
+try:
+    browser = browsers()
+    driver = browser.chrome()
+    driver.get("google.com")
+    assert False
+except Exception as e:
+    print (Fore.LIGHTRED_EX +"###################################################")
+    print (e)
+    traceback.print_exc()
+    time.sleep(0.2)
+    print (Style.RESET_ALL)
+    driver.quit()

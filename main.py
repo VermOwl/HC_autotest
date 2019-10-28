@@ -49,6 +49,7 @@ def chrome_test():
         traceback.print_exc()
         time.sleep(0.2)
         print (Style.RESET_ALL)
+        driver.quit()
 
     try:
         browser = browsers()
@@ -61,6 +62,7 @@ def chrome_test():
         traceback.print_exc()
         time.sleep(0.2)
         print (Style.RESET_ALL)
+        driver.quit()
     
     try:
         browser = browsers()
@@ -73,6 +75,7 @@ def chrome_test():
         traceback.print_exc()
         time.sleep(0.2)
         print (Style.RESET_ALL)
+        driver.quit()
     #card_information(driver)
     
     try:
@@ -86,6 +89,7 @@ def chrome_test():
         traceback.print_exc()
         time.sleep(0.2)
         print (Style.RESET_ALL)
+        driver.quit()
     
     try:
         browser = browsers()
@@ -99,6 +103,7 @@ def chrome_test():
         traceback.print_exc()
         time.sleep(0.2)
         print (Style.RESET_ALL)
+        driver.quit()
 
     try:
         browser = browsers()
@@ -112,6 +117,7 @@ def chrome_test():
         traceback.print_exc()
         time.sleep(0.2)
         print (Style.RESET_ALL)
+        driver.quit()
 
     try:
         browser = browsers()
@@ -124,6 +130,7 @@ def chrome_test():
         traceback.print_exc()
         time.sleep(0.2)
         print (Style.RESET_ALL)
+        driver.quit()
 
     try:
         browser = browsers()
@@ -136,6 +143,7 @@ def chrome_test():
         traceback.print_exc()
         time.sleep(0.2)
         print (Style.RESET_ALL)
+        driver.quit()
 
     try:
         browser = browsers()
@@ -148,6 +156,7 @@ def chrome_test():
         traceback.print_exc()
         time.sleep(0.2)
         print (Style.RESET_ALL)
+        driver.quit()
 
 def mozilla_test():
 
@@ -162,6 +171,7 @@ def mozilla_test():
         traceback.print_exc()
         time.sleep(0.2)
         print (Style.RESET_ALL)
+        driver.quit()
     
     try:
         browser = browsers()
@@ -174,6 +184,7 @@ def mozilla_test():
         traceback.print_exc()
         time.sleep(0.2)
         print (Style.RESET_ALL)
+        driver.quit()
     
     try:
         browser = browsers()
@@ -186,6 +197,7 @@ def mozilla_test():
         traceback.print_exc()
         time.sleep(0.2)
         print (Style.RESET_ALL)
+        driver.quit()
     #card_information(driver)
     
     try:
@@ -199,6 +211,7 @@ def mozilla_test():
         traceback.print_exc()
         time.sleep(0.2)
         print (Style.RESET_ALL)
+        driver.quit()
     
     try:
         browser = browsers()
@@ -212,6 +225,7 @@ def mozilla_test():
         traceback.print_exc()
         time.sleep(0.2)
         print (Style.RESET_ALL)
+        driver.quit()
 
     try:
         browser = browsers()
@@ -225,6 +239,7 @@ def mozilla_test():
         traceback.print_exc()
         time.sleep(0.2)
         print (Style.RESET_ALL)
+        driver.quit()
 
     try:
         browser = browsers()
@@ -237,6 +252,7 @@ def mozilla_test():
         traceback.print_exc()
         time.sleep(0.2)
         print (Style.RESET_ALL)
+        driver.quit()
 
     try:
         browser = browsers()
@@ -249,6 +265,7 @@ def mozilla_test():
         traceback.print_exc()
         time.sleep(0.2)
         print (Style.RESET_ALL)
+        driver.quit()
 
     try:
         browser = browsers()
@@ -261,6 +278,7 @@ def mozilla_test():
         traceback.print_exc()
         time.sleep(0.2)
         print (Style.RESET_ALL)
+        driver.quit()
     
 def chrome_test_mobile ():
 
@@ -275,6 +293,7 @@ def chrome_test_mobile ():
         traceback.print_exc()
         time.sleep(0.2)
         print (Style.RESET_ALL)
+        driver.quit()
 
     try:
         browser = browsers()
@@ -287,6 +306,7 @@ def chrome_test_mobile ():
         traceback.print_exc()
         time.sleep(0.2)
         print (Style.RESET_ALL)
+        driver.quit()
 
     try:
         browser = browsers()
@@ -299,6 +319,7 @@ def chrome_test_mobile ():
         traceback.print_exc()
         time.sleep(0.2)
         print (Style.RESET_ALL)
+        driver.quit()
 
     try:
         browser = browsers()
@@ -311,6 +332,7 @@ def chrome_test_mobile ():
         traceback.print_exc()
         time.sleep(0.2)
         print (Style.RESET_ALL)
+        driver.quit()
 
     try:
         browser = browsers()
@@ -324,6 +346,7 @@ def chrome_test_mobile ():
         traceback.print_exc()
         time.sleep(0.2)
         print (Style.RESET_ALL)
+        driver.quit()
 
     try:
         browser = browsers()
@@ -337,6 +360,7 @@ def chrome_test_mobile ():
         traceback.print_exc()
         time.sleep(0.2)
         print (Style.RESET_ALL)
+        driver.quit()
 
     try:
         browser = browsers()
@@ -349,6 +373,7 @@ def chrome_test_mobile ():
         traceback.print_exc()
         time.sleep(0.2)
         print (Style.RESET_ALL)
+        driver.quit()
 
     try:
         browser = browsers()
@@ -361,6 +386,7 @@ def chrome_test_mobile ():
         traceback.print_exc()
         time.sleep(0.2)
         print (Style.RESET_ALL)
+        driver.quit()
 
     try:
         browser = browsers()
@@ -373,6 +399,7 @@ def chrome_test_mobile ():
         traceback.print_exc()
         time.sleep(0.2)
         print (Style.RESET_ALL)
+        driver.quit()
 
 
 def mozilla_test_mobile ():
@@ -388,6 +415,7 @@ def mozilla_test_mobile ():
         traceback.print_exc()
         time.sleep(0.2)
         print (Style.RESET_ALL)
+        driver.quit()
 
     try:
         browser = browsers()
@@ -400,6 +428,7 @@ def mozilla_test_mobile ():
         traceback.print_exc()
         time.sleep(0.2)
         print (Style.RESET_ALL)
+        driver.quit()
 
     try:
         browser = browsers()
@@ -412,6 +441,7 @@ def mozilla_test_mobile ():
         traceback.print_exc()
         time.sleep(0.2)
         print (Style.RESET_ALL)
+        driver.quit()
 
     try:
         browser = browsers()
@@ -424,6 +454,7 @@ def mozilla_test_mobile ():
         traceback.print_exc()
         time.sleep(0.2)
         print (Style.RESET_ALL)
+        driver.quit()
 
     try:
         browser = browsers()
@@ -437,6 +468,7 @@ def mozilla_test_mobile ():
         traceback.print_exc()
         time.sleep(0.2)
         print (Style.RESET_ALL)
+        driver.quit()
 
     try:
         browser = browsers()
@@ -450,6 +482,7 @@ def mozilla_test_mobile ():
         traceback.print_exc()
         time.sleep(0.2)
         print (Style.RESET_ALL)
+        driver.quit()
 
     try:
         browser = browsers()
@@ -462,6 +495,7 @@ def mozilla_test_mobile ():
         traceback.print_exc()
         time.sleep(0.2)
         print (Style.RESET_ALL)
+        driver.quit()
 
     try:
         browser = browsers()
@@ -474,6 +508,7 @@ def mozilla_test_mobile ():
         traceback.print_exc()
         time.sleep(0.2)
         print (Style.RESET_ALL)
+        driver.quit()
 
 def test(case, driver):
     print("nice")

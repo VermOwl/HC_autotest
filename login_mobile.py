@@ -257,7 +257,7 @@ class hc_command_mobile():
         
         #Добавление файла
         print ("Fill: Добавление файла")
-        driver.find_element_by_xpath("//input[@name='files[]']").send_keys(os.getcwd() + "\ford-ford-raptor-parketnik-dzhip.jpeg")
+        driver.find_element_by_xpath("//input[@name='files[]']").send_keys(os.getcwd() + "\\ford-ford-raptor-parketnik-dzhip.jpeg")
         
         #Нажатие кнопки отправить
         print ("Click: Отправить запрос в ТП")
@@ -427,7 +427,7 @@ class hc_command_mobile():
         print ("Info: заполнение основной информации о пользователе")
         # Добавление фотки
         print ("Fill: Добавление фотки")
-        driver.find_element_by_xpath("//input[@type='file']").send_keys(os.getcwd() + "\ford-ford-raptor-parketnik-dzhip.jpeg")
+        driver.find_element_by_xpath("//input[@type='file']").send_keys(os.getcwd() + "\\ford-ford-raptor-parketnik-dzhip.jpeg")
         # Изменение фамилии
         print ("Fill: Добавление фамилии")
         last_name = names.get_last_name()
