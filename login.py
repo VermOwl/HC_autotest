@@ -7,6 +7,7 @@ import names
 import pyperclip
 import configparser
 import getpass
+import os
 from browsers import browsers
 from colorama import Fore, Style
 
@@ -190,7 +191,7 @@ class hc_command():
         
         #Добавление файла
         print ("Fill: Добавление файла")
-        driver.find_element_by_xpath("//input[@name='files[]']").send_keys("C:\\Users\\" + getpass.getuser()  + "\\Documents\\GitHub\\HC_autotest\\ford-ford-raptor-parketnik-dzhip.jpeg")
+        driver.find_element_by_xpath("//input[@name='files[]']").send_keys(os.getcwd() + "\ford-ford-raptor-parketnik-dzhip.jpeg")
         
         #Нажатие кнопки отправить
         print ("Click: Отправить запрос в ТП")
@@ -323,7 +324,7 @@ class hc_command():
         print ("Info: заполнение основной информации о пользователе")
         # Добавление фотки
         print ("Fill: Добавление фотки")
-        driver.find_element_by_xpath("//input[@type='file']").send_keys("C:\\Users\\" + getpass.getuser()  + "\\Documents\\GitHub\\HC_autotest\\ford-ford-raptor-parketnik-dzhip.jpeg")
+        driver.find_element_by_xpath("//input[@type='file']").send_keys(os.getcwd() + "\ford-ford-raptor-parketnik-dzhip.jpeg")
         # Изменение фамилии
         print ("Fill: Добавление фамилии")
         last_name = names.get_last_name()
@@ -893,6 +894,7 @@ class hc_command():
             print (chips_text)
             assert False
         driver.back()
+        time.sleep(0.2)
         print ("Click: По Показать все")
         driver.find_element_by_xpath("//div[@class='grey-bg']//div//a[@class='view-all']").click()
         print ("Check: Активный элемент справой стороны Все статьи")
@@ -904,6 +906,7 @@ class hc_command():
             assert False
 
         driver.back()
+        time.sleep(0.2)
         self.wait_loss(driver, "//div[@class='nuxt-progress']")
 
 
@@ -927,6 +930,7 @@ class hc_command():
             print("Info: Статьи не совпали - падаем")
             assert False
         driver.back()
+        time.sleep(0.2)
         self.wait_loss(driver, "//div[@class='nuxt-progress']")
 
 
@@ -941,10 +945,12 @@ class hc_command():
         driver.find_element_by_xpath("//a[@class='v-btn v-btn--contained v-btn--router theme--light v-size--default']").click()
         driver.find_element_by_xpath("//div[@class='v-input pt-5 theme--light v-text-field v-text-field--is-booted v-text-field--enclosed v-text-field--outlined']//input") #
         driver.back()
+        time.sleep(0.2)
         print ("Click: Как это работает")
         driver.find_element_by_xpath("//a[@class='how-btn ml-3 v-btn v-btn--contained v-btn--router theme--light v-size--default secondary']").click() # myDynamicElement = 
         driver.find_element_by_xpath("//h1[@class='display-2 text-xs-center'][contains(text(),'Как это работает')]") #
         driver.back()
+        time.sleep(0.2)
         print ("Check: Блок ниже как это работает")
         driver.find_element_by_xpath("//div[@class='advantages']//div[@class='container']") #
         print ("Chekc: Блок Мы можем решить ...")
@@ -954,6 +960,7 @@ class hc_command():
         print ("Check: Страница Услуги")
         driver.find_element_by_xpath("//h1[@class='display-2'][contains(text(),'Мы работаем')]") #
         driver.back()
+        time.sleep(0.2)
         print ("Check: Тарифы")
         driver.find_element_by_xpath("//h3[@class='text-xs-center display-2'][contains(text(),'Тарифы')]")
         print ("Check: Подсветка тарифы")
@@ -971,18 +978,21 @@ class hc_command():
             elem[i].click()
             driver.find_element_by_xpath("//h1[@class='display-1 mx-auto'][contains(text(),'Вход')]")
             driver.back()
+            time.sleep(0.2)
             i += 1
             
         print ("Click: Наши контакты")
         driver.find_element_by_xpath("//a[@class='v-btn v-btn--contained v-btn--router theme--light v-size--default secondary']").click()
         driver.find_element_by_xpath("//h1[@class='display-2 pb-4'][contains(text(),'Свяжитесь')]")
         driver.back()
+        time.sleep(0.2)
         print ("Check: Карточка служба поддержки пользователей")
         driver.find_element_by_xpath("//div[@class='flex card pa-4']")
         driver.find_element_by_xpath("//a[@class='color-blue'][contains(text(),'воспользуйтесь')]").click()
         print ("Click: Наши контакты")
         driver.find_element_by_xpath("//h1[@class='display-2 pb-4'][contains(text(),'Свяжитесь')]")
         driver.back()
+        time.sleep(0.2)
         self.support_card(driver)
         self.reviews(driver)
 
@@ -993,6 +1003,7 @@ class hc_command():
         print ("Click: Наши контакты")
         driver.find_element_by_xpath("//h1[@class='display-2 pb-4'][contains(text(),'Свяжитесь')]")
         driver.back()
+        time.sleep(0.2)
 
     def reviews(self, driver): # Проверка отзывов (перелистывание отзывов и чеки)
     
@@ -1038,66 +1049,77 @@ class hc_command():
         if str(url) != "http://front.stage.helpcubes.com/services":
             self.check_page_services(driver)
             driver.back()
+            time.sleep(0.2)
 
         print ("Click: Восстановление данных")
         driver.find_element_by_xpath("//a[@class='body-2 mb-3'][contains(text(),'Восстановление данных')]").click()
         if str(url) != "http://front.stage.helpcubes.com/services":
             self.check_page_services(driver)
             driver.back()
+            time.sleep(0.2)
 
         print ("Click: Установка ПО")        
         driver.find_element_by_xpath("//a[@class='body-2 mb-3'][contains(text(),'Установка ПО')]").click()
         if str(url) != "http://front.stage.helpcubes.com/services":
             self.check_page_services(driver)
             driver.back()
+            time.sleep(0.2)
 
         print ("Click: Этапы работы")
         driver.find_element_by_xpath("//a[@class='body-2 mb-3'][contains(text(),'Этапы работы')]").click()
         if str(url) != "http://front.stage.helpcubes.com/how":
             self.check_page_how(driver)
             driver.back()
+            time.sleep(0.2)
         
         print ("Click: Безопасные соединение")
         driver.find_element_by_xpath("//a[@class='body-2 mb-3'][contains(text(),'Безопасное соединение')]").click()
         if str(url) != "http://front.stage.helpcubes.com/how":
             self.check_page_how(driver)
             driver.back()
+            time.sleep(0.2)
         
         print ("Click: Базовый")
         driver.find_element_by_xpath("//a[@class='body-2 mb-3'][contains(text(),'Базовый')]").click()
         if str(url) != "http://front.stage.helpcubes.com/tariffs":
             self.check_page_tarifs(driver)
             driver.back()
+            time.sleep(0.2)
         
         print ("Click: Стандартный")
         driver.find_element_by_xpath("//a[@class='body-2 mb-3'][contains(text(),'Стандартный')]").click()
         if str(url) != "http://front.stage.helpcubes.com/tariffs":
             self.check_page_tarifs(driver)
             driver.back()
+            time.sleep(0.2)
 
         print ("Click: Оптимальный")
         driver.find_element_by_xpath("//a[@class='body-2 mb-3'][contains(text(),'Оптимальный')]").click()
         if str(url) != "http://front.stage.helpcubes.com/tariffs":
             self.check_page_tarifs(driver)
             driver.back()
+            time.sleep(0.2)
 
         print ("Click: Максимальный")
         driver.find_element_by_xpath("//a[@class='body-2 mb-3'][contains(text(),'Максимальный')]").click()
         if str(url) != "http://front.stage.helpcubes.com/tariffs":
             self.check_page_tarifs(driver)
             driver.back()
+            time.sleep(0.2)
 
         print ("Click: Часто задаваемые вопросы")
         driver.find_element_by_xpath("//a[@class='body-2 mb-3'][contains(text(),'Часто задаваемые вопросы')]").click()
         if str(url) != "http://front.stage.helpcubes.com/help":
             self.check_page_help(driver)
             driver.back()
+            time.sleep(0.2)
 
         print ("Click: Обратный звонок")
         driver.find_element_by_xpath("//a[@class='body-2 mb-3 link']").click()
         if str(url) != "http://front.stage.helpcubes.com/contacts":
             driver.find_element_by_xpath("//h1[@class='display-2 pb-4'][contains(text(),'Свяжитесь')]")
             driver.back()
+            time.sleep(0.2)
 
 
     def check_page_services(self, driver): # Проверка на то что открыта страница Услуги
@@ -1138,6 +1160,7 @@ class hc_command():
         print ("Click: Зарегистрироваться")
         driver.find_element_by_xpath("//a[@class='reg-btn v-btn v-btn--contained v-btn--router theme--light v-size--default primary']").click()
         driver.back()
+        time.sleep(0.2)
         self.support_card(driver)
 
     def main_tarifs (self, driver):
@@ -1171,6 +1194,7 @@ class hc_command():
             i += 1
             driver.find_element_by_xpath("//h1[@class='display-1 mx-auto'][contains(text(),'Вход')]")
             driver.back()
+            time.sleep(0.2)
         
         self.support_card(driver)
         print ("Check: Какие услуги включены")
@@ -1180,6 +1204,7 @@ class hc_command():
         driver.find_element_by_xpath("//a[@class='text-xs-left v-btn v-btn--contained v-btn--router theme--light v-size--default white']").click()
         self.check_page_services(driver)
         driver.back()
+        time.sleep(0.2)
         print ("Check: логотип в футоре")
         driver.find_element_by_xpath("//div[@class='flex footer-bottom__logo xs12 md3']")
 
@@ -1277,6 +1302,7 @@ class hc_command():
         #delete_button_desktop = (len(delete_button) // 2) для мобилок
         delete_button[delete_button_desktop].click()
         print ("Click: Подтвердить удаление пользователя")
+        time.sleep(0.4)
         driver.find_element_by_xpath("//span[@class='v-btn__content'][contains(.,'Удалить')]").click()
 
         print ("Check: Пользователей стало меньше?")
@@ -1325,7 +1351,7 @@ class hc_command():
         print ("Info: Устройство: Проверка измененной инфомрации")
         
         print ("Check: Устройство: Название")
-        driver.find_element_by_xpath("//div[@class='flex right-block xs-8']//h3[@class='title'][contains(text(),'Alex Alfred')]")
+        driver.find_element_by_xpath("//div[@class='flex right-block xs-8']//h3[@class='title'][contains(text(),'"+ device_name + "')]")
 
         print ("Check: Устройство: Тип устрйоства")
         driver.find_element_by_xpath("//div[@class='v-card__text device-card__body']//p[@class='body-1 mb-0'][contains(text(),'Планшет')]")
@@ -1334,7 +1360,7 @@ class hc_command():
         driver.find_element_by_xpath("//div[@class='v-card__text device-card__body']//p[@class='body-1 mb-0'][contains(text(),'Windows 7')]")
 
         print ("Check: Устройство: Производитель")
-        driver.find_element_by_xpath("//div[@class='flex right-block xs-8']//p[@class='body-1 mb-0'][contains(text(),'Alex Alfred')]")
+        driver.find_element_by_xpath("//div[@class='flex right-block xs-8']//p[@class='body-1 mb-0'][contains(text(),'" + device_name + "')]")
 
     def device_delete(self, driver):
         
@@ -1343,6 +1369,7 @@ class hc_command():
         print ("Check: Устройства: найти все доступные устрйоства")
         device_count = driver.find_elements_by_xpath("//div[@class='v-card__text device-card__body']")
 
+        time.sleep(0.2)
         print ("Click: Устройство: Удалить последнее")
         button_delete = driver.find_elements_by_xpath("//div[@class='device-card v-card v-sheet v-sheet--tile theme--light']//i[@class='v-icon material-icons theme--light'][contains(text(),'delete')]")
         button_delete_desktop = (len(button_delete) // 2) - 1 

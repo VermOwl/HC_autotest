@@ -10,6 +10,7 @@ from login import hc_command
 import configparser
 import logging
 import getpass
+import os
 #from browsers import browsers
 #from edit_profile_info import edit_profile_info
 #from add_user_with_send_support import add_user_with_send_support
@@ -127,17 +128,17 @@ import threading
 
 # chrome --start-maximized --enable-logging=stderr
 
-def jui1():
-    while 0 < 1:
-        print (1)
-        time.sleep(20)
-
-def jui2():
-    while True:
-        print (2)
-        time.sleep(20)
-
-threading.Thread(target=jui1).start()
-time.sleep(0.5)
-threading.Thread(target=jui2).start()
-
+#def jui1():
+#    while 0 < 1:
+#        print (1)
+#        time.sleep(20)
+#
+#def jui2():
+#    while True:
+#        print (2)
+#        time.sleep(20)
+#
+#threading.Thread(target=jui1).start()
+#time.sleep(0.5)
+#threading.Thread(target=jui2).start()
+print (os.getcwd())

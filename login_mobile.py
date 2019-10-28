@@ -7,6 +7,7 @@ import names
 import pyperclip
 import configparser
 import getpass
+import os
 from browsers import browsers
 from colorama import Fore, Style
 from selenium.webdriver.common.action_chains import ActionChains
@@ -30,6 +31,22 @@ from selenium.webdriver.common.action_chains import ActionChains
 class hc_command_mobile():
 
     mail = "qwe"
+
+    def wait_loss(self, driver, what_wait):
+        result = False
+        driver.implicitly_wait(1.5)
+        try: 
+            driver.find_element_by_xpath(what_wait)
+            result = False
+        except:
+            result = True
+        if result != True:
+            self.wait_loss(driver, what_wait)        
+        driver.implicitly_wait(10)
+
+    def clear_field(self, driver, field_to_clear):
+        driver.find_element_by_xpath(field_to_clear).send_keys(Keys.CONTROL + "a")
+        driver.find_element_by_xpath(field_to_clear).send_keys(Keys.DELETE)
 
     def click_burger(self, driver):
         print ("Click: Бургер")
@@ -240,7 +257,7 @@ class hc_command_mobile():
         
         #Добавление файла
         print ("Fill: Добавление файла")
-        driver.find_element_by_xpath("//input[@name='files[]']").send_keys("C:\\Users\\" + getpass.getuser()  + "\\Documents\\GitHub\\HC_autotest\\ford-ford-raptor-parketnik-dzhip.jpeg")
+        driver.find_element_by_xpath("//input[@name='files[]']").send_keys(os.getcwd() + "\ford-ford-raptor-parketnik-dzhip.jpeg")
         
         #Нажатие кнопки отправить
         print ("Click: Отправить запрос в ТП")
@@ -410,7 +427,7 @@ class hc_command_mobile():
         print ("Info: заполнение основной информации о пользователе")
         # Добавление фотки
         print ("Fill: Добавление фотки")
-        driver.find_element_by_xpath("//input[@type='file']").send_keys("C:\\Users\\" + getpass.getuser()  + "\\Documents\\GitHub\\HC_autotest\\ford-ford-raptor-parketnik-dzhip.jpeg")
+        driver.find_element_by_xpath("//input[@type='file']").send_keys(os.getcwd() + "\ford-ford-raptor-parketnik-dzhip.jpeg")
         # Изменение фамилии
         print ("Fill: Добавление фамилии")
         last_name = names.get_last_name()
@@ -1343,4 +1360,181 @@ class hc_command_mobile():
         print ("Check: логотип в футоре")
         driver.find_element_by_xpath("//div[@class='flex footer-bottom__logo xs12 md3']")
 
-                
+    def edit_user(self, driver):
+        print ("Info: Измение информации о юзере")
+        
+        print ("Click: Изменить последнего пользователя в списке")
+        #time.sleep(0.2)
+        elem_edit = driver.find_elements_by_xpath("//div[@class='flex user-card__head pb-2 pt-3 pb-3']//i[@class='v-icon material-icons theme--light'][contains(text(),'create')]")
+        # elem_edit_desktop = (len(elem_edit) // 2) - 1 Десктоп 
+        elem_edit_mobile = (len(elem_edit) // 2) #Потом для мобилок оставлю
+        elem_edit[elem_edit_mobile].click()
+        
+        print ("Fill: Заменить имя")
+        self.clear_field(driver, "//input[@aria-label='Имя']")
+        edit_name = names.get_first_name()
+        driver.find_element_by_xpath("//input[@aria-label='Имя']").send_keys(edit_name)
+        
+        print ("Click: выставить другой пол")
+        gender = "none"
+        try: 
+            driver.implicitly_wait(2)
+            driver.find_element_by_xpath("//div[@class='v-radio theme--light v-item--active']//input[@value='female']")
+            driver.find_element_by_xpath("//div[@class='v-input--selection-controls__ripple']").click()
+            gender = "male"
+            driver.implicitly_wait(10)
+        except:
+            driver.implicitly_wait(10)
+            driver.find_element_by_xpath("//div[@class='v-input--selection-controls__ripple']").click()
+            gender = "female"
+        
+        print ("Fill: Заменить номер")
+        self.clear_field(driver, "//input[@aria-label='Номер телефона']")
+        driver.find_element_by_xpath("//input[@aria-label='Номер телефона']").send_keys("0987654321")
+        
+        print ("Fill: Заменить почту")
+        mail_edit = "autotestemail"+ str(random.randint(1000000, 9999999)) + "@python.org"
+        self.clear_field(driver, "//input[@aria-label='Email']")
+        driver.find_element_by_xpath("//input[@aria-label='Email']").send_keys(mail_edit)
+
+        print ("Fill: Заменить телеграм")
+        self.clear_field(driver, "//input[contains(@aria-label,'Telegram')]")
+        Telegram_edit = "EditHelpcubesTelegramAutotest"
+        driver.find_element_by_xpath("//input[contains(@aria-label,'Telegram')]").send_keys(Telegram_edit)
+
+        print ("Fill: Skype")
+        self.clear_field(driver, "//input[contains(@aria-label,'Skype')]")
+        Skype_edit = "EditHelpCubesSkypeAutotest"
+        driver.find_element_by_xpath("//input[contains(@aria-label,'Skype')]").send_keys(Skype_edit)
+
+        print ("Click: Сохранить изменения")
+        driver.find_element_by_xpath("//button[@class='users-modal__button v-btn v-btn--contained theme--light v-size--default primary']").click()
+
+        print ("Check: Имя измененное")
+        driver.refresh()
+        driver.find_element_by_xpath("//div[@class='flex right-block xs-8']//h3[@class='title'][contains(text(),'" + edit_name + "')]")
+        print ("Check: Номер измененный")
+        driver.find_element_by_xpath("//div[@class='flex right-block xs-8']//p[@class='body-1 mb-0'][contains(text(),'+7 (098) 765-43-21')]")
+        print ("Check: Мэйл измененный")
+        driver.find_element_by_xpath("//div[@class='flex right-block xs-8']//p[@class='body-1 mb-0'][contains(text(),'" + mail_edit + "')]")
+        print ("Check: Skype изменыеннй")
+        driver.find_element_by_xpath("//div[@class='flex right-block xs-8']//p[@class='body-1 mb-0'][contains(text(),'" + Skype_edit + "')]")
+        print ("Check: Telegram измененный")
+        driver.find_element_by_xpath("//div[@class='flex right-block xs-8']//p[@class='body-1 mb-0'][contains(text(),'" + Telegram_edit + "')]")
+        
+        print ("Check: Пол измененный") 
+
+        print ("Click: Редактирование пользоваетля - посмотерть пол")
+        elem_edit = driver.find_elements_by_xpath("//div[@class='flex user-card__head pb-2 pt-3 pb-3']//i[@class='v-icon material-icons theme--light'][contains(.,'create')]")
+        elem_edit_mobile = (len(elem_edit)) - 1 
+        elem_edit[int(elem_edit_mobile)].click()
+        
+        if gender == "female":
+            driver.find_element_by_xpath("//div[@class='v-radio theme--light v-item--active']//label[contains(text(),'Женский')]")
+        else:
+            driver.find_element_by_xpath("//div[@class='v-radio theme--light v-item--active']//label[contains(text(),'Мужской')]")
+        print ("Check: Пол измененный - OK")
+        
+        time.sleep(0.1)
+        print ("Click: Отмена - выход из формы редактирования пользователя")
+        driver.find_element_by_xpath("//button[@class='users-modal__button v-btn v-btn--contained theme--light v-size--default secondary']").click()
+
+    def user_delete (self, driver):
+
+        #self.add_user(driver) ##############################
+        
+        print ("Info: Нахождение всех пользователей в аккаунте")
+        user_len = len(driver.find_elements_by_xpath("//div[@class='v-card__text user-card__body']")) // 2
+
+        print ("Info: кол-во пользователей = "+ str(user_len))
+
+        print ("Click: Удаление пользователя")
+        delete_button = driver.find_elements_by_xpath("//div[@class='flex user-card__head pb-2 pt-3 pb-3']//i[@class='v-icon material-icons theme--light'][contains(.,'delete')]")
+        #delete_button_desktop = (len(delete_button) // 2) - 1
+        delete_button_mobile = (len(delete_button)) - 1 #для мобилок
+        delete_button[delete_button_mobile].click()
+        print ("Click: Подтвердить удаление пользователя")
+        time.sleep(0.2)
+        driver.find_element_by_xpath("//span[@class='v-btn__content'][contains(.,'Удалить')]").click()
+
+        print ("Check: Пользователей стало меньше?")
+        driver.refresh()
+        user_len_after = len(driver.find_elements_by_xpath("//div[@class='v-card__text user-card__body']")) // 2
+        if int(user_len) - 1 == int(user_len_after):
+            print ("Info: пользователь успешно удален")
+        else: 
+            print ("Info: пользователей не соотвествует ожидаемому кол-ву")
+            assert False
+
+    def device_edit(self, driver):
+        print ("Info: Изменение информации о устройстве")
+
+        print ("Click: Устрйоство: Отредактировать последнее")
+        device_edit_button = driver.find_elements_by_xpath("//div[@class='flex device-card__head pb-2 pt-3 pb-3']//i[@class='v-icon material-icons theme--light'][contains(.,'create')]")
+        device_edit_button_mobile = ( len(device_edit_button) ) - 1
+        device_edit_button[device_edit_button_mobile].click()
+
+        print ("Fill: Устройство: Изменить название ")
+        self.clear_field(driver, "//input[@aria-label='Название']")
+        device_name = names.get_full_name()
+        driver.find_element_by_xpath("//input[@aria-label='Название']").send_keys(device_name)
+
+        print ("Fill: Устройство: Изменить производителя")
+        self.clear_field(driver, "//input[contains(@aria-label,'Производитель')]")
+        driver.find_element_by_xpath("//input[contains(@aria-label,'Производитель')]").send_keys(device_name)
+
+        print ("Fill: Устроство: Изменит модель")
+        self.clear_field(driver, "//input[contains(@aria-label,'Производитель')]")
+        driver.find_element_by_xpath("//input[contains(@aria-label,'Производитель')]").send_keys(device_name)
+
+        print ("Fill: Устройство: Изменить тип")
+        driver.find_element_by_xpath("//div[@class='flex pr-3 pa-md-0 xs12 md6']//div[@class='device-modal__field']//i[@class='v-icon mdi mdi-menu-down theme--light']").click()
+        time.sleep(0.1)
+        driver.find_element_by_xpath("//div[@class='v-list-item__title'][contains(.,'Планшет')]").click()
+        
+        print ("Fill: Устройство: Операционная систем")
+        driver.find_element_by_xpath("//div[@class='flex pl-3 pa-md-0 xs12 md6']//i[@class='v-icon mdi mdi-menu-down theme--light']").click()
+        time.sleep(0.1)
+        driver.find_element_by_xpath("//div[contains(text(),'Windows 7')]").click()
+
+        print ("Click: Сохранить изменения")
+        driver.find_element_by_xpath("//button[@class='device-modal__button v-btn v-btn--contained theme--light v-size--default primary']").click()
+
+        print ("Info: Устройство: Проверка измененной инфомрации")
+        
+        print ("Check: Устройство: Название")
+        driver.find_element_by_xpath("//div[@class='flex right-block xs-8']//h3[@class='title'][contains(text(),'"+ device_name + "')]")
+
+        print ("Check: Устройство: Тип устрйоства")
+        driver.find_element_by_xpath("//div[@class='v-card__text device-card__body']//p[@class='body-1 mb-0'][contains(text(),'Планшет')]")
+
+        print ("Check: Устройство: Операционная систем")
+        driver.find_element_by_xpath("//div[@class='v-card__text device-card__body']//p[@class='body-1 mb-0'][contains(text(),'Windows 7')]")
+
+        print ("Check: Устройство: Производитель")
+        driver.find_element_by_xpath("//div[@class='flex right-block xs-8']//p[@class='body-1 mb-0'][contains(text(),'" + device_name + "')]")
+
+    def device_delete(self, driver):
+        
+        print ("Info: Устройство: Удаление")
+
+        print ("Check: Устройства: найти все доступные устрйоства")
+        device_count = driver.find_elements_by_xpath("//div[@class='v-card__text device-card__body']")
+
+        time.sleep(0.2)
+        print ("Click: Устройство: Удалить последнее")
+        button_delete = driver.find_elements_by_xpath("//div[@class='device-card v-card v-sheet v-sheet--tile theme--light']//i[@class='v-icon material-icons theme--light'][contains(text(),'delete')]")
+        button_delete_mobile = (len(button_delete)) - 1 
+        button_delete[button_delete_mobile].click()
+
+        print ("Click: Подтвердить удаление")
+        driver.find_element_by_xpath("//div[@class='v-dialog confirm-modal v-dialog--active v-dialog--persistent']//button[@class='v-btn v-btn--contained theme--light v-size--default red-gradient']").click()
+
+        print ("Check: Устройтсво: Проверка отсутвия лишенго компонента")
+        driver.refresh()
+        device_count_after = driver.find_elements_by_xpath("//div[@class='v-card__text device-card__body']")
+        if len(device_count) - 2 == len(device_count_after):
+            print ("Check: Устройтсво: Проверка отсутвия лишенго компонента - ОК")
+        else:
+            print ("Check: Устройство: неверное кол-во устройств - ERROR")
+            assert False

@@ -5,14 +5,14 @@ import time
 import random
 import names
 import pyperclip
-from login import hc_command
+from login_mobile import hc_command_mobile
 import configparser
 from colorama import Fore, Style
 from browsers import browsers
 
 
-def edit_user_and_device(driver):
-    test = hc_command()
+def edit_user_and_device_mobile(driver):
+    test = hc_command_mobile()
 
     config = configparser.ConfigParser()
     config.read('config.ini')
@@ -35,5 +35,5 @@ def edit_user_and_device(driver):
     browser.close_browser(driver)
 
 #browser = browsers()
-#driver = browser.chrome()
+#driver = browser.chrome_mobile()
 #edit_user_and_device(driver)

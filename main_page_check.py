@@ -27,4 +27,4 @@ def main_page_check_unatorize(driver):
 #browser = browsers()
 #driver = browser.chrome()
 ##print (Fore.CYAN + "edit_profile_info" + Style.RESET_ALL)
-#edit_profile_info(driver)
+#main_page_check_unatorize(driver)
