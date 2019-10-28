@@ -142,15 +142,19 @@ from create_user_and_devices import create_user_and_devices
 #threading.Thread(target=jui1).start()
 #time.sleep(0.5)
 #threading.Thread(target=jui2).start()
-try:
-    browser = browsers()
-    driver = browser.chrome()
-    driver.get("google.com")
-    assert False
-except Exception as e:
-    print (Fore.LIGHTRED_EX +"###################################################")
-    print (e)
-    traceback.print_exc()
-    time.sleep(0.2)
-    print (Style.RESET_ALL)
-    driver.quit()
+
+config = configparser.ConfigParser()
+config.read('config.ini')
+email = config['USER INFO']['email']
+password = "23072307"
+
+#test = hc_command()
+config = configparser.ConfigParser()
+config.read('environment.ini')
+site = config['ENVIRONMENT']['site']
+
+
+from request_hc import request_hc
+test = hc_command()
+req = request_hc()
+req.login(test.site(), email, "23072307")   # закончил на том что возвращается dict. Что позволяет забирать токени давать его уже непосредственно в азпрсо

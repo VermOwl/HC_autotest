@@ -10,6 +10,7 @@ import getpass
 import os
 from browsers import browsers
 from colorama import Fore, Style
+from request_hc import request_hc
 
 # Print status
 # Click
@@ -1387,4 +1388,25 @@ class hc_command():
             print ("Check: Устройство: неверное кол-во устройств - ERROR")
             assert False
 
-           
+    def change_password(self, driver):
+        print ("Info: Смена пароля пользователя")
+        
+        print ("Click: Сменить пароль")
+        driver.find_element_by_xpath("//button[@type='button'][contains(.,'Сменить пароль')]").click()
+
+        print ("Fill: Ввести пароль")
+        driver.find_element_by_xpath("//input[contains(@placeholder,'Текущий пароль')]").send_keys("23072307")
+
+        print ("Fill: Сменить пароль - основное")
+        driver.find_element_by_xpath("//input[@placeholder='Введите новый пароль']").send_keys("23072307qS")
+
+        print ("Fill: Сменить пароль - повторить")
+        driver.find_element_by_xpath("//input[@placeholder='Подтвердите новый пароль']").send_keys("23072307qS")
+
+        print ("Click: Сменить пароль")
+        driver.find_element_by_xpath("//span[@class='v-btn__content'][contains(.,'Сменить пароль')]").click()
+
+        time.sleep(0.5) #Слишком быстро отправляется запрос
+        print ("Fill: Вернуть пароль обратно")
+        request = request_hc()
+        request.get_back_passwrod()

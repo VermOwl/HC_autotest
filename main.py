@@ -26,6 +26,7 @@ from juridical_information import juridical_information
 from knowledge import knowledge
 from main_page_check import main_page_check_unatorize
 from edit_user_and_device import edit_user_and_device
+from change_password import change_password
 
 from add_user_with_send_support_mobile import add_user_with_send_support_mobile
 from edit_profile_info_mobile import edit_profile_info_mobile
@@ -158,6 +159,19 @@ def chrome_test():
         print (Style.RESET_ALL)
         driver.quit()
 
+    try:
+        browser = browsers()
+        driver = browser.chrome()
+        print (Fore.CYAN + "chrome test site cahnge password" + Style.RESET_ALL)
+        change_password(driver)
+    except Exception as e:
+        print (Fore.LIGHTRED_EX +"###################################################")
+        print (e)
+        traceback.print_exc()
+        time.sleep(0.2)
+        print (Style.RESET_ALL)
+        driver.quit()
+
 def mozilla_test():
 
     try:
@@ -279,6 +293,19 @@ def mozilla_test():
         time.sleep(0.2)
         print (Style.RESET_ALL)
         driver.quit()
+
+    try:
+        browser = browsers()
+        driver = browser.mozilla()
+        print (Fore.CYAN + "mozilla test change_password" + Style.RESET_ALL)
+        change_password(driver)
+    except Exception as e:
+        print (Fore.LIGHTRED_EX +"###################################################")
+        print (e)
+        traceback.print_exc()
+        time.sleep(0.2)
+        print (Style.RESET_ALL)
+        driver.quit()       
     
 def chrome_test_mobile ():
 
@@ -513,8 +540,8 @@ def mozilla_test_mobile ():
 def test(case, driver):
     print("nice")
 
-chrome_test()
+#chrome_test()
 mozilla_test()
-chrome_test_mobile()
-mozilla_test_mobile()
+#chrome_test_mobile()
+#mozilla_test_mobile()
 
