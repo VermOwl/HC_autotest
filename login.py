@@ -24,11 +24,19 @@ class hc_command():
 
     mail = "qwe"
 
+    def get_email_from_config(self):
+        config = configparser.ConfigParser()
+        config.read('config.ini')
+        email = config['USER INFO']['email']
+        return email
+
     def clear_field(self, driver, field_to_clear):
         driver.find_element_by_xpath(field_to_clear).send_keys(Keys.CONTROL + "a")
         driver.find_element_by_xpath(field_to_clear).send_keys(Keys.DELETE)
 
-    def wait_loss(self, driver, what_wait):
+    def wait_loss(self, driver, what_wait): # Ожидает исчезновнеие серго фона, который появляется во время загрузки страницы
+        # чаще всего использоуется 
+        # self.wait_loss(driver, "//div[@class='nuxt-progress']")
         result = False
         driver.implicitly_wait(1.5)
         try: 
@@ -1388,9 +1396,11 @@ class hc_command():
             print ("Check: Устройство: неверное кол-во устройств - ERROR")
             assert False
 
-    def change_password(self, driver):
+    def change_password(self, driver): # изменяет пароль затем отправляет запрос на его обратное восстановление, чтоб не было костылей.
         print ("Info: Смена пароля пользователя")
-        
+
+        self.wait_loss(driver, "//div[@class='nuxt-progress']")
+
         print ("Click: Сменить пароль")
         driver.find_element_by_xpath("//button[@type='button'][contains(.,'Сменить пароль')]").click()
 
@@ -1408,5 +1418,5 @@ class hc_command():
 
         time.sleep(0.5) #Слишком быстро отправляется запрос
         print ("Fill: Вернуть пароль обратно")
-        request = request_hc()
-        request.get_back_passwrod()
+        test_request = request_hc()
+        test_request.get_back_passwrod(self.site(), self.get_email_from_config(), "23072307qS")

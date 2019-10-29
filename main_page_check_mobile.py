@@ -16,12 +16,11 @@ def main_page_check_unatorize_mobile(driver):
     
     driver.get(test.site())
     driver.implicitly_wait(10)
-    #test.main_page_check(driver)
-    #test.footer_unauthorized(driver)
-    #test.main_sevices(driver)
-    #test.main_how_its_work(driver)
+    test.main_page_check(driver)
+    test.footer_unauthorized(driver)
+    test.main_sevices(driver)
+    test.main_how_its_work(driver)
     test.main_tarifs(driver)
-
 
     browser = browsers()
     browser.quit_browser(driver)

@@ -11,6 +11,7 @@ from colorama import Fore, Style
 from browsers import browsers
 
 
+
 def create_user_and_devices(driver):
     test = hc_command()
 

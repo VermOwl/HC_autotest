@@ -14,6 +14,9 @@ from colorama import Fore, Style
 import traceback
 import inspect
 import threading
+import psutil
+import time
+import calendar
 
 from browsers import browsers
 
@@ -37,6 +40,22 @@ from knowledge_mobile import knowledge_mobile
 from main_page_check_mobile import main_page_check_unatorize_mobile
 from edit_user_and_device_mobile import edit_user_and_device_mobile
 
+def kill_chrome_driver(): # закрытие всех драйверов
+    chromedriver = "chromedriver.exe"
+    for proc in psutil.process_iter():
+        if proc.name() == chromedriver:
+            proc.kill()
+
+def kill_mozilla_driver(): #
+    chromedriver = "chromedriver.exe"
+    for proc in psutil.process_iter():
+        if proc.name() == chromedriver:
+            proc.kill()
+
+def make_screenshot(driver):
+    current_time = calendar.timegm(time.gmtime())
+    print ("screenshot crush name = " + str(current_time))
+    driver.save_screenshot("./Screenshots/" + str(current_time) + ".png")
 
 def chrome_test():
     try:
@@ -45,12 +64,14 @@ def chrome_test():
         print (Fore.CYAN + "chrome test add_user_with_send_support" + Style.RESET_ALL)
         add_user_with_send_support(driver)
     except Exception as e:
+        make_screenshot(driver)
         print (Fore.LIGHTRED_EX +"###################################################")
         print (e)
         traceback.print_exc()
         time.sleep(0.2)
         print (Style.RESET_ALL)
         driver.quit()
+    kill_chrome_driver()
 
     try:
         browser = browsers()
@@ -58,12 +79,14 @@ def chrome_test():
         print (Fore.CYAN + "chrome test edit profile info" + Style.RESET_ALL)
         edit_profile_info(driver)
     except Exception as e:
+        make_screenshot(driver)
         print (Fore.LIGHTRED_EX +"###################################################")
         print (e)
         traceback.print_exc()
         time.sleep(0.2)
         print (Style.RESET_ALL)
         driver.quit()
+    kill_chrome_driver()
     
     try:
         browser = browsers()
@@ -71,13 +94,14 @@ def chrome_test():
         print (Fore.CYAN + "chrome test create user and devices" + Style.RESET_ALL)
         create_user_and_devices(driver)
     except Exception as e:
+        make_screenshot(driver)
         print (Fore.LIGHTRED_EX +"###################################################")
         print (e)
         traceback.print_exc()
         time.sleep(0.2)
         print (Style.RESET_ALL)
         driver.quit()
-    #card_information(driver)
+    kill_chrome_driver()
     
     try:
         browser = browsers()
@@ -85,12 +109,14 @@ def chrome_test():
         print (Fore.CYAN + "chrome test feedback form" + Style.RESET_ALL)
         feedback_form(driver)
     except Exception as e:
+        make_screenshot(driver)
         print (Fore.LIGHTRED_EX +"###################################################")
         print (e)
         traceback.print_exc()
         time.sleep(0.2)
         print (Style.RESET_ALL)
         driver.quit()
+    kill_chrome_driver()
     
     try:
         browser = browsers()
@@ -99,12 +125,14 @@ def chrome_test():
         print (Fore.CYAN + "chrome test juridical information" + Style.RESET_ALL)
         test.juridical_information(driver)
     except Exception as e:
+        make_screenshot(driver)
         print (Fore.LIGHTRED_EX +"###################################################")
         print (e)
         traceback.print_exc()
         time.sleep(0.2)
         print (Style.RESET_ALL)
         driver.quit()
+    kill_chrome_driver()
 
     try:
         browser = browsers()
@@ -113,12 +141,14 @@ def chrome_test():
         print (Fore.CYAN + "chrome test juridical information part 2" + Style.RESET_ALL)
         test.juridical_information_part2_chrome(driver)
     except Exception as e:
+        make_screenshot(driver)
         print (Fore.LIGHTRED_EX +"###################################################")
         print (e)
         traceback.print_exc()
         time.sleep(0.2)
         print (Style.RESET_ALL)
         driver.quit()
+    kill_chrome_driver()
 
     try:
         browser = browsers()
@@ -126,12 +156,14 @@ def chrome_test():
         print (Fore.CYAN + "chrome test knowledge" + Style.RESET_ALL)
         knowledge(driver)
     except Exception as e:
+        make_screenshot(driver)
         print (Fore.LIGHTRED_EX +"###################################################")
         print (e)
         traceback.print_exc()
         time.sleep(0.2)
         print (Style.RESET_ALL)
         driver.quit()
+    kill_chrome_driver()
 
     try:
         browser = browsers()
@@ -139,12 +171,14 @@ def chrome_test():
         print (Fore.CYAN + "chrome test site check element unautorization" + Style.RESET_ALL)
         main_page_check_unatorize(driver)
     except Exception as e:
+        make_screenshot(driver)
         print (Fore.LIGHTRED_EX +"###################################################")
         print (e)
         traceback.print_exc()
         time.sleep(0.2)
         print (Style.RESET_ALL)
         driver.quit()
+    kill_chrome_driver()
 
     try:
         browser = browsers()
@@ -152,12 +186,14 @@ def chrome_test():
         print (Fore.CYAN + "chrome test site edit_user_and_device" + Style.RESET_ALL)
         edit_user_and_device(driver)
     except Exception as e:
+        make_screenshot(driver)
         print (Fore.LIGHTRED_EX +"###################################################")
         print (e)
         traceback.print_exc()
         time.sleep(0.2)
         print (Style.RESET_ALL)
         driver.quit()
+    kill_chrome_driver()
 
     try:
         browser = browsers()
@@ -165,12 +201,14 @@ def chrome_test():
         print (Fore.CYAN + "chrome test site cahnge password" + Style.RESET_ALL)
         change_password(driver)
     except Exception as e:
+        make_screenshot(driver)
         print (Fore.LIGHTRED_EX +"###################################################")
         print (e)
         traceback.print_exc()
         time.sleep(0.2)
         print (Style.RESET_ALL)
         driver.quit()
+    kill_chrome_driver()
 
 def mozilla_test():
 
@@ -180,6 +218,7 @@ def mozilla_test():
         print (Fore.CYAN + "mozilla test add user with send support" + Style.RESET_ALL)
         add_user_with_send_support(driver)
     except Exception as e:
+        make_screenshot(driver)
         print (Fore.LIGHTRED_EX +"###################################################")
         print (e)
         traceback.print_exc()
@@ -193,6 +232,7 @@ def mozilla_test():
         print (Fore.CYAN + "mozilla test edit profile info" + Style.RESET_ALL)
         edit_profile_info(driver)
     except Exception as e:
+        make_screenshot(driver)
         print (Fore.LIGHTRED_EX +"###################################################")
         print (e)
         traceback.print_exc()
@@ -206,6 +246,7 @@ def mozilla_test():
         print (Fore.CYAN + "mozilla test create user and devices" + Style.RESET_ALL)
         create_user_and_devices(driver)
     except Exception as e:
+        make_screenshot(driver)
         print (Fore.LIGHTRED_EX +"###################################################")
         print (e)
         traceback.print_exc()
@@ -220,6 +261,7 @@ def mozilla_test():
         print (Fore.CYAN + "mozilla test feedback_form" + Style.RESET_ALL)
         feedback_form(driver)
     except Exception as e:
+        make_screenshot(driver)
         print (Fore.LIGHTRED_EX +"###################################################")
         print (e)
         traceback.print_exc()
@@ -234,6 +276,7 @@ def mozilla_test():
         print (Fore.CYAN + "mozilla test juridical information" + Style.RESET_ALL)
         test.juridical_information(driver)
     except Exception as e:
+        make_screenshot(driver)
         print (Fore.LIGHTRED_EX +"###################################################")
         print (e)
         traceback.print_exc()
@@ -248,6 +291,7 @@ def mozilla_test():
         print (Fore.CYAN + "mozilla test juridical information part 2" + Style.RESET_ALL)
         test.juridical_information_part2_mozilla(driver)
     except Exception as e:
+        make_screenshot(driver)
         print (Fore.LIGHTRED_EX +"###################################################")
         print (e)
         traceback.print_exc()
@@ -261,6 +305,7 @@ def mozilla_test():
         print (Fore.CYAN + "mozilla test knowledge" + Style.RESET_ALL)
         knowledge(driver)
     except Exception as e:
+        make_screenshot(driver)
         print (Fore.LIGHTRED_EX +"###################################################")
         print (e)
         traceback.print_exc()
@@ -274,6 +319,7 @@ def mozilla_test():
         print (Fore.CYAN + "mozilla test main_page_check_unatorize" + Style.RESET_ALL)
         main_page_check_unatorize(driver)
     except Exception as e:
+        make_screenshot(driver)
         print (Fore.LIGHTRED_EX +"###################################################")
         print (e)
         traceback.print_exc()
@@ -287,6 +333,7 @@ def mozilla_test():
         print (Fore.CYAN + "mozilla test edit_user_and_device" + Style.RESET_ALL)
         edit_user_and_device(driver)
     except Exception as e:
+        make_screenshot(driver)
         print (Fore.LIGHTRED_EX +"###################################################")
         print (e)
         traceback.print_exc()
@@ -300,6 +347,7 @@ def mozilla_test():
         print (Fore.CYAN + "mozilla test change_password" + Style.RESET_ALL)
         change_password(driver)
     except Exception as e:
+        make_screenshot(driver)
         print (Fore.LIGHTRED_EX +"###################################################")
         print (e)
         traceback.print_exc()
@@ -315,6 +363,7 @@ def chrome_test_mobile ():
         print (Fore.CYAN + "chrome test mobile add user with send support" + Style.RESET_ALL)
         add_user_with_send_support_mobile(driver)
     except Exception as e:
+        make_screenshot(driver)
         print (Fore.LIGHTRED_EX +"###################################################")
         print (e)
         traceback.print_exc()
@@ -328,6 +377,7 @@ def chrome_test_mobile ():
         print (Fore.CYAN + "chrome test mobile edit profile info mobile" + Style.RESET_ALL)
         edit_profile_info_mobile(driver)
     except Exception as e:
+        make_screenshot(driver)
         print (Fore.LIGHTRED_EX +"###################################################")
         print (e)
         traceback.print_exc()
@@ -341,6 +391,7 @@ def chrome_test_mobile ():
         print (Fore.CYAN + "chrome test mobile create user and devices" + Style.RESET_ALL)
         create_user_and_devices_mobile(driver)
     except Exception as e:
+        make_screenshot(driver)
         print (Fore.LIGHTRED_EX +"###################################################")
         print (e)
         traceback.print_exc()
@@ -354,6 +405,7 @@ def chrome_test_mobile ():
         print (Fore.CYAN + "chrome test mobile feedback form" + Style.RESET_ALL)
         feedback_form_mobile(driver)
     except Exception as e:
+        make_screenshot(driver)
         print (Fore.LIGHTRED_EX +"###################################################")
         print (e)
         traceback.print_exc()
@@ -368,6 +420,7 @@ def chrome_test_mobile ():
         print (Fore.CYAN + "chrome test mobile juridical information" + Style.RESET_ALL)
         test.juridical_information_mobile(driver)
     except Exception as e:
+        make_screenshot(driver)
         print (Fore.LIGHTRED_EX +"###################################################")
         print (e)
         traceback.print_exc()
@@ -382,6 +435,7 @@ def chrome_test_mobile ():
         print (Fore.CYAN + "chrome test juridical information part 2" + Style.RESET_ALL)
         test.juridical_information_part2_chrome_mobile(driver)
     except Exception as e:
+        make_screenshot(driver)
         print (Fore.LIGHTRED_EX +"###################################################")
         print (e)
         traceback.print_exc()
@@ -395,6 +449,7 @@ def chrome_test_mobile ():
         print (Fore.CYAN + "chrome test mobile knowledge page" + Style.RESET_ALL)
         knowledge_mobile(driver)
     except Exception as e:
+        make_screenshot(driver)
         print (Fore.LIGHTRED_EX +"###################################################")
         print (e)
         traceback.print_exc()
@@ -408,6 +463,7 @@ def chrome_test_mobile ():
         print (Fore.CYAN + "chrome test mobile main_page_check_unatorize_mobile" + Style.RESET_ALL)
         main_page_check_unatorize_mobile(driver)
     except Exception as e:
+        make_screenshot(driver)
         print (Fore.LIGHTRED_EX +"###################################################")
         print (e)
         traceback.print_exc()
@@ -421,6 +477,7 @@ def chrome_test_mobile ():
         print (Fore.CYAN + "chrome test mobile edit_user_and_device_mobile" + Style.RESET_ALL)
         edit_user_and_device_mobile(driver)
     except Exception as e:
+        make_screenshot(driver)
         print (Fore.LIGHTRED_EX +"###################################################")
         print (e)
         traceback.print_exc()
@@ -437,6 +494,7 @@ def mozilla_test_mobile ():
         print (Fore.CYAN + "mozilla test mobile add user with send support" + Style.RESET_ALL)
         add_user_with_send_support_mobile(driver)
     except Exception as e:
+        make_screenshot(driver)
         print (Fore.LIGHTRED_EX +"###################################################")
         print (e)
         traceback.print_exc()
@@ -450,6 +508,7 @@ def mozilla_test_mobile ():
         print (Fore.CYAN + "mozilla test mobile edit profile info mobile" + Style.RESET_ALL)
         edit_profile_info_mobile(driver)
     except Exception as e:
+        make_screenshot(driver)
         print (Fore.LIGHTRED_EX +"###################################################")
         print (e)
         traceback.print_exc()
@@ -463,6 +522,7 @@ def mozilla_test_mobile ():
         print (Fore.CYAN + "mozilla test mobile create user and devices" + Style.RESET_ALL)
         create_user_and_devices_mobile(driver)
     except Exception as e:
+        make_screenshot(driver)
         print (Fore.LIGHTRED_EX +"###################################################")
         print (e)
         traceback.print_exc()
@@ -476,6 +536,7 @@ def mozilla_test_mobile ():
         print (Fore.CYAN + "mozilla test mobile feedback form" + Style.RESET_ALL)
         feedback_form_mobile(driver)
     except Exception as e:
+        make_screenshot(driver)
         print (Fore.LIGHTRED_EX +"###################################################")
         print (e)
         traceback.print_exc()
@@ -490,6 +551,7 @@ def mozilla_test_mobile ():
         print (Fore.CYAN + "mozilla test mobile juridical information" + Style.RESET_ALL)
         test.juridical_information_mobile(driver)
     except Exception as e:
+        make_screenshot(driver)
         print (Fore.LIGHTRED_EX +"###################################################")
         print (e)
         traceback.print_exc()
@@ -504,6 +566,7 @@ def mozilla_test_mobile ():
         print (Fore.CYAN + "mozilla test juridical information part 2" + Style.RESET_ALL)
         test.juridical_information_part2_mozilla_mobile(driver)
     except Exception as e:
+        make_screenshot(driver)
         print (Fore.LIGHTRED_EX +"###################################################")
         print (e)
         traceback.print_exc()
@@ -517,6 +580,7 @@ def mozilla_test_mobile ():
         print (Fore.CYAN + "mozilla test mobile knowledge" + Style.RESET_ALL)
         knowledge_mobile(driver)
     except Exception as e:
+        make_screenshot(driver)
         print (Fore.LIGHTRED_EX +"###################################################")
         print (e)
         traceback.print_exc()
@@ -530,6 +594,7 @@ def mozilla_test_mobile ():
         print (Fore.CYAN + "mozilla test mobile edit_user_and_device_mobile" + Style.RESET_ALL)
         edit_user_and_device_mobile(driver)
     except Exception as e:
+        make_screenshot(driver)
         print (Fore.LIGHTRED_EX +"###################################################")
         print (e)
         traceback.print_exc()
@@ -540,8 +605,8 @@ def mozilla_test_mobile ():
 def test(case, driver):
     print("nice")
 
-#chrome_test()
-mozilla_test()
+chrome_test()
+#mozilla_test()
 #chrome_test_mobile()
 #mozilla_test_mobile()
 

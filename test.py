@@ -22,7 +22,7 @@ import inspect
 from login_mobile import hc_command_mobile
 import threading
 
-from create_user_and_devices import create_user_and_devices
+#from create_user_and_devices import create_user_and_devices
 
 #test = hc_command()
 #
@@ -143,18 +143,68 @@ from create_user_and_devices import create_user_and_devices
 #time.sleep(0.5)
 #threading.Thread(target=jui2).start()
 
-config = configparser.ConfigParser()
-config.read('config.ini')
-email = config['USER INFO']['email']
-password = "23072307"
-
+#config = configparser.ConfigParser()
+#config.read('config.ini')
+#email = config['USER INFO']['email']
+#password = "23072307"
+#
+##test = hc_command()
+#config = configparser.ConfigParser()
+#config.read('environment.ini')
+#site = config['ENVIRONMENT']['site']
+#
+#
+#from request_hc import request_hc
 #test = hc_command()
-config = configparser.ConfigParser()
-config.read('environment.ini')
-site = config['ENVIRONMENT']['site']
+#req = request_hc()
+#req.login(test.site(), email, "23072307")   # закончил на том что возвращается dict. Что позволяет забирать токени давать его уже непосредственно в азпрсо
+#
+#dsa = {"qwd": "qwd12321", "qwdq": "qwdq"}
+#print (dsa["qwd"])
+
+#def odin():
+#    hg = 1
+#    ty = 2
+#    return hg, ty
+#
+#asd = odin()
+#print(asd)
+
+import datetime
+import psutil
+import time
+import calendar
+#current_time = datetime.datetime.now().time()
+#
+#off_hour = current_time.replace(hour=12, minute=1, second=0, microsecond=0) 
+#if current_time > off_hour:
+#    print ("WORK WORK WORK!!!")
+#else:
+#    print ("Сейчас мы не работает")
+#    print (current_time)
+
+#browser = browsers()
+#driver = browser.chrome()
+#
+#driver.get("http://front.stage.helpcubes.com")
+#
+#try:
+#    driver.find_element_by_xpath("wfjoiwefji")
+#except:
+#    current_time = calendar.timegm(time.gmtime())
+#    print ("screenshot crush name = " + str(current_time))
+#    driver.save_screenshot("./Screenshots/" + str(current_time) + ".png")
+
+def odin():
+    print ('1')
+
+def dwa(method):
+    #try:
+    method
+    #except:
+    #    print("fepo")
+
+dwa(odin())
 
 
-from request_hc import request_hc
-test = hc_command()
-req = request_hc()
-req.login(test.site(), email, "23072307")   # закончил на том что возвращается dict. Что позволяет забирать токени давать его уже непосредственно в азпрсо
+

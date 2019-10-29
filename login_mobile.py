@@ -1089,19 +1089,6 @@ class hc_command_mobile():
         driver.back()        
         self.wait_loss(driver, "//div[@class='nuxt-progress']")
 
-
-    def wait_loss(self, driver, what_wait):
-        result = False
-        driver.implicitly_wait(1)
-        try: 
-            driver.find_element_by_xpath(what_wait)
-            result = False
-        except:
-            result = True
-        if result != True:
-            self.wait_loss(driver, what_wait)        
-        driver.implicitly_wait(10)    
-
     def main_page_check (self, driver): #Наличия контента на главной странице helpcybes
         
         print ("Info: Проверка главной страицы Helpcubes")
