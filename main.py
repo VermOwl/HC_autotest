@@ -89,18 +89,18 @@ def shell_test_chrome(method):
 
 def start_test_chrome_desktop (): # Метод передачи тестовых методов в рабочую оболочку
     shell_test_chrome(add_user_with_send_support)
-    #shell_test_chrome(edit_profile_info)
-    #shell_test_chrome(create_user_and_devices)
-    #shell_test_chrome(feedback_form)
-    #
-    #test = juridical_information()
-    #shell_test_chrome(test.juridical_information)
-    #shell_test_chrome(test.juridical_information_part2_chrome)
-#
-    #shell_test_chrome(knowledge)
-    #shell_test_chrome(main_page_check_unatorize)
-    #shell_test_chrome(edit_user_and_device)
-    #shell_test_chrome(change_password)
+    shell_test_chrome(edit_profile_info)
+    shell_test_chrome(create_user_and_devices)
+    shell_test_chrome(feedback_form)
+    
+    test = juridical_information()
+    shell_test_chrome(test.juridical_information)
+    shell_test_chrome(test.juridical_information_part2_chrome)
+
+    shell_test_chrome(knowledge)
+    shell_test_chrome(main_page_check_unatorize)
+    shell_test_chrome(edit_user_and_device)
+    shell_test_chrome(change_password)
 
 start_test_chrome_desktop()
 
