@@ -779,7 +779,8 @@ class hc_command():
         
         def __search_check(theme, driver):
             print ("Fill: Поле поиска: Поиск по ранее найденной 4 теме")
-            driver.find_element_by_xpath("//input[@placeholder='Что вы хотите узнать?']").send_keys(theme)
+            time.sleep(0.2) # Наверное элемент появлялеся но еще не являлся рабочим поэтому падал
+            driver.find_element_by_xpath("//input[@aria-label='Что вы хотите узнать?']").send_keys(theme)
             print ("Click: Найти")
             driver.find_element_by_xpath("//button[@class='v-btn v-btn--contained theme--light v-size--default']").click()
             self.wait_loss(driver, "//div[@class='nuxt-progress']")
@@ -803,12 +804,12 @@ class hc_command():
         
         __search_check(theme, driver)
         print ("Click: База знаний")
-        driver.find_element_by_xpath("//div[@class='v-toolbar__items']//a[@class='v-btn--active v-btn v-btn--flat v-btn--router v-btn--text theme--light v-size--default']").click()
+        driver.find_element_by_xpath("//div[@class='v-toolbar__items hidden-xs']//a[@class='v-btn--active v-btn v-btn--flat v-btn--router v-btn--text theme--light v-size--default']").click()
         self.wait_loss(driver, "//div[@class='nuxt-progress']")
         
         __search_check(theme, driver)
         print ("Click: База знаний")
-        driver.find_element_by_xpath("//div[@class='v-toolbar__items']//a[@class='v-btn--active v-btn v-btn--flat v-btn--router v-btn--text theme--light v-size--default']").click()
+        driver.find_element_by_xpath("//div[@class='v-toolbar__items hidden-xs']//a[@class='v-btn--active v-btn v-btn--flat v-btn--router v-btn--text theme--light v-size--default']").click()
         self.wait_loss(driver, "//div[@class='nuxt-progress']")
         
 
@@ -841,7 +842,7 @@ class hc_command():
                 print (tile)
                 assert False
             print ("Click: База знаний")
-            driver.find_element_by_xpath("//div[@class='v-toolbar__items']//a[@class='v-btn--active v-btn v-btn--flat v-btn--router v-btn--text theme--light v-size--default']").click()
+            driver.find_element_by_xpath("//div[@class='v-toolbar__items hidden-xs']//a[@class='v-btn--active v-btn v-btn--flat v-btn--router v-btn--text theme--light v-size--default']").click()
             self.wait_loss(driver, "//div[@class='nuxt-progress']")
             i = i + 1
 
@@ -1034,8 +1035,8 @@ class hc_command():
             assert False   
 
     def main_sevices(self, driver): #Првоерка контента на странице услуг
-        
-        driver.find_element_by_xpath("//div[@class='v-toolbar__items']//a[1]").click()
+        print ("Click: База знаний")
+        driver.find_element_by_xpath("//div[@class='v-toolbar__items hidden-xs']//a[1]").click()
         print ("Info: Проперка страницы Услуг для неавторизованного пользвоателя")
         print ("Check: Блок Мы работаем со всему устройствами")
         driver.find_elements_by_xpath("//div[@class='layout text-xs-center pt-5 mt-4 pb-5 mb-2 column']")

@@ -25,6 +25,8 @@ def change_password (driver):
         assert False
 
     driver.implicitly_wait(10)
+    driver.execute_script("$nuxt.$loading = { };")
+
 
     test.signin_parametr(driver, email, password)
     test.setting(driver)

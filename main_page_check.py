@@ -14,6 +14,9 @@ def main_page_check_unatorize(driver):
     
     driver.get(test.site())
     driver.implicitly_wait(10)
+    driver.execute_script("$nuxt.$loading = { };")
+
+
     test.main_page_check(driver)
     test.footer_unauthorized(driver)
     test.main_sevices(driver)

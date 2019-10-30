@@ -15,6 +15,8 @@ class juridical_information():
         test = hc_command()
         driver.get(test.site())
         driver.implicitly_wait(10)
+        driver.execute_script("$nuxt.$loading = { };")
+
 
         test.open_user_agreement(driver)
         test.open_privacy_policy(driver)
@@ -25,6 +27,8 @@ class juridical_information():
         test = hc_command()
         driver.get(test.site())
         driver.implicitly_wait(10)
+        driver.execute_script("$nuxt.$loading = { };")
+
 
         test.open_signin_form(driver)
 
@@ -67,6 +71,8 @@ class juridical_information():
         test = hc_command()
         driver.get(test.site())
         driver.implicitly_wait(10)
+        driver.execute_script("$nuxt.$loading = { };")
+
 
         test.open_signin_form(driver)
 

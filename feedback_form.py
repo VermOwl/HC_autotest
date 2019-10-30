@@ -14,7 +14,8 @@ def feedback_form(driver):
     test = hc_command()
     driver.get(test.site())
     driver.implicitly_wait(10)
-
+    driver.execute_script("$nuxt.$loading = { };")
+    
     test.feedback_form(driver)
 
     browser = browsers()

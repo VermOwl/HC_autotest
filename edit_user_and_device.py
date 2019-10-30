@@ -21,6 +21,8 @@ def edit_user_and_device(driver):
 
     driver.get(test.site())
     driver.implicitly_wait(10)
+    driver.execute_script("$nuxt.$loading = { };")
+
 
     test.signin_parametr(driver, email, password)
     test.setting(driver)

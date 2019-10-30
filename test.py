@@ -209,8 +209,23 @@ import calendar
 #    #    print("fepo")
 #
 #dwa(odin)
+class odin():
+    def odin(self, method):
+        print ("1")
 
+def dwa(method):
+    print ("2")
 
-print ("{ }")
+def tri(method):
+    print ("3")
 
-
+def start():
+    testi = [
+        odin().odin,
+        dwa,
+        tri
+    ]
+    for method in testi:
+        i = 0 
+        method(0)
+start()

@@ -18,7 +18,7 @@ def edit_profile_info(driver):
     password = "23072307"
 
     driver.get(test.site())
-    #driver.execute_script("$nuxt.$loading = { };")
+    driver.execute_script("$nuxt.$loading = { };")
 
     driver.implicitly_wait(10)
 
