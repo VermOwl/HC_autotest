@@ -62,7 +62,7 @@ class hc_command():
 
         #Войти
         print ("Click: Войти")
-        driver.find_element_by_xpath("(//button[@class='v-btn v-btn--contained theme--light v-size--default'])").click()
+        driver.find_element_by_xpath("(//button[@class='v-btn v-btn--contained theme--light v-size--default primary'])").click()
 
         #Скипнуть момент добавления карты - Открывается главная страница
         print ("Скипнуть момент добавления карты - Открывается главная страница")
@@ -241,10 +241,12 @@ class hc_command():
         print ("Click: Чекбокс соглашения пользователя")
         driver.find_element_by_xpath("//div[@class='v-input--selection-controls__ripple']").click()
         print ("Click: Зарегистрироваться")
-        driver.find_element_by_xpath("(//button[@class='v-btn v-btn--contained theme--light v-size--default'])").click()
-        
+        driver.find_element_by_xpath("(//button[@class='v-btn v-btn--contained theme--light v-size--default primary'])").click()
+        time.sleep(0.5) #Добавил потомучто перестало выходить на главную страницу
         #выход на главную
         driver.find_element_by_xpath("(//button[@class='v-btn v-btn--contained theme--light v-size--default primary'])").click()
+        driver.find_element_by_xpath("(//button[@class='v-btn v-btn--contained theme--light v-size--default primary'])").click()
+
 
     def getmail(self, driver): #Копируем в буфер аккаунт с сайта temp-mail.org
         print ("Click: Копирование текста в буфер обмена")
@@ -318,7 +320,7 @@ class hc_command():
 
         #Войти
         print ("Click: Вход после заполения полей")
-        driver.find_element_by_xpath("(//button[@class='v-btn v-btn--contained theme--light v-size--default'])").click()
+        driver.find_element_by_xpath("(//button[@class='v-btn v-btn--contained theme--light v-size--default primary'])").click()
 
         #Скипнуть момент добавления карты - Открывается главная страница
         try:

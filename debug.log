@@ -215,3 +215,5 @@
 [1018/125537.045:ERROR:exception_snapshot_win.cc(98)] thread ID 2548 not found in process
 [1018/125537.101:ERROR:process_reader_win.cc(123)] NtOpenThread: {пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ} пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. (0xc0000022)
 [1018/125537.103:ERROR:exception_snapshot_win.cc(98)] thread ID 16172 not found in process
+[1029/161656.455:ERROR:process_reader_win.cc(123)] NtOpenThread: {Отказано в доступе} Процесс запросил доступ к объекту, но права на доступ не предоставлены. (0xc0000022)
+[1029/161656.457:ERROR:exception_snapshot_win.cc(98)] thread ID 8072 not found in process

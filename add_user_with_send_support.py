@@ -20,6 +20,7 @@ def add_user_with_send_support(driverTemp):
     driver.get("https://temp-mail.org/ru/")
 
     driverTemp.get(test.site())
+    #driverTemp.execute_script("$nuxt.$loading = {};")
     driverTemp.implicitly_wait(10)
     driver.implicitly_wait(10)
 

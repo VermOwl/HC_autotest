@@ -53,93 +53,28 @@ def kill_mozilla_driver(): #
             proc.kill()
 
 def make_screenshot(driver):
+    '''
+    Метод создания скриншотов
+    Если тест падает вызывается этот метод который делает скриншот и помещает в рабочую_папку/screenshot/
+
+    '''
     current_time = calendar.timegm(time.gmtime())
     print ("screenshot crush name = " + str(current_time))
     driver.save_screenshot("./Screenshots/" + str(current_time) + ".png")
 
-def chrome_test():
-    try:
-        browser = browsers()
-        driver = browser.chrome()
-        print (Fore.CYAN + "chrome test add_user_with_send_support" + Style.RESET_ALL)
-        add_user_with_send_support(driver)
-    except Exception as e:
-        make_screenshot(driver)
-        print (Fore.LIGHTRED_EX +"###################################################")
-        print (e)
-        traceback.print_exc()
-        time.sleep(0.2)
-        print (Style.RESET_ALL)
-        driver.quit()
-    kill_chrome_driver()
-
-    try:
-        browser = browsers()
-        driver = browser.chrome() 
-        print (Fore.CYAN + "chrome test edit profile info" + Style.RESET_ALL)
-        edit_profile_info(driver)
-    except Exception as e:
-        make_screenshot(driver)
-        print (Fore.LIGHTRED_EX +"###################################################")
-        print (e)
-        traceback.print_exc()
-        time.sleep(0.2)
-        print (Style.RESET_ALL)
-        driver.quit()
-    kill_chrome_driver()
-    
-    try:
-        browser = browsers()
-        driver = browser.chrome()
-        print (Fore.CYAN + "chrome test create user and devices" + Style.RESET_ALL)
-        create_user_and_devices(driver)
-    except Exception as e:
-        make_screenshot(driver)
-        print (Fore.LIGHTRED_EX +"###################################################")
-        print (e)
-        traceback.print_exc()
-        time.sleep(0.2)
-        print (Style.RESET_ALL)
-        driver.quit()
-    kill_chrome_driver()
-    
-    try:
-        browser = browsers()
-        driver = browser.chrome()
-        print (Fore.CYAN + "chrome test feedback form" + Style.RESET_ALL)
-        feedback_form(driver)
-    except Exception as e:
-        make_screenshot(driver)
-        print (Fore.LIGHTRED_EX +"###################################################")
-        print (e)
-        traceback.print_exc()
-        time.sleep(0.2)
-        print (Style.RESET_ALL)
-        driver.quit()
-    kill_chrome_driver()
-    
-    try:
-        browser = browsers()
-        driver = browser.chrome()
-        test = juridical_information()
-        print (Fore.CYAN + "chrome test juridical information" + Style.RESET_ALL)
-        test.juridical_information(driver)
-    except Exception as e:
-        make_screenshot(driver)
-        print (Fore.LIGHTRED_EX +"###################################################")
-        print (e)
-        traceback.print_exc()
-        time.sleep(0.2)
-        print (Style.RESET_ALL)
-        driver.quit()
-    kill_chrome_driver()
+def shell_test_chrome(method): 
+    '''
+    Это оболочка для тесоов. В качестве переменной сюда передается метод с самим кейсом
+    Все завернуто в трайкетч. Eсли тест падает, запускается слудюущий метод
+    Метод делает скрины при падении
+    Метод пишет эксепшен
+    '''
 
     try:
         browser = browsers()
         driver = browser.chrome()
-        test = juridical_information()
-        print (Fore.CYAN + "chrome test juridical information part 2" + Style.RESET_ALL)
-        test.juridical_information_part2_chrome(driver)
+        print (Fore.CYAN + "chrome test " + method.__name__ + "" + Style.RESET_ALL)
+        method(driver) # вызов рабочего метода
     except Exception as e:
         make_screenshot(driver)
         print (Fore.LIGHTRED_EX +"###################################################")
@@ -147,68 +82,29 @@ def chrome_test():
         traceback.print_exc()
         time.sleep(0.2)
         print (Style.RESET_ALL)
-        driver.quit()
+        #driver.quit()
+        browser = browsers()
+        browser.close_browser(driver)
     kill_chrome_driver()
 
-    try:
-        browser = browsers()
-        driver = browser.chrome()
-        print (Fore.CYAN + "chrome test knowledge" + Style.RESET_ALL)
-        knowledge(driver)
-    except Exception as e:
-        make_screenshot(driver)
-        print (Fore.LIGHTRED_EX +"###################################################")
-        print (e)
-        traceback.print_exc()
-        time.sleep(0.2)
-        print (Style.RESET_ALL)
-        driver.quit()
-    kill_chrome_driver()
+def start_test_chrome_desktop (): # Метод передачи тестовых методов в рабочую оболочку
+    shell_test_chrome(add_user_with_send_support)
+    #shell_test_chrome(edit_profile_info)
+    #shell_test_chrome(create_user_and_devices)
+    #shell_test_chrome(feedback_form)
+    #
+    #test = juridical_information()
+    #shell_test_chrome(test.juridical_information)
+    #shell_test_chrome(test.juridical_information_part2_chrome)
+#
+    #shell_test_chrome(knowledge)
+    #shell_test_chrome(main_page_check_unatorize)
+    #shell_test_chrome(edit_user_and_device)
+    #shell_test_chrome(change_password)
 
-    try:
-        browser = browsers()
-        driver = browser.chrome()
-        print (Fore.CYAN + "chrome test site check element unautorization" + Style.RESET_ALL)
-        main_page_check_unatorize(driver)
-    except Exception as e:
-        make_screenshot(driver)
-        print (Fore.LIGHTRED_EX +"###################################################")
-        print (e)
-        traceback.print_exc()
-        time.sleep(0.2)
-        print (Style.RESET_ALL)
-        driver.quit()
-    kill_chrome_driver()
+start_test_chrome_desktop()
 
-    try:
-        browser = browsers()
-        driver = browser.chrome()
-        print (Fore.CYAN + "chrome test site edit_user_and_device" + Style.RESET_ALL)
-        edit_user_and_device(driver)
-    except Exception as e:
-        make_screenshot(driver)
-        print (Fore.LIGHTRED_EX +"###################################################")
-        print (e)
-        traceback.print_exc()
-        time.sleep(0.2)
-        print (Style.RESET_ALL)
-        driver.quit()
-    kill_chrome_driver()
 
-    try:
-        browser = browsers()
-        driver = browser.chrome()
-        print (Fore.CYAN + "chrome test site cahnge password" + Style.RESET_ALL)
-        change_password(driver)
-    except Exception as e:
-        make_screenshot(driver)
-        print (Fore.LIGHTRED_EX +"###################################################")
-        print (e)
-        traceback.print_exc()
-        time.sleep(0.2)
-        print (Style.RESET_ALL)
-        driver.quit()
-    kill_chrome_driver()
 
 def mozilla_test():
 
@@ -605,7 +501,8 @@ def mozilla_test_mobile ():
 def test(case, driver):
     print("nice")
 
-chrome_test()
+
+#chrome_test()
 #mozilla_test()
 #chrome_test_mobile()
 #mozilla_test_mobile()
