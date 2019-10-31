@@ -100,13 +100,14 @@ class juridical_information_mobile():
 
         driver.find_element_by_xpath("//a[contains(text(),'Юридические документы')]").click()
         time.sleep(0.1)
-        window_after = driver.window_handles[2]
+        window_after = driver.window_handles[3]
         time.sleep(0.1)
         driver.switch_to.window(window_after)
-        time.sleep(0.1)
+        time.sleep(0.2)
+        print ("Info: Проверка правила првоедеения акции")
         driver.find_element_by_xpath("//a[contains(text(),'Правила проведения акции')]").click()
         driver.find_element_by_xpath("//li[contains(text(),'Организатор Акции ООО «Е09»')]")
-        print ("Info: Правила проведения акции проверены")
+        print ("Check: Правила проведения акции проверены")
         driver.switch_to.window(window_before)
         browser = browsers()
         browser.quit_browser(driver)

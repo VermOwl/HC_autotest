@@ -97,7 +97,7 @@ class hc_command_mobile():
 
         #Войти
         print ("Click: Войти")
-        driver.find_element_by_xpath("(//button[@class='v-btn v-btn--contained theme--light v-size--default'])").click()
+        driver.find_element_by_xpath("//button[@class='v-btn v-btn--contained theme--light v-size--default primary']").click()
 
         #Скипнуть момент добавления карты - Открывается главная страница
         print ("Скипнуть момент добавления карты - Открывается главная страница")
@@ -307,10 +307,14 @@ class hc_command_mobile():
         print ("Click: Чекбокс соглашения пользователя")
         driver.find_element_by_xpath("//div[@class='v-input--selection-controls__ripple']").click()
         print ("Click: Зарегистрироваться")
-        driver.find_element_by_xpath("(//button[@class='v-btn v-btn--contained theme--light v-size--default'])").click()
+        driver.find_element_by_xpath("(//button[@class='v-btn v-btn--contained theme--light v-size--default primary'])").click()
 
         #выход на главную
+        print ("Click: Выход на главную")
+        time.sleep(0.2) # возникает ошибка что элемент не добавлен на сайт
         driver.find_element_by_xpath("//button[@class='v-btn v-btn--contained theme--light v-size--default primary']").click()
+        driver.find_element_by_xpath("//button[@class='v-btn v-btn--contained theme--light v-size--default primary']").click()
+
 
     def getmail(self, driver): #Копируем в буфер аккаунт с сайта temp-mail.org
         print ("Click: Копирование текста в буфер обмена")
@@ -411,7 +415,7 @@ class hc_command_mobile():
 
         #Войти
         print ("Click: Вход после заполения полей")
-        driver.find_element_by_xpath("(//button[@class='v-btn v-btn--contained theme--light v-size--default'])").click()
+        driver.find_element_by_xpath("(//button[@class='v-btn v-btn--contained theme--light v-size--default primary'])").click()
 
         #Скипнуть момент добавления карты - Открывается главная страница
         try:

@@ -119,7 +119,6 @@ def start_test_chrome_desktop (work_browser): # Метод передачи те
     test_list = [   # Список тестовых методов
         add_user_with_send_support, 
         edit_profile_info,
-        edit_profile_info,
         juridical_information().juridical_information,
         juridical_information().juridical_information_part2_chrome,
         knowledge,
@@ -136,20 +135,21 @@ def start_test_chrome_mobile(work_browser): # Аналогично методу 
     test_list = [   # Список тестовых методов
         add_user_with_send_support_mobile, 
         edit_profile_info_mobile,
-        edit_profile_info_mobile,
         juridical_information_mobile().juridical_information_mobile,
         juridical_information_mobile().juridical_information_part2_chrome_mobile,
-        knowledge_mobile,
+        knowledge_mobile, 
         main_page_check_unatorize_mobile,
         edit_user_and_device_mobile,
-        #change_password Надо сделать для мобильной версии
+
+
+        ##change_password Надо сделать для мобильной версии
     ] # нвоый тестовый метод добавить в конец
     
     for method in test_list: # Поселдовательный вызов всех методов
         shell_test_mobile(method, work_browser)
 
 
-start_test_chrome_desktop("chrome")
+#start_test_chrome_desktop("chrome")
 start_test_chrome_mobile("chrome")
-start_test_chrome_desktop("mozilla")
-start_test_chrome_mobile("mozilla")
+#start_test_chrome_desktop("mozilla")
+#start_test_chrome_mobile("mozilla")
