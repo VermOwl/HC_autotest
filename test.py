@@ -211,7 +211,20 @@ import calendar
 #dwa(odin)
 
 browser = browsers()
-driver = browser.mozilla_mobile()
+driver = browser.mozilla()
 
 name = driver.capabilities['browserName']
 print (name)
+
+def kill_mozilla_driver(): #
+    mozilladrivername = "geckodriver.exe"
+    for proc in psutil.process_iter():
+        if proc.name() == mozilladrivername:
+            proc.kill()
+
+driver.get("http://foo.com")
+time.sleep(1)
+
+driver.quit()
+kill_mozilla_driver()
+

@@ -47,9 +47,9 @@ def kill_chrome_driver(): # закрытие всех драйверов
             proc.kill()
 
 def kill_mozilla_driver(): #
-    chromedriver = "chromedriver.exe"
+    mozilladrivername = "geckodriver.exe"
     for proc in psutil.process_iter():
-        if proc.name() == chromedriver:
+        if proc.name() == mozilladrivername:
             proc.kill()
 
 def make_screenshot(driver):
@@ -88,6 +88,7 @@ def shell_test(method, work_browser):
         browser = browsers()
         browser.close_browser(driver)
     kill_chrome_driver()
+    kill_mozilla_driver()
 
 def shell_test_mobile(method, work_browser): # оболочка для chrome mobile 
     
@@ -110,6 +111,7 @@ def shell_test_mobile(method, work_browser): # оболочка для chrome mo
         browser = browsers()
         browser.close_browser(driver)
     kill_chrome_driver()
+    kill_mozilla_driver()
 
 def start_test_chrome_desktop (work_browser): # Метод передачи тестовых методов в рабочую оболочку
 
