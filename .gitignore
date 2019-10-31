@@ -4,3 +4,4 @@ geckodriver.log
 *.pyc
 __pycache__/login_mobile.cpython-37.pyc
 debug.log
+*.log
