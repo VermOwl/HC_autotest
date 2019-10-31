@@ -8,6 +8,9 @@ import pyperclip
 from login import hc_command
 import configparser
 from browsers import browsers
+import colorama
+from colorama import Fore, Style
+
 
 class juridical_information():
 
@@ -15,16 +18,35 @@ class juridical_information():
         test = hc_command()
         driver.get(test.site())
         driver.implicitly_wait(10)
+        driver.execute_script("$nuxt.$loading = { };")
+
 
         test.open_user_agreement(driver)
         test.open_privacy_policy(driver)
         browser = browsers()
         browser.quit_browser(driver)
 
+
+
+    def juridical_information_part2(self, driver):
+        # Проверяем название браузера
+        # Перенаправляем на нужный метод в зависимости от браузера
+        name = driver.capabilities['browserName']
+        if name == "chrome":
+            self.juridical_information_part2_chrome(driver)
+        elif name == "firefox":
+            self.juridical_information_part2_mozilla(driver)
+        else:
+            print (Fore.RED + "Info: Не удалось определить браузер для выполенения juridical_information_part2" + Style.RESET_ALL)
+            
+
+
     def juridical_information_part2_mozilla(self, driver):
         test = hc_command()
         driver.get(test.site())
         driver.implicitly_wait(10)
+        driver.execute_script("$nuxt.$loading = { };")
+
 
         test.open_signin_form(driver)
 
@@ -63,10 +85,13 @@ class juridical_information():
         browser = browsers()
         browser.quit_browser(driver)    
 
+
     def juridical_information_part2_chrome(self, driver):
         test = hc_command()
         driver.get(test.site())
         driver.implicitly_wait(10)
+        driver.execute_script("$nuxt.$loading = { };")
+
 
         test.open_signin_form(driver)
 

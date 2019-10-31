@@ -21,6 +21,8 @@ def knowledge(driver):
 
     driver.get(test.site())
     driver.implicitly_wait(10)
+    driver.execute_script("$nuxt.$loading = { };")
+
 
     test.signin_parametr(driver, temp, password)
     test.knowledge_search_field(driver)

@@ -5,3 +5,9 @@ geckodriver.log
 __pycache__/login_mobile.cpython-37.pyc
 debug.log
 *.log
+*.png
+*.pyc
+*.pyc
+__pycache__/edit_profile_info.cpython-37.pyc
+__pycache__/create_user_and_devices.cpython-37.pyc
+__pycache__/add_user_with_send_support.cpython-37.pyc

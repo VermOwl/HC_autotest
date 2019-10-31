@@ -62,7 +62,7 @@ class hc_command():
 
         #Войти
         print ("Click: Войти")
-        driver.find_element_by_xpath("(//button[@class='v-btn v-btn--contained theme--light v-size--default'])").click()
+        driver.find_element_by_xpath("(//button[@class='v-btn v-btn--contained theme--light v-size--default primary'])").click()
 
         #Скипнуть момент добавления карты - Открывается главная страница
         print ("Скипнуть момент добавления карты - Открывается главная страница")
@@ -241,10 +241,12 @@ class hc_command():
         print ("Click: Чекбокс соглашения пользователя")
         driver.find_element_by_xpath("//div[@class='v-input--selection-controls__ripple']").click()
         print ("Click: Зарегистрироваться")
-        driver.find_element_by_xpath("(//button[@class='v-btn v-btn--contained theme--light v-size--default'])").click()
-        
+        driver.find_element_by_xpath("(//button[@class='v-btn v-btn--contained theme--light v-size--default primary'])").click()
+        time.sleep(0.5) #Добавил потомучто перестало выходить на главную страницу
         #выход на главную
         driver.find_element_by_xpath("(//button[@class='v-btn v-btn--contained theme--light v-size--default primary'])").click()
+        driver.find_element_by_xpath("(//button[@class='v-btn v-btn--contained theme--light v-size--default primary'])").click()
+
 
     def getmail(self, driver): #Копируем в буфер аккаунт с сайта temp-mail.org
         print ("Click: Копирование текста в буфер обмена")
@@ -318,7 +320,7 @@ class hc_command():
 
         #Войти
         print ("Click: Вход после заполения полей")
-        driver.find_element_by_xpath("(//button[@class='v-btn v-btn--contained theme--light v-size--default'])").click()
+        driver.find_element_by_xpath("(//button[@class='v-btn v-btn--contained theme--light v-size--default primary'])").click()
 
         #Скипнуть момент добавления карты - Открывается главная страница
         try:
@@ -612,7 +614,8 @@ class hc_command():
         print ("Info: Проверка заполнения и отправки Формы обратной связи")
         # Открыть контакты
         print ("Click: Открыть страницу Контакты")
-        driver.find_element_by_xpath("//a[6]//span[1]").click()
+        time.sleep(0.2)
+        driver.find_element_by_xpath("//a[@class='v-btn v-btn--flat v-btn--router v-btn--text theme--light v-size--default']//span[contains(text(),'Контакты')]").click() 
 
         # Заполнение полей Имя, номера телефона, мыло, сообщение
         name = names.get_full_name()
@@ -777,7 +780,8 @@ class hc_command():
         
         def __search_check(theme, driver):
             print ("Fill: Поле поиска: Поиск по ранее найденной 4 теме")
-            driver.find_element_by_xpath("//input[@placeholder='Что вы хотите узнать?']").send_keys(theme)
+            time.sleep(0.2) # Наверное элемент появлялеся но еще не являлся рабочим поэтому падал
+            driver.find_element_by_xpath("//input[@aria-label='Что вы хотите узнать?']").send_keys(theme)
             print ("Click: Найти")
             driver.find_element_by_xpath("//button[@class='v-btn v-btn--contained theme--light v-size--default']").click()
             self.wait_loss(driver, "//div[@class='nuxt-progress']")
@@ -801,12 +805,12 @@ class hc_command():
         
         __search_check(theme, driver)
         print ("Click: База знаний")
-        driver.find_element_by_xpath("//div[@class='v-toolbar__items']//a[@class='v-btn--active v-btn v-btn--flat v-btn--router v-btn--text theme--light v-size--default']").click()
+        driver.find_element_by_xpath("//div[@class='v-toolbar__items hidden-xs']//a[@class='v-btn--active v-btn v-btn--flat v-btn--router v-btn--text theme--light v-size--default']").click()
         self.wait_loss(driver, "//div[@class='nuxt-progress']")
         
         __search_check(theme, driver)
         print ("Click: База знаний")
-        driver.find_element_by_xpath("//div[@class='v-toolbar__items']//a[@class='v-btn--active v-btn v-btn--flat v-btn--router v-btn--text theme--light v-size--default']").click()
+        driver.find_element_by_xpath("//div[@class='v-toolbar__items hidden-xs']//a[@class='v-btn--active v-btn v-btn--flat v-btn--router v-btn--text theme--light v-size--default']").click()
         self.wait_loss(driver, "//div[@class='nuxt-progress']")
         
 
@@ -839,7 +843,7 @@ class hc_command():
                 print (tile)
                 assert False
             print ("Click: База знаний")
-            driver.find_element_by_xpath("//div[@class='v-toolbar__items']//a[@class='v-btn--active v-btn v-btn--flat v-btn--router v-btn--text theme--light v-size--default']").click()
+            driver.find_element_by_xpath("//div[@class='v-toolbar__items hidden-xs']//a[@class='v-btn--active v-btn v-btn--flat v-btn--router v-btn--text theme--light v-size--default']").click()
             self.wait_loss(driver, "//div[@class='nuxt-progress']")
             i = i + 1
 
@@ -1032,8 +1036,8 @@ class hc_command():
             assert False   
 
     def main_sevices(self, driver): #Првоерка контента на странице услуг
-        
-        driver.find_element_by_xpath("//div[@class='v-toolbar__items']//a[1]").click()
+        print ("Click: База знаний")
+        driver.find_element_by_xpath("//div[@class='v-toolbar__items hidden-xs']//a[1]").click()
         print ("Info: Проперка страницы Услуг для неавторизованного пользвоателя")
         print ("Check: Блок Мы работаем со всему устройствами")
         driver.find_elements_by_xpath("//div[@class='layout text-xs-center pt-5 mt-4 pb-5 mb-2 column']")

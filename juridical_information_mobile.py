@@ -23,6 +23,18 @@ class juridical_information_mobile():
         browser = browsers()
         browser.quit_browser(driver)
 
+    def juridical_information_part2_mobile(self, driver):
+        # Проверяем название браузера
+        # Перенаправляем на нужный метод в зависимости от браузера
+        name = driver.capabilities['browserName']
+        if name == "chrome":
+            self.juridical_information_part2_chrome_mobile(driver)
+        if name == "firefox":
+            self.juridical_information_part2_mozilla_mobile(driver)
+        else:
+            print ("Info: Не удалось определить браузер для выполенения juridical_information_part2")
+
+
     def juridical_information_part2_mozilla_mobile(self, driver):
         test = hc_command_mobile()
         driver.get(test.site())
@@ -32,6 +44,7 @@ class juridical_information_mobile():
         window_before = driver.window_handles[0]
         time.sleep(0.1)
         driver.find_element_by_xpath("//a[contains(text(),'Юридические документы')]").click()
+        time.sleep(0.2) # Наверное влкадка не успевала переключаться и поэтому драйвер не мог зацепить айдишник еще не открывшейся вкладки
         window_after = driver.window_handles[1]
         time.sleep(0.1)
         time.sleep(0.1)
@@ -73,7 +86,7 @@ class juridical_information_mobile():
         test.open_signin_form(driver)
 
         window_before = driver.window_handles[0]
-        time.sleep(0.1)
+        time.sleep(0.2)
         driver.find_element_by_xpath("//a[contains(text(),'Юридические документы')]").click()
         time.sleep(0.1)
         window_after = driver.window_handles[1]
@@ -100,13 +113,14 @@ class juridical_information_mobile():
 
         driver.find_element_by_xpath("//a[contains(text(),'Юридические документы')]").click()
         time.sleep(0.1)
-        window_after = driver.window_handles[2]
+        window_after = driver.window_handles[3]
         time.sleep(0.1)
         driver.switch_to.window(window_after)
-        time.sleep(0.1)
+        time.sleep(0.2)
+        print ("Info: Проверка правила првоедеения акции")
         driver.find_element_by_xpath("//a[contains(text(),'Правила проведения акции')]").click()
         driver.find_element_by_xpath("//li[contains(text(),'Организатор Акции ООО «Е09»')]")
-        print ("Info: Правила проведения акции проверены")
+        print ("Check: Правила проведения акции проверены")
         driver.switch_to.window(window_before)
         browser = browsers()
         browser.quit_browser(driver)
