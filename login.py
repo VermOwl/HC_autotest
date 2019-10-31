@@ -48,6 +48,10 @@ class hc_command():
             self.wait_loss(driver, what_wait)        
         driver.implicitly_wait(10)    
 
+    def autotestemail(self):
+        mail = "autotestemail"+ str(random.randint(1000000, 9999999)) + "@python.org"
+        return mail
+
     def signin(self, driver): #логиниться на helpcubes
         
         #Войти в аккаунт
@@ -1426,7 +1430,36 @@ class hc_command():
         test_request.get_back_passwrod(self.site(), self.get_email_from_config(), "23072307qS")
 
 
-    def support_page_send_(driver):
+    def support_page_send_(self, driver):
 
-        print ("Проверка элементов на странице /support")
+        print ("Info: Проверка элементов на странице /support")
+        print ("Click: /support: Написать нам")
+        driver.find_element_by_xpath("//div[@class='support-dialog my-auto text-xs-center']//button[@class='btn-radius v-btn v-btn--contained theme--light v-size--default primary']").click()
         
+        print ("Fill: /support: Ваше имя")
+        name = names.get_full_name()
+        driver.find_element_by_xpath("//input[@aria-label='Ваше имя']").send_keys(name)
+
+        print ("Fill: /support: Email")
+        driver.find_element_by_xpath("//input[@aria-label='Email']").send_keys(self.autotestemail())
+
+        print ("Fill: /support: Номер телефона")
+        driver.find_element_by_xpath("//div[@class='v-text-field__slot'][contains(.,'Номер телефона')]").click()
+
+        print ("Click: /support: список Тем сообщения")
+        driver.find_element_by_xpath("//div[@class='v-input theme--light v-text-field v-text-field--is-booted v-text-field--enclosed v-text-field--outlined v-select']//div[@class='v-select__selections']").click()
+
+        print ("Click: /support: выбор Темы сообщения")
+        driver.find_element_by_xpath("//div[@class='v-list-item__title'][contains(.,'Помощь работы с сайтом')]").click()
+
+        print ("Fill: /support: Текст сообщения")
+        driver.find_element_by_xpath("//textarea[contains(@aria-label,'Текст обращения')]").send_keys("Lorem ipsum dolor sit amet, consectetuer adipiscing elit.")
+
+        print ("Fill: /support: Ввесити первых 6 символов номера карты")
+        driver.find_element_by_xpath("//input[@aria-label='Первые 6 символов']").send_keys("123456")
+
+        print ("Fill: /support: Ввести последние 4 символа номера карты")
+        driver.find_element_by_xpath("//input[@aria-label='Последние 4 символа']").send_keys("1234")
+
+        print ("Click: /support: Отправить на запрос в ТП")
+        driver.find_element_by_xpath("//button[@type='button'][contains(.,'Отправить')]").click()
