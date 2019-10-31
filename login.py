@@ -1424,3 +1424,9 @@ class hc_command():
         print ("Fill: Вернуть пароль обратно")
         test_request = request_hc()
         test_request.get_back_passwrod(self.site(), self.get_email_from_config(), "23072307qS")
+
+
+    def support_page_send_(driver):
+
+        print ("Проверка элементов на странице /support")
+        
