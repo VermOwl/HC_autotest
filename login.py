@@ -1426,7 +1426,7 @@ class hc_command():
         test_request.get_back_passwrod(self.site(), self.get_email_from_config(), "23072307qS")
 
 
-    def support_page_send_(driver):
+    def support_page_send_(self, driver):
 
         print ("Проверка элементов на странице /support")
-        
+
