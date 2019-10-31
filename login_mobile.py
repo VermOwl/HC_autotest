@@ -895,7 +895,7 @@ class hc_command_mobile():
             print ("Fill: Поле поиска: Поиск по ранее найденной 4 теме")
             driver.find_element_by_xpath("//input[@placeholder='Что вы хотите узнать?']").send_keys(theme)
             print ("Click: Найти")
-            driver.find_element_by_xpath("//button[@class='v-btn v-btn--contained theme--light v-size--default']").click()
+            driver.find_element_by_xpath("//button[@class='v-btn v-btn--contained theme--light v-size--default primary']").click()
             self.wait_loss(driver, "//div[@class='nuxt-progress']")
 
             print ("Check: Найден тольк один элемент. Иначе падаем")

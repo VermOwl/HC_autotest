@@ -23,6 +23,20 @@ class juridical_information_mobile():
         browser = browsers()
         browser.quit_browser(driver)
 
+    def juridical_information_part2_mobile(self, driver):
+        # Проверяем название браузера
+        # Перенаправляем на нужный метод в зависимости от браузера
+
+        name = driver.capabilities['browserName']
+        if name == "chrome":
+            self.juridical_information_part2_chrome_mobile(driver)
+        if name == "firefox":
+            self.juridical_information_part2_mozilla_mobile(driver)
+        else:
+            print ("Info: Не удалось определить браузер для выполенения juridical_information_part2")
+            assert False
+
+
     def juridical_information_part2_mozilla_mobile(self, driver):
         test = hc_command_mobile()
         driver.get(test.site())
@@ -32,6 +46,7 @@ class juridical_information_mobile():
         window_before = driver.window_handles[0]
         time.sleep(0.1)
         driver.find_element_by_xpath("//a[contains(text(),'Юридические документы')]").click()
+        time.sleep(0.2) # Наверное влкадка не успевала переключаться и поэтому драйвер не мог зацепить айдишник еще не открывшейся вкладки
         window_after = driver.window_handles[1]
         time.sleep(0.1)
         time.sleep(0.1)

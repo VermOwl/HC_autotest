@@ -72,12 +72,10 @@ def shell_test(method, work_browser):
 
     try:
         browser = browsers()
-
         if work_browser == "chrome":
             driver = browser.chrome()
         if work_browser == "mozilla":
             driver = browser.mozilla()
-
         print (Fore.CYAN + "chrome test " + method.__name__ + "" + Style.RESET_ALL)
         method(driver) # вызов рабочего метода
     except Exception as e:
@@ -95,7 +93,6 @@ def shell_test_mobile(method, work_browser): # оболочка для chrome mo
     
     try:
         browser = browsers()
-
         if work_browser == "chrome":
             driver = browser.chrome_mobile()
         if work_browser == "mozilla":
@@ -119,8 +116,10 @@ def start_test_chrome_desktop (work_browser): # Метод передачи те
     test_list = [   # Список тестовых методов
         add_user_with_send_support, 
         edit_profile_info,
+        create_user_and_devices,
+        feedback_form,
         juridical_information().juridical_information,
-        juridical_information().juridical_information_part2_chrome,
+        juridical_information().juridical_information_part2, # надо переписать для вот это для мозилы и хрома
         knowledge,
         main_page_check_unatorize,
         edit_user_and_device,
@@ -135,12 +134,13 @@ def start_test_chrome_mobile(work_browser): # Аналогично методу 
     test_list = [   # Список тестовых методов
         add_user_with_send_support_mobile, 
         edit_profile_info_mobile,
+        create_user_and_devices_mobile,
+        feedback_form_mobile,
         juridical_information_mobile().juridical_information_mobile,
-        juridical_information_mobile().juridical_information_part2_chrome_mobile,
+        juridical_information_mobile().juridical_information_part2_mobile,
         knowledge_mobile, 
         main_page_check_unatorize_mobile,
         edit_user_and_device_mobile,
-
 
         ##change_password Надо сделать для мобильной версии
     ] # нвоый тестовый метод добавить в конец
@@ -150,6 +150,6 @@ def start_test_chrome_mobile(work_browser): # Аналогично методу 
 
 
 #start_test_chrome_desktop("chrome")
-start_test_chrome_mobile("chrome")
+#start_test_chrome_mobile("chrome")
 #start_test_chrome_desktop("mozilla")
-#start_test_chrome_mobile("mozilla")
+start_test_chrome_mobile("mozilla")

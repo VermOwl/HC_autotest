@@ -12,7 +12,7 @@
 #import getpass
 #import os
 #
-#from browsers import browsers
+from browsers import browsers
 #from edit_profile_info import edit_profile_info
 #from add_user_with_send_support import add_user_with_send_support
 #import colorama
@@ -209,23 +209,9 @@ import calendar
 #    #    print("fepo")
 #
 #dwa(odin)
-class odin():
-    def odin(self, method):
-        print ("1")
 
-def dwa(method):
-    print ("2")
+browser = browsers()
+driver = browser.mozilla_mobile()
 
-def tri(method):
-    print ("3")
-
-def start():
-    testi = [
-        odin().odin,
-        dwa,
-        tri
-    ]
-    for method in testi:
-        i = 0 
-        method(0)
-start()
+name = driver.capabilities['browserName']
+print (name)

@@ -614,7 +614,7 @@ class hc_command():
         print ("Info: Проверка заполнения и отправки Формы обратной связи")
         # Открыть контакты
         print ("Click: Открыть страницу Контакты")
-        driver.find_element_by_xpath("//a[6]//span[1]").click()
+        driver.find_element_by_xpath("//p[@class='header__link']//a[contains(text(),'Контак')]").click() 
 
         # Заполнение полей Имя, номера телефона, мыло, сообщение
         name = names.get_full_name()

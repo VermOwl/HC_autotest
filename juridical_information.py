@@ -23,6 +23,23 @@ class juridical_information():
         browser = browsers()
         browser.quit_browser(driver)
 
+
+
+    def juridical_information_part2(self, driver):
+        # Проверяем название браузера
+        # Перенаправляем на нужный метод в зависимости от браузера
+
+        name = driver.capabilities['browserName']
+        if name == "chrome":
+            self.juridical_information_part2_chrome(driver)
+        if name == "firefox":
+            self.juridical_information_part2_mozilla(driver)
+        else:
+            print ("Info: Не удалось определить браузер для выполенения juridical_information_part2")
+            assert False
+
+
+
     def juridical_information_part2_mozilla(self, driver):
         test = hc_command()
         driver.get(test.site())
@@ -66,6 +83,7 @@ class juridical_information():
         driver.switch_to.window(window_before)
         browser = browsers()
         browser.quit_browser(driver)    
+
 
     def juridical_information_part2_chrome(self, driver):
         test = hc_command()
