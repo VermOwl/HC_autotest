@@ -8,6 +8,9 @@ import pyperclip
 from login import hc_command
 import configparser
 from browsers import browsers
+import colorama
+from colorama import Fore, Style
+
 
 class juridical_information():
 
@@ -28,16 +31,14 @@ class juridical_information():
     def juridical_information_part2(self, driver):
         # Проверяем название браузера
         # Перенаправляем на нужный метод в зависимости от браузера
-
         name = driver.capabilities['browserName']
         if name == "chrome":
             self.juridical_information_part2_chrome(driver)
-        if name == "firefox":
+        elif name == "firefox":
             self.juridical_information_part2_mozilla(driver)
         else:
-            print ("Info: Не удалось определить браузер для выполенения juridical_information_part2")
-            assert False
-
+            print (Fore.RED + "Info: Не удалось определить браузер для выполенения juridical_information_part2" + Style.RESET_ALL)
+            
 
 
     def juridical_information_part2_mozilla(self, driver):

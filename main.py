@@ -149,7 +149,7 @@ def start_test_chrome_mobile(work_browser): # Аналогично методу 
         shell_test_mobile(method, work_browser)
 
 
-#start_test_chrome_desktop("chrome")
-#start_test_chrome_mobile("chrome")
-#start_test_chrome_desktop("mozilla")
+start_test_chrome_desktop("chrome")
+start_test_chrome_mobile("chrome")
+start_test_chrome_desktop("mozilla")
 start_test_chrome_mobile("mozilla")
