@@ -86,7 +86,7 @@ class juridical_information_mobile():
         test.open_signin_form(driver)
 
         window_before = driver.window_handles[0]
-        time.sleep(0.1)
+        time.sleep(0.2)
         driver.find_element_by_xpath("//a[contains(text(),'Юридические документы')]").click()
         time.sleep(0.1)
         window_after = driver.window_handles[1]

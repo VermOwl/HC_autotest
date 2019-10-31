@@ -76,7 +76,7 @@ def shell_test(method, work_browser):
             driver = browser.chrome()
         if work_browser == "mozilla":
             driver = browser.mozilla()
-        print (Fore.CYAN + "chrome test " + method.__name__ + "" + Style.RESET_ALL)
+        print (Fore.CYAN + work_browser + " test " + method.__name__ + "" + Style.RESET_ALL)
         method(driver) # вызов рабочего метода
     except Exception as e:
         make_screenshot(driver)
@@ -98,7 +98,7 @@ def shell_test_mobile(method, work_browser): # оболочка для chrome mo
         if work_browser == "mozilla":
             driver = browser.mozilla_mobile()
 
-        print (Fore.CYAN + "chrome test " + method.__name__ + "" + Style.RESET_ALL)
+        print (Fore.CYAN + work_browser +  " test " + method.__name__ + "" + Style.RESET_ALL)
         method(driver) # вызов рабочего метода
     except Exception as e:
         make_screenshot(driver)

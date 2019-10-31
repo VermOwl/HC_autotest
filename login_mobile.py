@@ -895,7 +895,14 @@ class hc_command_mobile():
             print ("Fill: Поле поиска: Поиск по ранее найденной 4 теме")
             driver.find_element_by_xpath("//input[@placeholder='Что вы хотите узнать?']").send_keys(theme)
             print ("Click: Найти")
-            driver.find_element_by_xpath("//button[@class='v-btn v-btn--contained theme--light v-size--default primary']").click()
+            time.sleep(0.1)
+            name = driver.capabilities['browserName']
+            if name == "chrome":
+                driver.find_element_by_xpath("//button[@class='v-btn v-btn--contained theme--light v-size--default']").click()
+            elif name == "firefox":
+                driver.find_element_by_xpath("//button[@class='v-btn v-btn--contained theme--light v-size--default primary']").click()
+            else:
+                print (Fore.RED + "Не удалось распознать бразуер" + Style.RESET_ALL)
             self.wait_loss(driver, "//div[@class='nuxt-progress']")
 
             print ("Check: Найден тольк один элемент. Иначе падаем")
@@ -1035,6 +1042,7 @@ class hc_command_mobile():
         up_rating_buttons[2].click()
         driver.refresh()
         self.wait_loss(driver, "//div[@class='nuxt-progress']")
+        time.sleep(0.2)
         check_rating = driver.find_elements_by_xpath("//p[@class='body-1 mb-0 py-1 text-xs-center']")
         print ("Check: У статьи выше рейтинг?")
         if str(check_rating[2].text) == str(rating_int):
@@ -1152,6 +1160,7 @@ class hc_command_mobile():
     def support_card (self, driver): # Карточка Служба поддеркжи пользоватлей 
         print ("Check: Карточка служба поддержки пользователей")
         driver.find_element_by_xpath("//div[@class='flex card pa-4']")
+        time.sleep(0.2) # Message: stale element reference: element is not attached to the page document
         driver.find_element_by_xpath("//a[@class='color-blue'][contains(text(),'воспользуйтесь')]").click()
         print ("Click: Наши контакты")
         driver.find_element_by_xpath("//h1[@class='display-2 pb-4'][contains(text(),'Свяжитесь')]")
@@ -1258,7 +1267,8 @@ class hc_command_mobile():
             self.check_page_help(driver)
             driver.back()
 
-        print ("Click: Обратный звонок")
+        print ("Click: Обратный звонок") 
+        time.sleep(0.2) # Пофиксило проблему Other element would receive the click: <a data-v-320a5937="" href="#" class="body-2 mb-3">
         driver.find_element_by_xpath("//a[@class='body-2 mb-3 link']").click()
         if str(url) != "http://front.stage.helpcubes.com/contacts":
             driver.find_element_by_xpath("//h1[@class='display-2 pb-4'][contains(text(),'Свяжитесь')]")
